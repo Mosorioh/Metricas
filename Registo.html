@@ -5,6 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <style>
@@ -28,6 +29,7 @@
       background-size: cover;
     }
     </style>
+    
 </head>
 <body>
   <div class="bg">
@@ -37,29 +39,29 @@
   <!-- <p>El Siguiente registro ayudaria a estimar la curva de contagio del COVID-19 </p>
   <p>Solo realizar un registro por casa, antes de seguir consulta si un familiar ya realizo en Cendo </p>
   <p>El registro debe realizarce por Dia </p> -->
-  <form action="http://192.168.100.233:5050/Registro" method="post">
+  <form action="http://192.168.100.233:5050/Registro" method="post" onsubmit="return validar();">
     <div class="form-group">
       <!-- Select pais -->
         <label for="sel1"  placeholder="Selcciona tu Pais">Select Pais:</label>
-          <select class="form-control" name="Pais" id="selectPais"  required>
+          <select class="form-control" name="Pais" id="selectPais"  ></select>
           </select>
         <br>
       <!-- Select Provincia -->
         <label for="sel1">Select Region :</label>
-        <select class="form-control" name="Provincia" id="Provincia"  required >
+        <select class="form-control" name="Provincia" id="Provincia"   >
           <option selected="true" disabled="disabled">Selecciona Tu Region</option>
         </select>
         <br>
       <!-- Select City -->
         <label for="sel1">Select Ciudad :</label>
-          <select class="form-control" name="Ciudad" id="Ciudad"  required>
+          <select class="form-control" name="Ciudad" id="Ciudad"  >
             <option selected="true" disabled="disabled">Selecciona Tu Ciudad</option>
           </select>
         <br>
       <!-- Select Sector -->
         <label for="sel1">Select Sector :</label>
-          <select class="form-control" name="Sector" id="Sector">
-            <option value="0">Selecciona Tu Sector</option>
+          <select class="form-control" name="Sector" id="Sector" >
+            <option >Selecciona Tu Sector</option>
             <option value="Norte">Norte</option>
             <option value="Centro">Centro</option>
             <option value="Sur">Sur</option>
@@ -67,19 +69,19 @@
         <br>
       <!-- Total de Personas en Casa -->
         <label for="usr">Total de Personas que viven con usted:</label>
-          <input type="text" class="form-control" name="TotalPersonas" id="TotalPersonas"  placeholder="0">
+          <input type="text" class="form-control" name="TotalPersonas" id="TotalPersonas"  placeholder="0" >
         <br>     
       <!-- Total de Personas en Casa -->    
         <label for="usr">Total de Personas que viven con usted:</label>
-          <input type="text" class="form-control" name="TotalPersonas" id="TotalPersonas"  placeholder="0">
+          <input type="text" class="form-control" name="TotalPersonas" id="TotalPersonas"  placeholder="0" >
         <br>
       <!-- Total de Personas que salieron de Casa -->   
         <label for="usr">Total de Personas que Salieron "Ayer" de su casa:</label>
-          <input type="text" class="form-control" name="TotalSalidas" id="TotalSalidas" placeholder="0">
+          <input type="text" class="form-control" name="TotalSalidas" id="TotalSalidas" placeholder="0" >
         <br>
       <!-- Tiempo de exposicion (fuera de casa) -->        
         <label for="sel1">Tiempo Aproximado de Salida :</label>
-          <select class="form-control" name="IntervaloSalida" id="IntervaloSalida">
+          <select class="form-control" name="IntervaloSalida" id="IntervaloSalida" >
             <option value="0">0</option>
             <option value="0.30">Menos de Media Hora</option>
             <option value="1">1 Hora</option>
@@ -104,7 +106,7 @@
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"> </script>
-
+<script src="js/validar.js"></script>
 <script type="text/javascript" src="js/index.js"></script>
 
 </html>

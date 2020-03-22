@@ -46,7 +46,7 @@ console.log ("Conexion js Link")
         var n = 0;
 
         
-        Provincia.innerHTML = '<option selected="Provincia" >Selecciona una  Provincia</option>';
+        Provincia.innerHTML = '<option selected="Provincia" >Selecciona Tu Region</option>';
         
         for(let dato of Listprovincia){
             n++;
@@ -79,7 +79,7 @@ console.log ("Conexion js Link")
     var resultado = document.getElementById('Ciudad');
         var n = 0;
         Ciudad.innerHTML = '';
-        Ciudad.innerHTML = '<option selected="Ciudad" >Selecciona una  Ciudad</option>';
+        Ciudad.innerHTML = '<option selected="Ciudad" >Selecciona Tu Ciudad</option>';
         
         for(let dato of Listcity){
             n++;
