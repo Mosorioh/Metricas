@@ -12,6 +12,7 @@
       height: 100%;
       margin: 0;
       color: white;
+      background-image: url("Fondo.jpg");
     }
     
     .bg {
@@ -38,67 +39,175 @@
   <p>El registro debe realizarce por Dia </p> -->
   <form action="http://192.168.100.233:5050/Registro" method="post">
     <div class="form-group">
-      <!-- <label for="sel1"  placeholder="Selcciona tu Pais">Select Pais:</label> -->
-      <select class="form-control" name="Pais" id="Pais">
-        <option value="0">Seleciona Tu Pais</option>
-        <option value="1">Colombia</option>
-        <option value="2">Ecuador</option>
-        <option value="3">Venezuela</option>
-      </select>
-      <br>
-      <label for="sel1">Select Provincia :</label>
-      <select class="form-control" name="Provincia" id="Provincia">
-        <option value="0">Seleciona una Provincia</option>
-        <option value="1">Pichincha</option>
-        <option value="2">Guayas</option>
-        <option value="3">Imbabura</option>
-        <option value="4">Rios</option>
-      </select>
-      <br>
-      <label for="sel1">Select Ciudad :</label>
-      <select class="form-control" name="Ciudad" id="Ciudad">
-        <option value="0">Selecciona Tu ciudad</option>
-        <option value="1">Quito</option>
-        <option value="2">Cumbaya</option>
-      </select>
-      <br>
-      <label for="sel1">Select Sector :</label>
-      <select class="form-control" name="Sector" id="Sector">
-        <option value="0">Selecciona Tu Sector</option>
-        <option value="1">Norte</option>
-        <option value="2">Centro</option>
-        <option value="3">Sur</option>
-
-      </select>
-      <br>
-      <label for="usr">Total de Personas que viven con usted:</label>
-      <input type="text" class="form-control" name="TotalPersonas" id="TotalPersonas"  placeholder="0">
-      <br>
-      <label for="usr">Total de Personas que Salieron "Ayer" de su casa:</label>
-      <input type="text" class="form-control" name="TotalSalidas" id="TotalSalidas" placeholder="0">
-
-    <br>
-      <label for="sel1">Tiempo Aproximado de Salida :</label>
-      <select class="form-control" name="IntervaloSalida" id="IntervaloSalida">
-        <option value="0">0</option>
-        <option value="0.30">Menos de Media Hora</option>
-        <option value="1">1 Hora</option>
-        <option value="2">2 Horas</option>
-        <option value="3">3 Horas</option>
-        <option value="4">4 Horas</option>
-        <option value="5">5 Hora</option>
-        <option value="6">6 Horas</option>
-        <option value="7">7 Horas</option>
-        <option value="8">8 Horas</option>
-        <option value="10">10 Horas</option>
-        <option value="12">12 Horas</option>
-      </select>
-      <br>
-      <button type="submit" class="btn btn-default">Submit</button>
-      <br>
-  </form>
+      <!-- Select pais -->
+        <label for="sel1"  placeholder="Selcciona tu Pais">Select Pais:</label>
+          <select class="form-control" name="Pais" id="selectPais"  required>
+          </select>
+        <br>
+      <!-- Select Provincia -->
+        <label for="sel1">Select Region :</label>
+        <select class="form-control" name="Provincia" id="Provincia"  required >
+          <option selected="true" disabled="disabled">Selecciona Tu Region</option>
+        </select>
+        <br>
+      <!-- Select City -->
+        <label for="sel1">Select Ciudad :</label>
+          <select class="form-control" name="Ciudad" id="Ciudad"  required>
+            <option selected="true" disabled="disabled">Selecciona Tu Ciudad</option>
+          </select>
+        <br>
+      <!-- Select Sector -->
+        <label for="sel1">Select Sector :</label>
+          <select class="form-control" name="Sector" id="Sector">
+            <option value="0">Selecciona Tu Sector</option>
+            <option value="Norte">Norte</option>
+            <option value="Centro">Centro</option>
+            <option value="Sur">Sur</option>
+          </select>
+        <br>
+      <!-- Total de Personas en Casa -->
+        <label for="usr">Total de Personas que viven con usted:</label>
+          <input type="text" class="form-control" name="TotalPersonas" id="TotalPersonas"  placeholder="0">
+        <br>     
+      <!-- Total de Personas en Casa -->    
+        <label for="usr">Total de Personas que viven con usted:</label>
+          <input type="text" class="form-control" name="TotalPersonas" id="TotalPersonas"  placeholder="0">
+        <br>
+      <!-- Total de Personas que salieron de Casa -->   
+        <label for="usr">Total de Personas que Salieron "Ayer" de su casa:</label>
+          <input type="text" class="form-control" name="TotalSalidas" id="TotalSalidas" placeholder="0">
+        <br>
+      <!-- Tiempo de exposicion (fuera de casa) -->        
+        <label for="sel1">Tiempo Aproximado de Salida :</label>
+          <select class="form-control" name="IntervaloSalida" id="IntervaloSalida">
+            <option value="0">0</option>
+            <option value="0.30">Menos de Media Hora</option>
+            <option value="1">1 Hora</option>
+            <option value="2">2 Horas</option>
+            <option value="3">3 Horas</option>
+            <option value="4">4 Horas</option>
+            <option value="5">5 Hora</option>
+            <option value="6">6 Horas</option>
+            <option value="7">7 Horas</option>
+            <option value="8">8 Horas</option>
+            <option value="10">10 Horas</option>
+            <option value="12">12 Horas</option>
+          </select>
+        <br>
+      <!-- Boton -->     
+        <button type="submit" class="btn btn-default">Submit</button>
+        <br>
+    </form>
 </div>
 </div>
-
 </body>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"> </script>
+
+<!----- Script 1------>
+<!-- Get all paises -->
+<script>
+    fetch('http://192.168.100.233:5050/pais')
+    .then(ListPaises=>ListPaises.json())
+    .then(ListPaises=>{
+      console.log("Lista de Paises")
+        console.log(ListPaises)
+        
+        var resultado = document.getElementById('selectPais');
+        var n = 0;
+        selectPais.innerHTML = '';
+        selectPais.innerHTML = '<option selected="selectPais">Selecciona Tu Pais</option>';
+        
+        for(let dato of ListPaises){
+            n++;
+            resultado.innerHTML += `
+            <option value="${dato.Id}">${dato.Name_Pais}</option>
+            
+            `;
+           
+        }
+       
+    })
+    
+</script>
+
+
+<!----- Script 2------>
+<!-- get provincia Segun opcion seleccionada en el drowndoon-->
+<script>	  
+	$(document).ready(function(){
+    $("#selectPais").on("change",function(){						
+      var PaisSelectd=$(this).val()//obtenemos el valor seleccionado en una variable	
+      console.log("Pais Seleccionado: " + PaisSelectd) 
+
+  fetch('http://192.168.100.233:5050/provincia/'+PaisSelectd+'')
+
+	.then(Listprovincia=>Listprovincia.json())
+	.then(Listprovincia=>{
+  console.log("Provincias")   
+  console.log( Listprovincia)
+  
+    var resultado = document.getElementById('Provincia');
+        var n = 0;
+
+        
+        Provincia.innerHTML = '<option selected="Provincia" >Selecciona una  Provincia</option>';
+        
+        for(let dato of Listprovincia){
+            n++;
+            resultado.innerHTML += `
+            <option value="${dato.Id}">${dato.Name_provincia}</option>
+            
+            `;
+			}
+			
+			})
+		})
+	})
+</script>
+
+<!----- Script 3------>
+<!-- get provincia Segun opcion seleccionada en el drowndoon-->
+<script>	  
+	$(document).ready(function(){
+    $("#Provincia").on("change",function(){						
+      var ProvinciaSelectd=$(this).val()//obtenemos el valor seleccionado en una variable	
+      console.log("Provincia Seleccionado: " + ProvinciaSelectd) 
+
+  fetch('http://192.168.100.233:5050/City/'+ProvinciaSelectd+'')
+
+	.then(Listcity=>Listcity.json())
+	.then(Listcity=>{
+  console.log("City")   
+  console.log( Listcity)
+  
+    var resultado = document.getElementById('Ciudad');
+        var n = 0;
+        Ciudad.innerHTML = '';
+        Ciudad.innerHTML = '<option selected="Ciudad" >Selecciona una  Ciudad</option>';
+        
+        for(let dato of Listcity){
+            n++;
+            resultado.innerHTML += `
+            <option value="${dato.Id}">${dato.City_name}</option>
+            
+            `;
+			}
+			
+			})
+		})
+	})
+</script>
+
+<script>	  
+	$(document).ready(function(){
+    $("#Ciudad").on("change",function(){						
+      var CitySelectd=$(this).val()//obtenemos el valor seleccionado en una variable	
+      console.log("Ciudad Seleccionado: " + CitySelectd) 
+    })
+  });	
+    
+</script>
+
 </html>

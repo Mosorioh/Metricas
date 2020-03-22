@@ -1,5 +1,6 @@
 from flask import Flask, request
 from flask import render_template
+from flask import jsonify
 # BD
 import time
 import datetime 
@@ -9,10 +10,118 @@ import pymysql
 from flask_cors import CORS
 
 app=Flask(__name__,template_folder='templates')
+cors = CORS(app)
 
 @app.route('/')
 def home():
     return 'Api rest Covid-19'
+#//////////////////////////////////////////
+
+@app.route('/pais')
+def select():
+    # Connect to the database
+    connection = pymysql.connect(host='192.168.100.51',
+                                user='Qatest',
+                                password='Quito.2019',
+                                db='COVID19',
+                                charset='utf8mb4',
+                                cursorclass=pymysql.cursors.DictCursor)
+
+    try:
+        with connection.cursor() as cursor:
+            # Read a single record
+            sql = "SELECT `Id`, `Name_Pais` FROM `Pais`"
+            cursor.execute(sql)
+            result = cursor.fetchall()
+            print(result)
+            """
+            #///////////////////////////////
+            sql2 = "SELECT COUNT(Genero) AS Male FROM `json_metrics` WHERE `Id_Genero`=%s"
+            cursor.execute(sql2, ('1'))
+            resultMale = cursor.fetchall()
+            print(resultMale)
+            #///////////////////////////////
+            sql3 = "SELECT COUNT(Id_Genero) AS Female FROM `json_metrics` WHERE `Id_Genero`=%s"
+            cursor.execute(sql3, ('2'))
+            resultFemale = cursor.fetchall()
+            print(resultFemale)
+            """
+        return jsonify(result)
+    finally:
+        connection.close()
+
+#/////////////////////////////////////////////
+
+@app.route('/provincia/<idPais>')
+def Provincia(idPais):
+    # Connect to the database
+    connection = pymysql.connect(host='192.168.100.51',
+                                user='Qatest',
+                                password='Quito.2019',
+                                db='COVID19',
+                                charset='utf8mb4',
+                                cursorclass=pymysql.cursors.DictCursor)
+
+    try:
+        with connection.cursor() as cursor:
+            # Read a single record
+            sql = "SELECT * FROM `Provincia` WHERE `Id_Pais`=%s"
+            cursor.execute(sql, (idPais))
+            result = cursor.fetchall()
+            print(result)
+            """
+            #///////////////////////////////
+            sql2 = "SELECT COUNT(Genero) AS Male FROM `json_metrics` WHERE `Id_Genero`=%s"
+            cursor.execute(sql2, ('1'))
+            resultMale = cursor.fetchall()
+            print(resultMale)
+            #///////////////////////////////
+            sql3 = "SELECT COUNT(Id_Genero) AS Female FROM `json_metrics` WHERE `Id_Genero`=%s"
+            cursor.execute(sql3, ('2'))
+            resultFemale = cursor.fetchall()
+            print(resultFemale)
+            """
+        return jsonify(result)
+    finally:
+        connection.close()
+
+#/////////////////////////////////////////////
+
+@app.route('/City/<idCity>')
+def City(idCity):
+    # Connect to the database
+    connection = pymysql.connect(host='192.168.100.51',
+                                user='Qatest',
+                                password='Quito.2019',
+                                db='COVID19',
+                                charset='utf8mb4',
+                                cursorclass=pymysql.cursors.DictCursor)
+
+    try:
+        with connection.cursor() as cursor:
+            # Read a single record
+            sql = "SELECT * FROM `City` WHERE `Id_Provincia`=%s"
+            cursor.execute(sql, (idCity))
+            result = cursor.fetchall()
+            print(result)
+            """
+            #///////////////////////////////
+            sql2 = "SELECT COUNT(Genero) AS Male FROM `json_metrics` WHERE `Id_Genero`=%s"
+            cursor.execute(sql2, ('1'))
+            resultMale = cursor.fetchall()
+            print(resultMale)
+            #///////////////////////////////
+            sql3 = "SELECT COUNT(Id_Genero) AS Female FROM `json_metrics` WHERE `Id_Genero`=%s"
+            cursor.execute(sql3, ('2'))
+            resultFemale = cursor.fetchall()
+            print(resultFemale)
+            """
+        return jsonify(result)
+    finally:
+        connection.close()
+
+
+#////////////////////////////////////////
 
 @app.route('/Registro', methods=['POST'])
 def Registro():
