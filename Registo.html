@@ -36,10 +36,10 @@
   <!-- <p>El Siguiente registro ayudaria a estimar la curva de contagio del COVID-19 </p>
   <p>Solo realizar un registro por casa, antes de seguir consulta si un familiar ya realizo en Cendo </p>
   <p>El registro debe realizarce por Dia </p> -->
-  <form action="/http://127.0.0.1:5050/Registro">
+  <form action="http://127.0.0.1:5050/Registro" method="post">
     <div class="form-group">
       <!-- <label for="sel1"  placeholder="Selcciona tu Pais">Select Pais:</label> -->
-      <select class="form-control" id="Pais">
+      <select class="form-control" name="Pais" id="Pais">
         <option value="0">Seleciona Tu Pais</option>
         <option value="1">Colombia</option>
         <option value="2">Ecuador</option>
@@ -47,7 +47,7 @@
       </select>
       <br>
       <label for="sel1">Select Provincia :</label>
-      <select class="form-control" id="Provincia">
+      <select class="form-control" name="Provincia" id="Provincia">
         <option value="0">Seleciona una Provincia</option>
         <option value="1">Pichincha</option>
         <option value="2">Guayas</option>
@@ -56,14 +56,14 @@
       </select>
       <br>
       <label for="sel1">Select Ciudad :</label>
-      <select class="form-control" id="Ciudad">
+      <select class="form-control" name="Ciudad" id="Ciudad">
         <option value="0">Selecciona Tu ciudad</option>
         <option value="1">Quito</option>
         <option value="2">Cumbaya</option>
       </select>
       <br>
       <label for="sel1">Select Sector :</label>
-      <select class="form-control" id="sel1">
+      <select class="form-control" name="Sector" id="Sector">
         <option value="0">Selecciona Tu Sector</option>
         <option value="1">Norte</option>
         <option value="2">Centro</option>
@@ -72,26 +72,26 @@
       </select>
       <br>
       <label for="usr">Total de Personas que viven con usted:</label>
-      <input type="text" class="form-control" id="TotalPersonas"  placeholder="0">
+      <input type="text" class="form-control" name="TotalPersonas" id="TotalPersonas"  placeholder="0">
       <br>
       <label for="usr">Total de Personas que Salieron "Ayer" de su casa:</label>
-      <input type="text" class="form-control" id="Salidas" placeholder="0">
+      <input type="text" class="form-control" name="TotalSalidas" id="TotalSalidas" placeholder="0">
 
     <br>
       <label for="sel1">Tiempo Aproximado de Salida :</label>
-      <select class="form-control" id="IntervaloSalida">
-        <option>0</option>
-        <option>Menos de Media Hora</option>
-        <option>1 Hora</option>
-        <option>2 Horas</option>
-        <option>3 Horas</option>
-        <option>4 Horas</option>
-        <option>5 Hora</option>
-        <option>6 Horas</option>
-        <option>7 Horas</option>
-        <option>8 Horas</option>
-        <option>10 Horas</option>
-        <option>12 Horas</option>
+      <select class="form-control" name="IntervaloSalida" id="IntervaloSalida">
+        <option value="0">0</option>
+        <option value="0.30">Menos de Media Hora</option>
+        <option value="1">1 Hora</option>
+        <option value="2">2 Horas</option>
+        <option value="3">3 Horas</option>
+        <option value="4">4 Horas</option>
+        <option value="5">5 Hora</option>
+        <option value="6">6 Horas</option>
+        <option value="7">7 Horas</option>
+        <option value="8">8 Horas</option>
+        <option value="10">10 Horas</option>
+        <option value="12">12 Horas</option>
       </select>
       <br>
       <button type="submit" class="btn btn-default">Submit</button>
