@@ -1,52 +1,104 @@
-$(document).ready(function(){
-  $.ajax({
-    type: 'GET',
-    url: 'http://192.168.100.233:5050/pais',
-    datatype: 'json',
-    success: function (data) {
-      console.log(data);
-      //console.log(data[2].Id);
-    var pais = data;
-    console.log(pais);
-  }
-  })
-  .done(function(listas_rep){
-    $('#lista_reproduccion').html(listas_rep)
-  })
-  .fail(function(){
-    alert('Hubo un errror al cargar las listas_rep')
-  })
+//<!----- Script 1------>
+//<!-- Get all paises -->
+//<script>
+    fetch('http://192.168.100.233:5050/pais')
+    .then(ListPaises=>ListPaises.json())
+    .then(ListPaises=>{
+      console.log("Lista de Paises")
+        console.log(ListPaises)
+        
+        var resultado = document.getElementById('selectPais');
+        var n = 0;
+        selectPais.innerHTML = '';
+        selectPais.innerHTML = '<option selected="selectPais">Selecciona Tu Pais</option>';
+        
+        for(let dato of ListPaises){
+            n++;
+            resultado.innerHTML += `
+            <option value="${dato.Id}">${dato.Name_Pais}</option>
+            
+            `;
+           
+        }
+       
+    })
+    
+//</script>
 
 
+//<!----- Script 2------>
+//<!-- get provincia Segun opcion seleccionada en el drowndoon-->
+//<script>	  
+	$(document).ready(function(){
+    $("#selectPais").on("change",function(){						
+      var PaisSelectd=$(this).val()//obtenemos el valor seleccionado en una variable	
+      console.log("Pais Seleccionado: " + PaisSelectd) 
 
+  fetch('http://192.168.100.233:5050/provincia/'+PaisSelectd+'')
 
+	.then(Listprovincia=>Listprovincia.json())
+	.then(Listprovincia=>{
+  console.log("Provincias")   
+  console.log( Listprovincia)
   
-  $('#lista_reproduccion').on('change', function(){
-    var id = $('#lista_reproduccion').val()
-    $.ajax({
-      type: 'POST',
-      url: 'http://192.168.100.233:5050/provincia/',
-      data: {'Id': Id},
-      success: function (data) {
-        console.log(data);
-        //console.log(data[2].Id);
-    }
-    })
-    .done(function(listas_rep){
-      $('#videos').html(listas_rep)
-    })
-    .fail(function(){
-      alert('Hubo un errror al cargar los vídeos')
-    })
-  })
+    var resultado = document.getElementById('Provincia');
+        var n = 0;
 
-  $('#enviar').on('click', function(){
-    var resultado = 'Lista de reproducción: ' + $('#lista_reproduccion option:selected').text() +
-    ' Video elegido: ' + $('#videos option:selected').text()
+        
+        Provincia.innerHTML = '<option selected="Provincia" >Selecciona una  Provincia</option>';
+        
+        for(let dato of Listprovincia){
+            n++;
+            resultado.innerHTML += `
+            <option value="${dato.Id}">${dato.Name_provincia}</option>
+            
+            `;
+			}
+			
+			})
+		})
+	})
+//</script>
 
-    $('#resultado1').html(resultado)
-  })
+//<!----- Script 3------>
+//<!-- get provincia Segun opcion seleccionada en el drowndoon-->
+//<script>	  
+	$(document).ready(function(){
+    $("#Provincia").on("change",function(){						
+      var ProvinciaSelectd=$(this).val()//obtenemos el valor seleccionado en una variable	
+      console.log("Provincia Seleccionado: " + ProvinciaSelectd) 
 
+  fetch('http://192.168.100.233:5050/City/'+ProvinciaSelectd+'')
 
+	.then(Listcity=>Listcity.json())
+	.then(Listcity=>{
+  console.log("City")   
+  console.log( Listcity)
   
-})
+    var resultado = document.getElementById('Ciudad');
+        var n = 0;
+        Ciudad.innerHTML = '';
+        Ciudad.innerHTML = '<option selected="Ciudad" >Selecciona una  Ciudad</option>';
+        
+        for(let dato of Listcity){
+            n++;
+            resultado.innerHTML += `
+            <option value="${dato.Id}">${dato.City_name}</option>
+            
+            `;
+			}
+			
+			})
+		})
+	})
+// </script>
+
+//<script>	  
+	$(document).ready(function(){
+    $("#Ciudad").on("change",function(){						
+      var CitySelectd=$(this).val()//obtenemos el valor seleccionado en una variable	
+      console.log("Ciudad Seleccionado: " + CitySelectd) 
+    })
+  });	
+    
+//</script>
