@@ -68,4 +68,4 @@ def Registro():
 
 if __name__ == '__main__':
     #app.run( )
-    app.run(port=5050, debug=True)
+    app.run(host='192.168.100.233', port=5050, debug=True)
