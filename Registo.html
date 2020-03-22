@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+  <h2>Censo COVID-19 </h2>
+  <p>El Siguiente registro ayudaria a estimar la curva de contagio del COVID-19 </p>
+  <p>Solo realizar un registro por casa, antes de seguir consulta si un familiar ya realizo en Cendo </p>
+  <p>El registro debe realizarce por Dia </p>
+  <form>
+    <div class="form-group">
+      <label for="sel1"  placeholder="Selcciona tu Pais">Select Pais:</label>
+      <select class="form-control" id="sel">
+        <option>Seleciona Tu Pais</option>
+        <option>Colombia</option>
+        <option>Ecuador</option>
+        <option>Venezuela</option>
+      </select>
+      <br>
+      <label for="sel1">Select Provincia :</label>
+      <select class="form-control" id="sel1">
+        <option>Seleciona una Provincia</option>
+        <option>Pichincha</option>
+        <option>Guayas</option>
+        <option>Imbabura</option>
+        <option>Rios</option>
+      </select>
+      <br>
+      <label for="sel1">Select Ciudad :</label>
+      <select class="form-control" id="sel1">
+        <option>Selecciona Tu ciudad</option>
+        <option>Quito</option>
+        <option>Cumbaya</option>
+      </select>
+      <br>
+      <label for="sel1">Select Sector :</label>
+      <select class="form-control" id="sel1">
+        <option>Selecciona Tu Sector</option>
+        <option>Norte</option>
+        <option>Centro</option>
+        <option>Sur</option>
+
+      </select>
+      <br>
+      <label for="usr">Total de Personas que viven con usted:</label>
+      <input type="text" class="form-control" id="usr"  placeholder="0">
+      <br>
+      <label for="usr">Total de Personas que Salieron "Ayer" de su casa:</label>
+      <input type="text" class="form-control" id="usr" placeholder="0">
+    </div>
+    <br>
+      <label for="sel1">Tiempo Aproximado de Salida :</label>
+      <select class="form-control" id="sel1">
+        <option>0</option>
+        <option>Menos de Media Hora</option>
+        <option>1 Hora</option>
+        <option>2 Horas</option>
+        <option>3 Horas</option>
+        <option>4 Horas</option>
+        <option>5 Hora</option>
+        <option>6 Horas</option>
+        <option>7 Horas</option>
+        <option>8 Horas</option>
+        <option>10 Horas</option>
+        <option>12 Horas</option>
+      </select>
+      <br>
+      <button type="submit" class="btn btn-default">Submit</button>
+      <br>
+  </form>
+</div>
+
+</body>
+</html>
