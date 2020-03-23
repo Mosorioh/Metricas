@@ -37,18 +37,7 @@ def select():
             cursor.execute(sql, 1)
             result = cursor.fetchall()
             print(result)
-            """
-            #///////////////////////////////
-            sql2 = "SELECT COUNT(Genero) AS Male FROM `json_metrics` WHERE `Id_Genero`=%s"
-            cursor.execute(sql2, ('1'))
-            resultMale = cursor.fetchall()
-            print(resultMale)
-            #///////////////////////////////
-            sql3 = "SELECT COUNT(Id_Genero) AS Female FROM `json_metrics` WHERE `Id_Genero`=%s"
-            cursor.execute(sql3, ('2'))
-            resultFemale = cursor.fetchall()
-            print(resultFemale)
-            """
+
         return jsonify(result)
     finally:
         connection.close()
@@ -70,8 +59,8 @@ def Provincia(idPais):
     try:
         with connection.cursor() as cursor:
             # Read a single record
-            sql = "SELECT * FROM `Provincia` WHERE `Id_Pais`=%s ORDER BY `Name_provincia`"
-            cursor.execute(sql, (idPais))
+            sql = "SELECT * FROM `Provincia` WHERE `Id_Pais`=%s and `IsActive`=%s ORDER BY `Name_provincia`"
+            cursor.execute(sql, (idPais, 1))
             result = cursor.fetchall()
             print(result)
             """
