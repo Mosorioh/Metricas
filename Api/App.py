@@ -210,7 +210,7 @@ def Registro():
         # user_ip = request.environ.get('HTTP_X_REAL_IP', request.remote_addr)
         #Ip client
         #user_ip = request.environ["REMOTE_ADDR"]
-        input()
+        #input()
         #x = Pais + Region + City +Sector + TotalPersonas + TotalSalidas + intervaloSalida 
     # Connect to the database
     connection = pymysql.connect(host='192.168.100.51',
