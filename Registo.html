@@ -8,6 +8,26 @@
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="Extras/popup/style-popup.css" />	
+  <script type="text/javascript" src="Extras/popup/Jquery/jquery.js"></script>
+  <script type="text/javascript">
+    function openDialog() {
+      $('#overlay').fadeIn('fast', function() {
+        $('#popup').css('display','block');
+            $('#popup').animate({'left':'30%'},500);
+        });
+    }
+    
+    function closeDialog(id) {
+      $('#'+id).css('position','absolute');
+      $('#'+id).animate({'left':'-100%'}, 500, function() {
+        $('#'+id).css('position','fixed');
+        $('#'+id).css('left','100%');
+        $('#overlay').fadeOut('fast');
+      });
+    }
+    </script>
+    
   <style>
     body, html {
       height: 100%;
@@ -37,10 +57,55 @@
     </style>
     
 </head>
-<body>
+<body onload="openDialog();">
+  <div class="content">
+          <div id="overlay" class="overlay">		
+          </div>
+          <!-- este es evento para volver a mostrar o levantar el popup 
+                  Si quieres ver descomenta las lineas
+                  <a onclick="openDialog();">Mostrar publicidad</a>
+          -->
+          <div id="popup" class="popup">
+                  <a onclick="closeDialog('popup');" class="close"></a>
+          <div>
+                  
+          <h2>Hola y Bienvenido...</h2>
+          <h4> - Esta es una herramienta Virtual, que busca estimar y detectar la curva de contagios del COVID-19 por Paises, Regiones y Sectores</h4>        
+          <div style="height:100%; width:100%;">
+          <h3>Como Puedes Ayudarnos...</h3>
+          <ul class="list-group">
+            <li class="list-group-item">Quedandote En Casa</li>
+            <li class="list-group-item">Realiza el Censo una Vez al Dia, en la Noche preferiblemente</li>
+            <li class="list-group-item">Valida que en tu casa, solo se realice un Censo por dia</li>
+            <li class="list-group-item">Debes Ser lo mas Honesto posible</li>
+            <li class="list-group-item">Se considera salir de la casa, abir la puerta principal y dar un paso hacia a fuera</li>
+          </ul>
+          </div>
+  
+          <!---
+          <div style="float:left; width:285px;">
+                  Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. 
+                  Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. 
+                  Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. 
+                  Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.<br/><br/>
+                  <div style="margin-top:0px;">
+                  </div>
+          </div>
+          --->
+          
+  </div>
+</div>
+
+
+
+
   <div class="bg">
 <div class="container">
 
+
+
+
+  
   <h2>Censo COVID-19 </h2>
   <!-- <p>El Siguiente registro ayudaria a estimar la curva de contagio del COVID-19 </p>
   <p>Solo realizar un registro por casa, antes de seguir consulta si un familiar ya realizo en Cendo </p>
