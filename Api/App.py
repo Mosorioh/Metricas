@@ -60,7 +60,7 @@ def Provincia(idPais):
         with connection.cursor() as cursor:
             # Read a single record
             sql = "SELECT * FROM `Provincia` WHERE `Id_Pais`=%s and `IsActive`=%s ORDER BY `Name_provincia`"
-            cursor.execute(sql, (idPais, 1))
+            cursor.execute(sql, (idPais), (1))
             result = cursor.fetchall()
             print(result)
             """
