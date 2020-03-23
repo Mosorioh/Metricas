@@ -2,7 +2,7 @@ console.log ("Conexion js Link")
 //<!----- Script 1------>
 //<!-- Get all paises -->
 //<script>
-    fetch('http://192.168.100.233:5050/pais')
+    fetch('http://181.199.66.129:5050/pais')
     .then(ListPaises=>ListPaises.json())
     .then(ListPaises=>{
       console.log("Lista de Paises")
@@ -35,7 +35,7 @@ console.log ("Conexion js Link")
       var PaisSelectd=$(this).val()//obtenemos el valor seleccionado en una variable	
       console.log("Pais Seleccionado: " + PaisSelectd) 
 
-  fetch('http://192.168.100.233:5050/provincia/'+PaisSelectd+'')
+  fetch('http://181.199.66.129:5050/provincia/'+PaisSelectd+'')
 
 	.then(Listprovincia=>Listprovincia.json())
 	.then(Listprovincia=>{
@@ -69,7 +69,7 @@ console.log ("Conexion js Link")
       var ProvinciaSelectd=$(this).val()//obtenemos el valor seleccionado en una variable	
       console.log("Provincia Seleccionado: " + ProvinciaSelectd) 
 
-  fetch('http://192.168.100.233:5050/City/'+ProvinciaSelectd+'')
+  fetch('http://181.199.66.129:5050/City/'+ProvinciaSelectd+'')
 
 	.then(Listcity=>Listcity.json())
 	.then(Listcity=>{
