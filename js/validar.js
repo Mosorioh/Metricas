@@ -70,6 +70,11 @@ function validar(){
         alert("Debe indicar si en las ultimas 48 horas salio alguien de su casa");
         return false;
     }
+    if(Ultimas48 = 0){
+        alert("Debe indicar si en las ultimas 48 horas salio alguien de su casa");
+        return false;
+    }
+ 
  
 
 }
