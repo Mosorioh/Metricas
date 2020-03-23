@@ -20,7 +20,7 @@ def home():
 @app.route('/pais')
 def select():
     # Connect to the database
-    connection = pymysql.connect(host='181.199.66.129',
+    connection = pymysql.connect(host='192.168.100.51',
                                 user='Qatest',
                                 password='Quito.2019',
                                 db='COVID19',
@@ -55,7 +55,7 @@ def select():
 @app.route('/provincia/<idPais>')
 def Provincia(idPais):
     # Connect to the database
-    connection = pymysql.connect(host='181.199.66.129',
+    connection = pymysql.connect(host='192.168.100.51',
                                 user='Qatest',
                                 password='Quito.2019',
                                 db='COVID19',
@@ -90,7 +90,7 @@ def Provincia(idPais):
 @app.route('/City/<idCity>')
 def City(idCity):
     # Connect to the database
-    connection = pymysql.connect(host='181.199.66.129',
+    connection = pymysql.connect(host='192.168.100.51',
                                 user='Qatest',
                                 password='Quito.2019',
                                 db='COVID19',
@@ -175,7 +175,7 @@ def Registro():
         #input()
         #x = Pais + Region + City +Sector + TotalPersonas + TotalSalidas + intervaloSalida 
     # Connect to the database
-    connection = pymysql.connect(host='181.199.66.129',
+    connection = pymysql.connect(host='192.168.100.51',
                                 user='Qatest',
                                 password='Quito.2019',
                                 db='COVID19',
@@ -198,4 +198,4 @@ def Registro():
 
 if __name__ == '__main__':
     #app.run( )
-    app.run(host='181.199.66.129', port=5050, debug=True)
+    app.run(host='192.168.100.233', port=5050, debug=True)
