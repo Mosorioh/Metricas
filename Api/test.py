@@ -129,13 +129,29 @@ def Registro():
         Pais = request.form['Pais']
         Region = request.form['Provincia']
         City = request.form['Ciudad']
-        Sector = request.form['Sector']
+        IdSector = request.form['Sector']
         TotalPersonas = request.form['TotalPersonas']
         TotalSalidas = request.form['TotalSalidas']
         intervaloSalida = request.form['IntervaloSalida']
+        Ultimas48 = request.form['Ultimas48']
         fechapeticion = date.today()
         now = datetime.now()
         timeget = now.time()
+        IdSectorIn = int(IdSector)
+        # Determinar el Nombre del Sector
+        if IdSectorIn == 1:
+            Sectorname = "Norte"
+        elif IdSectorIn == 2:
+            Sectorname = "Centro"
+        else:
+            Sectorname = "Sur"
+        # determinar las Personas_Riesgo
+        PersonasRiesgo = int(TotalPersonas) - int(TotalSalidas)
+        # IP
+        user_ip = request.environ["REMOTE_ADDR"]
+        #//////////////////////////////////////////////////
+        #  Print Result
+        #/////////////////////////////////////////////////
         print ("//////////////////////////////////////////////////")
         print (fechapeticion)
         print (now)
@@ -143,15 +159,20 @@ def Registro():
         print (Pais)
         print (Region)
         print (City)
-        print (Sector)
+        print (IdSector)
+        print ("Id Sector", IdSectorIn)
+        print (Sectorname)
         print (TotalPersonas)
         print (TotalSalidas)
+        print (PersonasRiesgo)
         print (intervaloSalida)
+        print (Ultimas48)
+        print (user_ip)
         # IP del Servidor
         # user_ip = request.environ.get('HTTP_X_REAL_IP', request.remote_addr)
         #Ip client
-        user_ip = request.environ["REMOTE_ADDR"]
-
+        #user_ip = request.environ["REMOTE_ADDR"]
+        #input()
         #x = Pais + Region + City +Sector + TotalPersonas + TotalSalidas + intervaloSalida 
     # Connect to the database
     connection = pymysql.connect(host='192.168.100.51',
@@ -164,8 +185,8 @@ def Registro():
         with connection.cursor() as cursor:
     # Create a new record
                             
-            sql = "INSERT INTO `Data` (`Id_Pais`, `Id_Region`, `Id_City`, `Id_Sector`, `Total_Personas_Casa`, `Total_personas_Salida`, `Time_Aprox_Salida`, `IP`, `Date`, `Hora`) VALUES (%s,%s, %s, %s, %s, %s, %s, %s, %s, %s)"
-            cursor.execute(sql, (Pais, Region, City, Sector, TotalPersonas, TotalSalidas, intervaloSalida, user_ip, fechapeticion, timeget))
+            sql = "INSERT INTO `Data` (`DatePeticion`, `Hora`, `Id_Pais`, `Id_Region`, `Id_City`, `Id_Sector`, `Sector`, `Total_Personas_Casa`, `Total_personas_Salida`, `Personas_Riesgo`, `Time_Aprox_Salida`, `Last48`, `IP`) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+            cursor.execute(sql, (fechapeticion, timeget, Pais, Region, City, IdSector, Sectorname, TotalPersonas, TotalSalidas, PersonasRiesgo, intervaloSalida, Ultimas48, user_ip))
             
     # connection is not autocommit by default. So you must commit to save
     # your changes.
