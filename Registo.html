@@ -10,23 +10,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <link rel="stylesheet" type="text/css" href="Extras/popup/style-popup.css" />	
   <script type="text/javascript" src="Extras/popup/Jquery/jquery.js"></script>
-  <script type="text/javascript">
-    function openDialog() {
-      $('#overlay').fadeIn('fast', function() {
-        $('#popup').css('display','block');
-            $('#popup').animate({'left':'30%'},500);
-        });
-    }
-    
-    function closeDialog(id) {
-      $('#'+id).css('position','absolute');
-      $('#'+id).animate({'left':'-100%'}, 500, function() {
-        $('#'+id).css('position','fixed');
-        $('#'+id).css('left','100%');
-        $('#overlay').fadeOut('fast');
-      });
-    }
-    </script>
+
     
   <style>
     body, html {
@@ -48,58 +32,12 @@
       background-repeat: no-repeat;
       background-size: cover;
     }
-    .btn-ttc:hover,
-    .btn-ttc:active {
-  color: white;
-  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-  background-color: #007da7;
-}
+
     </style>
     
 </head>
-<body onload="openDialog();">
-  <!--
-  <div class="content">
-          <div id="overlay" class="overlay">		
-          </div>
-          este es evento para volver a mostrar o levantar el popup 
-                  Si quieres ver descomenta las lineas
-                  <a onclick="openDialog();">Mostrar publicidad</a>
-          
-          <div id="popup" class="popup">
-                  <a onclick="closeDialog('popup');" class="close"></a>
-          <div>
-                  
-          <h2>Hola y Bienvenido...</h2>
-          <h4> - Esta es una herramienta Virtual, que busca estimar y detectar la curva de contagios del COVID-19 por Paises, Regiones y Sectores</h4>        
-          <div style="height:100%; width:100%;">
-          <h2>Como Puedes Ayudarnos...</h2>
-          <ul class="list-group">
-            <li class="list-group-item">Quedandote En Casa</li>
-            <li class="list-group-item">Realiza el Censo una Vez al Dia, en la Noche preferiblemente</li>
-            <li class="list-group-item">Valida que en tu casa, solo se realice un Censo por dia</li>
-            <li class="list-group-item">Debes Ser lo mas Honesto posible</li>
-            <li class="list-group-item">Se considera salir de la casa, abir la puerta principal y dar un paso hacia afuera</li>
-          </ul>
-          </div>
+<body onload>
   
-          
-          <div style="float:left; width:285px;">
-                  Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. 
-                  Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. 
-                  Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. 
-                  Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.<br/><br/>
-                  <div style="margin-top:0px;">
-                  </div>
-          </div>
-         
-          
-  </div>
-</div>
--->
-
-
-
   <div class="bg">
 <div class="container">
 
@@ -134,10 +72,7 @@
       <!-- Select Sector -->
         <label for="sel1">Select Sector :</label>
           <select class="form-control" name="Sector" id="Sector" >
-            <option >Selecciona Tu Sector</option>
-            <option value="1">Norte</option>
-            <option value="2">Centro</option>
-            <option value="3">Sur</option>
+            <option selected="true" disabled="disabled">Selecciona Tu Sector</option>
           </select>
         <br>
       <!-- Total de Personas en Casa -->

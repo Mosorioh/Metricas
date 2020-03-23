@@ -15,8 +15,11 @@ cors = CORS(app)
 @app.route('/')
 def home():
     return 'Api rest Covid-19'
-#//////////////////////////////////////////
 
+
+#//////////////////////////////////////////
+# Api Pais
+#//////////////////////////////////////////
 @app.route('/pais')
 def select():
     # Connect to the database
@@ -50,7 +53,9 @@ def select():
     finally:
         connection.close()
 
-#/////////////////////////////////////////////
+#//////////////////////////////////////////
+# Api provincia idPais
+#//////////////////////////////////////////
 
 @app.route('/provincia/<idPais>')
 def Provincia(idPais):
@@ -85,10 +90,12 @@ def Provincia(idPais):
     finally:
         connection.close()
 
-#/////////////////////////////////////////////
+#//////////////////////////////////////////
+# Api Ciudad idProvincia
+#//////////////////////////////////////////
 
-@app.route('/City/<idCity>')
-def City(idCity):
+@app.route('/City/<idProvincia>')
+def City(idProvincia):
     # Connect to the database
     connection = pymysql.connect(host='192.168.100.51',
                                 user='Qatest',
@@ -101,7 +108,7 @@ def City(idCity):
         with connection.cursor() as cursor:
             # Read a single record
             sql = "SELECT * FROM `City` WHERE `Id_Provincia`=%s"
-            cursor.execute(sql, (idCity))
+            cursor.execute(sql, (idProvincia))
             result = cursor.fetchall()
             print(result)
             """
@@ -121,7 +128,46 @@ def City(idCity):
         connection.close()
 
 
-#////////////////////////////////////////
+#//////////////////////////////////////////
+# Api Sector idcity
+#//////////////////////////////////////////
+
+@app.route('/Sector/<idcity>')
+def Sector(idcity):
+    # Connect to the database
+    connection = pymysql.connect(host='192.168.100.51',
+                                user='Qatest',
+                                password='Quito.2019',
+                                db='COVID19',
+                                charset='utf8mb4',
+                                cursorclass=pymysql.cursors.DictCursor)
+
+    try:
+        with connection.cursor() as cursor:
+            # Read a single record
+            sql = "SELECT * FROM `City` WHERE `Id_Provincia`=%s"
+            cursor.execute(sql, (idcity))
+            result = cursor.fetchall()
+            print(result)
+            """
+            #///////////////////////////////
+            sql2 = "SELECT COUNT(Genero) AS Male FROM `json_metrics` WHERE `Id_Genero`=%s"
+            cursor.execute(sql2, ('1'))
+            resultMale = cursor.fetchall()
+            print(resultMale)
+            #///////////////////////////////
+            sql3 = "SELECT COUNT(Id_Genero) AS Female FROM `json_metrics` WHERE `Id_Genero`=%s"
+            cursor.execute(sql3, ('2'))
+            resultFemale = cursor.fetchall()
+            print(resultFemale)
+            """
+        return jsonify(result)
+    finally:
+        connection.close()
+
+#//////////////////////////////////////////
+# Metodo Post
+#//////////////////////////////////////////
 
 @app.route('/Registro', methods=['POST'])
 def Registro():
@@ -198,4 +244,4 @@ def Registro():
 
 if __name__ == '__main__':
     #app.run( )
-    app.run(host='192.168.100.233', port=5050, debug=True)
+    app.run(host='192.168.100.51', port=5050, debug=True)

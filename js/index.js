@@ -94,12 +94,35 @@ console.log ("Conexion js Link")
 	})
 // </script>
 
+
+//<!----- Script 3------>
+//<!-- get provincia Segun opcion seleccionada en el drowndoon-->
 //<script>	  
-	$(document).ready(function(){
-    $("#Ciudad").on("change",function(){						
-      var CitySelectd=$(this).val()//obtenemos el valor seleccionado en una variable	
-      console.log("Ciudad Seleccionado: " + CitySelectd) 
-    })
-  });	
+$(document).ready(function(){
+  $("#Ciudad").on("change",function(){						
+    var CitySelectd=$(this).val()//obtenemos el valor seleccionado en una variable	
+    console.log("Ciudad Seleccionado: " + CitySelectd)  
+
+fetch('http://181.199.66.129:5050/Sector/'+CitySelectd+'')
+
+.then(ListSector=>ListSector.json())
+.then(ListSector=>{
+console.log("Sector")   
+console.log( ListSector)
+
+  var resultado = document.getElementById('Sector');
+      var n = 0;
+      Sector.innerHTML = '';
+      Sector.innerHTML = '<option selected="Sector" >Selecciona Tu Sector</option>';
+      
+      for(let dato of Listcity){
+          n++;
+          resultado.innerHTML += `
+          <option value="${dato.Id}">${dato.Sector}</option>
+          
+          `;
+    }
     
-//</script>
+    })
+  })
+})
