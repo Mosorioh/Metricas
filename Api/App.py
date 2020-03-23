@@ -183,14 +183,6 @@ def Registro():
         fechapeticion = date.today()
         now = datetime.now()
         timeget = now.time()
-        IdSectorIn = int(IdSector)
-        # Determinar el Nombre del Sector
-        if IdSectorIn == 1:
-            Sectorname = "Norte"
-        elif IdSectorIn == 2:
-            Sectorname = "Centro"
-        else:
-            Sectorname = "Sur"
         # determinar las Personas_Riesgo
         PersonasRiesgo = int(TotalPersonas) - int(TotalSalidas)
         # IP
@@ -206,8 +198,6 @@ def Registro():
         print (Region)
         print (City)
         print (IdSector)
-        print ("Id Sector", IdSectorIn)
-        print (Sectorname)
         print (TotalPersonas)
         print (TotalSalidas)
         print (PersonasRiesgo)
@@ -231,8 +221,8 @@ def Registro():
         with connection.cursor() as cursor:
     # Create a new record
                             
-            sql = "INSERT INTO `Data` (`DatePeticion`, `Hora`, `Id_Pais`, `Id_Region`, `Id_City`, `Id_Sector`, `Sector`, `Total_Personas_Casa`, `Total_personas_Salida`, `Personas_Riesgo`, `Time_Aprox_Salida`, `Last48`, `IP`) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
-            cursor.execute(sql, (fechapeticion, timeget, Pais, Region, City, IdSector, Sectorname, TotalPersonas, TotalSalidas, PersonasRiesgo, intervaloSalida, Ultimas48, user_ip))
+            sql = "INSERT INTO `Data` (`DatePeticion`, `Hora`, `Id_Pais`, `Id_Region`, `Id_City`, `Id_Sector`, `Total_Personas_Casa`, `Total_personas_Salida`, `Personas_Riesgo`, `Time_Aprox_Salida`, `Last48`, `IP`) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+            cursor.execute(sql, (fechapeticion, timeget, Pais, Region, City, IdSector, TotalPersonas, TotalSalidas, PersonasRiesgo, intervaloSalida, Ultimas48, user_ip))
             
     # connection is not autocommit by default. So you must commit to save
     # your changes.
