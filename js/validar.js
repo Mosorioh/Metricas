@@ -6,8 +6,10 @@ function validar(){
     Provincia = document.getElementById("Provincia").value;
     Ciudad = document.getElementById("Ciudad").value;
     Sector = document.getElementById("Sector").value;
+
     TotalPersonasCasa = document.getElementById("TotalPersonas").value;
     TotalPersonasSalidas = document.getElementById("TotalSalidas").value;
+
     IntervaloSalida = document.getElementById("IntervaloSalida").value;
     Ultimas48 = document.getElementById("Ultimas48").value;
     
@@ -17,8 +19,10 @@ function validar(){
     console.log ("Send Provincia: " + Provincia);
     console.log ("Send Ciudad: " + Ciudad);
     console.log ("Send Sector: " + Sector);
+
     console.log ("Send TotalPersonasCasa: " + TotalPersonasCasa);
     console.log ("Send TotalPersonasSalidas: " + TotalPersonasSalidas);
+    
     console.log ("Send intervalo: " + IntervaloSalida);
     console.log ("Send Ultimas 48 Hora: " + Ultimas48);
 
@@ -54,7 +58,7 @@ function validar(){
         alert("Solo se permiten valores mayor a 0");
         return false;
     }
-    if(TotalPersonasSalidas < TotalPersonasCasa){
+    if(TotalPersonasSalidas > TotalPersonasCasa){
         alert("El total de personas que salieron de la casa, No puede ser mayor al numero de personas que vivien en la casa");
         return false;
     }
