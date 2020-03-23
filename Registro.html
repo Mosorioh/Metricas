@@ -45,7 +45,7 @@
 
 
   
-  <h2>Censo COVID-19 </h2>
+  <h4>Censo COVID-19 </h4>
   <!-- <p>El Siguiente registro ayudaria a estimar la curva de contagio del COVID-19 </p>
   <p>Solo realizar un registro por casa, antes de seguir consulta si un familiar ya realizo en Cendo </p>
   <p>El registro debe realizarce por Dia </p> -->
@@ -53,24 +53,24 @@
   <form action="http://181.199.66.129:5050/Registro" method="post" onsubmit="return validar();">
     <div class="form-group">
       <!-- Select pais -->
-        <label for="sel1"  placeholder="Selcciona tu Pais">Select Pais:</label>
+         <!--<label for="sel1"  placeholder="Selcciona tu Pais">Select Pais:</label> -->
           <select class="form-control" name="Pais" id="selectPais"  ></select>
           </select>
         <br>
       <!-- Select Provincia -->
-        <label for="sel1">Select Region :</label>
+        <!-- <label for="sel1">Select Region :</label> -->
         <select class="form-control" name="Provincia" id="Provincia"   >
           <option selected="true" disabled="disabled">Selecciona Tu Region</option>
         </select>
         <br>
       <!-- Select City -->
-        <label for="sel1">Select Ciudad :</label>
+       <!--  <label for="sel1">Select Ciudad :</label>-->
           <select class="form-control" name="Ciudad" id="Ciudad"  >
             <option selected="true" disabled="disabled">Selecciona Tu Ciudad</option>
           </select>
         <br>
       <!-- Select Sector -->
-        <label for="sel1">Select Sector :</label>
+       <!--  <label for="sel1">Select Sector :</label> -->
           <select class="form-control" name="Sector" id="Sector" >
             <option selected="true" disabled="disabled">Selecciona Tu Sector</option>
           </select>
@@ -108,6 +108,14 @@
            <option value="0">No</option>
          </select>
        <br>
+        <!-- Visitas recibidas -->        
+        <label for="sel1">Ha recibido visitas</label>
+        <select class="form-control" name="visitas" id="visitas" >
+          <option value="select">Seleccionar</option>
+          <option value="1">Si</option>
+          <option value="0">No</option>
+        </select>
+      <br>
       <!-- Boton -->     
         <button type="submit" class="btn btn-primary">Enviar</button>
         <a href="http://181.199.66.129/COVID-19/Metricas/Registro.html" class="btn-lg" role="button" >Cancelar</a>

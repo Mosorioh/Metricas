@@ -1,7 +1,7 @@
 //console.log ("From validar")
 
 function validar(){
-    var Pais, Provincia, Ciudad, Sector, TotalPersonasCasa, TotalPersonasSalidas, IntervaloSalida, Ultimas48;
+    var Pais, Provincia, Ciudad, Sector, TotalPersonasCasa, TotalPersonasSalidas, IntervaloSalida, Ultimas48, visitas;
     Pais = document.getElementById("selectPais").value;
     Provincia = document.getElementById("Provincia").value;
     Ciudad = document.getElementById("Ciudad").value;
@@ -12,19 +12,21 @@ function validar(){
 
     IntervaloSalida = document.getElementById("IntervaloSalida").value;
     Ultimas48 = document.getElementById("Ultimas48").value;
-    
+    visitas = document.getElementById("visitas").value;
 
 
     console.log ("Send pais: " + Pais);
     console.log ("Send Provincia: " + Provincia);
     console.log ("Send Ciudad: " + Ciudad);
     console.log ("Send Sector: " + Sector);
+    
 
     console.log ("Send TotalPersonasCasa: " + TotalPersonasCasa);
     console.log ("Send TotalPersonasSalidas: " + TotalPersonasSalidas);
     
     console.log ("Send intervalo: " + IntervaloSalida);
     console.log ("Send Ultimas 48 Hora: " + Ultimas48);
+    console.log ("Send visitas: " + visitas);
 
     if(Pais === "Selecciona Tu Pais"){
         alert("Debe Selecionar un Pais");
@@ -78,6 +80,15 @@ function validar(){
         alert("Debe indicar si en las ultimas 48 horas salio alguien de su casa");
         return false;
     }
+    if(visitas === "select"){
+        alert("Debe indicar si ha recibido Visitas el dia de Hoy");
+        return false;
+    }
+    if(visitas = 0){
+        alert("Debe indicar si ha recibido Visitas el dia de Hoy");
+        return false;
+    }
+ 
  
  
 
