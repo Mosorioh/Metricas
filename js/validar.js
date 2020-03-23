@@ -56,7 +56,7 @@ function validar(){
         alert("Debe Indicar cuantas Personas Salieron de su casa");
         return false;
     }
-    if(TotalPersonasSalidas < 1){
+    if(TotalPersonasSalidas < 0){
         alert("Solo se permiten valores mayor a 0");
         return false;
     }
@@ -64,11 +64,7 @@ function validar(){
         alert("El total de personas que salieron de la casa, No puede ser mayor al numero de personas que vivien en la casa");
         return false;
     }
-    if(IntervaloSalida === ""){
-        alert("Debe Indicar el tiempo aproximado de exposicion");
-        return false;
-    }
-    if(IntervaloSalida < 0.5){
+    if(IntervaloSalida === "select"){
         alert("Debe Indicar el tiempo aproximado de exposicion");
         return false;
     }
