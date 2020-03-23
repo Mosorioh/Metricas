@@ -101,7 +101,7 @@ console.log ("Conexion js Link")
 $(document).ready(function(){
   $("#Ciudad").on("change",function(){						
     var CitySelectd=$(this).val()//obtenemos el valor seleccionado en una variable	
-    console.log("Ciudad Seleccionado: " + CitySelectd)  
+    console.log("Sector Seleccionado: " + CitySelectd)  
 
 fetch('http://181.199.66.129:5050/Sector/'+CitySelectd+'')
 
@@ -115,7 +115,7 @@ console.log( ListSector)
       Sector.innerHTML = '';
       Sector.innerHTML = '<option selected="Sector" >Selecciona Tu Sector</option>';
       
-      for(let dato of Listcity){
+      for(let dato of ListSector){
           n++;
           resultado.innerHTML += `
           <option value="${dato.Id}">${dato.Sector}</option>

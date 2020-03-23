@@ -145,7 +145,7 @@ def Sector(idcity):
     try:
         with connection.cursor() as cursor:
             # Read a single record
-            sql = "SELECT * FROM `City` WHERE `Id_Provincia`=%s"
+            sql = "SELECT * FROM `Sector` WHERE `Id_City`=%s"
             cursor.execute(sql, (idcity))
             result = cursor.fetchall()
             print(result)
