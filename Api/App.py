@@ -64,18 +64,7 @@ def Provincia(idPais):
             cursor.execute(sql, params)
             result = cursor.fetchall()
             print(result)
-            """
-            #///////////////////////////////
-            sql2 = "SELECT COUNT(Genero) AS Male FROM `json_metrics` WHERE `Id_Genero`=%s"
-            cursor.execute(sql2, ('1'))
-            resultMale = cursor.fetchall()
-            print(resultMale)
-            #///////////////////////////////
-            sql3 = "SELECT COUNT(Id_Genero) AS Female FROM `json_metrics` WHERE `Id_Genero`=%s"
-            cursor.execute(sql3, ('2'))
-            resultFemale = cursor.fetchall()
-            print(resultFemale)
-            """
+
         return jsonify(result)
     finally:
         connection.close()
@@ -97,22 +86,11 @@ def City(idProvincia):
     try:
         with connection.cursor() as cursor:
             # Read a single record
-            sql = "SELECT * FROM `City` WHERE `Id_Provincia`=%s"
-            cursor.execute(sql, (idProvincia))
+            sql = "SELECT * FROM `City` WHERE `Id_Provincia`=%s AND `IsActive`=%s"
+            cursor.execute(sql, (idProvincia, 1))
             result = cursor.fetchall()
             print(result)
-            """
-            #///////////////////////////////
-            sql2 = "SELECT COUNT(Genero) AS Male FROM `json_metrics` WHERE `Id_Genero`=%s"
-            cursor.execute(sql2, ('1'))
-            resultMale = cursor.fetchall()
-            print(resultMale)
-            #///////////////////////////////
-            sql3 = "SELECT COUNT(Id_Genero) AS Female FROM `json_metrics` WHERE `Id_Genero`=%s"
-            cursor.execute(sql3, ('2'))
-            resultFemale = cursor.fetchall()
-            print(resultFemale)
-            """
+
         return jsonify(result)
     finally:
         connection.close()
