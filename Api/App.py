@@ -33,7 +33,7 @@ def select():
     try:
         with connection.cursor() as cursor:
             # Read a single record
-            sql = "SELECT `Id`, `Name_Pais` FROM `Pais` order by `Name_Pais`"
+            sql = "SELECT `Id`, `Name_Pais` FROM `Pais` WHERE `IsActive`=1 ORDER BY `Name_Pais`"
             cursor.execute(sql)
             result = cursor.fetchall()
             print(result)
