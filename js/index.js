@@ -1,11 +1,11 @@
-console.log ("Conexion js Link")
+//console.log ("Conexion js Link")
 //<!----- Script 1------>
 //<!-- Get all paises -->
 //<script>
     fetch('http://181.199.66.129:5050/pais')
     .then(ListPaises=>ListPaises.json())
     .then(ListPaises=>{
-      console.log("Lista de Paises")
+      console.log("Paises")
         console.log(ListPaises)
         
         var resultado = document.getElementById('selectPais');
@@ -33,7 +33,7 @@ console.log ("Conexion js Link")
 	$(document).ready(function(){
     $("#selectPais").on("change",function(){						
       var PaisSelectd=$(this).val()//obtenemos el valor seleccionado en una variable	
-      console.log("Pais Seleccionado: " + PaisSelectd) 
+      //console.log("Pais Seleccionado: " + PaisSelectd) 
 
   fetch('http://181.199.66.129:5050/provincia/'+PaisSelectd+'')
 
@@ -67,7 +67,7 @@ console.log ("Conexion js Link")
 	$(document).ready(function(){
     $("#Provincia").on("change",function(){						
       var ProvinciaSelectd=$(this).val()//obtenemos el valor seleccionado en una variable	
-      console.log("Provincia Seleccionado: " + ProvinciaSelectd) 
+      //console.log("Provincia Seleccionado: " + ProvinciaSelectd) 
 
   fetch('http://181.199.66.129:5050/City/'+ProvinciaSelectd+'')
 
@@ -101,7 +101,7 @@ console.log ("Conexion js Link")
 $(document).ready(function(){
   $("#Ciudad").on("change",function(){						
     var CitySelectd=$(this).val()//obtenemos el valor seleccionado en una variable	
-    console.log("Sector Seleccionado: " + CitySelectd)  
+    //console.log("Sector Seleccionado: " + CitySelectd)  
 
 fetch('http://181.199.66.129:5050/Sector/'+CitySelectd+'')
 

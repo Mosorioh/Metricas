@@ -1,4 +1,4 @@
-console.log ("From validar")
+//console.log ("From validar")
 
 function validar(){
     var Pais, Provincia, Ciudad, Sector, TotalPersonasCasa, TotalPersonasSalidas, IntervaloSalida, Ultimas48;
