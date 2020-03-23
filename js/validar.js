@@ -49,7 +49,7 @@ function validar(){
         return false;
     }
     if(TotalPersonasCasa < 1){
-        alert("Solo se permiten valores mayor a 0");
+        alert("Total de Personas que viven en su casa, Solo se permiten valores mayor a 0");
         return false;
     }
     if(TotalPersonasSalidas === ""){
@@ -57,17 +57,24 @@ function validar(){
         return false;
     }
     if(TotalPersonasSalidas < 0){
-        alert("Solo se permiten valores mayor a 0");
+        alert("Total de Personas que Salieron (HOY) de su casa, Solo se permiten valores mayor igual a 0");
         return false;
     }
     if(TotalPersonasSalidas > TotalPersonasCasa){
         alert("El total de personas que salieron de la casa, No puede ser mayor al numero de personas que vivien en la casa");
         return false;
     }
+  
     if(IntervaloSalida === "select"){
         alert("Debe Indicar el tiempo aproximado de exposicion");
         return false;
     }
+      //
+      if(IntervaloSalida <= 0 && TotalPersonasSalidas > 0){
+        alert("El tiempo aproximado de exposicion no puede ser 0, cuando hay personas que salieron de la casa");
+        return false;
+    }
+    //
     if(Ultimas48 === "select"){
         alert("Debe indicar si en las ultimas 48 horas salio alguien de su casa");
         return false;
