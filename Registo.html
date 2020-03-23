@@ -28,6 +28,12 @@
       background-repeat: no-repeat;
       background-size: cover;
     }
+    .btn-ttc:hover,
+    .btn-ttc:active {
+  color: white;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  background-color: #007da7;
+}
     </style>
     
 </head>
@@ -39,6 +45,7 @@
   <!-- <p>El Siguiente registro ayudaria a estimar la curva de contagio del COVID-19 </p>
   <p>Solo realizar un registro por casa, antes de seguir consulta si un familiar ya realizo en Cendo </p>
   <p>El registro debe realizarce por Dia </p> -->
+
   <form action="http://192.168.100.233:5050/Registro" method="post" onsubmit="return validar();">
     <div class="form-group">
       <!-- Select pais -->
@@ -72,7 +79,7 @@
           <input type="text" class="form-control" name="TotalPersonas" id="TotalPersonas"  placeholder="Viviendo" >
         <br>     
       <!-- Total de Personas que salieron de Casa -->   
-        <label for="usr">Total de Personas que Salieron "Ayer" de su casa:</label>
+        <label for="usr">Total de Personas que Salieron "HOY" de su casa:</label>
           <input type="text" class="form-control" name="TotalSalidas" id="TotalSalidas" placeholder="Salidas" >
         <br>
       <!-- Tiempo de exposicion (fuera de casa) -->        
@@ -101,7 +108,9 @@
          </select>
        <br>
       <!-- Boton -->     
-        <button type="submit" class="btn btn-default">Submit</button>
+        <button type="submit" class="btn btn-primary">Enviar</button>
+        <a href="https://getbootstrap.com/docs/4.0/components/buttons/" class="btn-lg" role="button" >Cancelar</a>
+
         <br>
     </form>
 </div>
