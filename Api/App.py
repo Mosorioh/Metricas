@@ -236,6 +236,58 @@ def test():
     finally:
         connection.close()
 
+#//////////////////////////////////////////
+# Chart - Pie
+#//////////////////////////////////////////
+@app.route('/PieChart')
+def PieChart():
+    # Connect to the database
+    connection = pymysql.connect(host='192.168.100.51',
+                                user='Qatest',
+                                password='Quito.2019',
+                                db='COVID19',
+                                charset='utf8mb4',
+                                cursorclass=pymysql.cursors.DictCursor)
+
+    try:
+        with connection.cursor() as cursor:
+            # Read a single record
+            sql = "SELECT COUNT(Genero) AS Total FROM `json_metrics` "
+            cursor.execute(sql)
+            result = cursor.fetchall()
+            print(result)
+            #///////////////////////////////
+            #sql2 = "SELECT COUNT(Total_Personas_Casa) AS Male FROM `Data` WHERE `Id_Genero`=%s"
+            sql2 = "SELECT COUNT(Total_Personas_Casa) AS Male FROM `Data`"
+            cursor.execute(sql2)
+            resultMale = cursor.fetchall()
+            male = resultMale[0]['Male']
+            print("Male: ", male)
+            #print(resultMale)
+            #///////////////////////////////
+            #sql3 = "SELECT COUNT(Id_Genero) AS Female FROM `json_metrics` WHERE `Id_Genero`=%s"
+            sql3 = "SELECT COUNT(Total_personas_Salida) AS Female FROM `Data`"
+            cursor.execute(sql3)
+            resultFemale = cursor.fetchall()
+            Female = resultFemale[0]['Female']
+            print("Female: ", Female)  
+            #print(resultFemale)   
+
+        return jsonify({
+            "cols": [
+                {"id":"","label":"Topping","pattern":"","type":"string"},
+                {"id":"","label":"Slices","pattern":"","type":"number"}
+                ],
+                "rows": [
+                {"c":[{"v":"Male","f":"Male"},{"v":male,"f":male}]},
+                {"c":[{"v":"Female","f":"Female"},{"v":Female,"f":Female}]}
+                ]
+                })
+    finally:
+        connection.close()
+
+
+
 if __name__ == '__main__':
     #app.run( )
     app.run(host='192.168.100.51', port=5050, debug=True)

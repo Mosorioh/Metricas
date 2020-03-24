@@ -54,11 +54,11 @@
           type: "GET",
           contentType: "application/json; charset=utf-8",
           success: function (data) {
-              var arrSales = [['Time', 'Personas en Casa', 'Personas que Salieron']];    // Define an array and assign columns for the chart.
+              var arrSales = [['Time', 'Personas en Casa', 'Personas que Salieron', 'Tiempo Fuera de Casa (Horas)']];    // Define an array and assign columns for the chart.
 
               // Loop through each data and populate the array.
               $.each(data, function (index, value) {
-                  arrSales.push([value.Month, value.Sales_Figure, value.Perc]);
+                  arrSales.push([value.Month, value.Sales_Figure, value.Perc, value.TimeSalida ]);
               });
 
               // Set chart Options.
