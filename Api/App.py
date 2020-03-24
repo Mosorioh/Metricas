@@ -314,11 +314,13 @@ def Expuestos():
             cursor.execute(sql3)
             resultFemale = cursor.fetchall() 
             Female = int(resultFemale[0]['Female'])
-            print("Female: ", Female)  
+            print("Female: ", Female)
+            total = male + Female  
             #print(resultFemale)   
 
-        return jsonify({"Expuetas": male, "message": "Lista de Productos"},
-                       {"Personas en Riesgo": Female, "message": "Lista de Productos"})
+        return jsonify({"Expuetas": male, "message": "Lista de Personas"},
+                       {"Personas en Riesgo": Female, "message": "Lista de Personas"},
+                       {"Total de Personas en Riesgo": total, "message": "Total de Personas en riesgo"})
 
              
     finally:
