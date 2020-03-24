@@ -252,10 +252,7 @@ def PieChart():
     try:
         with connection.cursor() as cursor:
             # Read a single record
-            sql = "SELECT COUNT(Genero) AS Total FROM `json_metrics` "
-            cursor.execute(sql)
-            result = cursor.fetchall()
-            print(result)
+        
             #///////////////////////////////
             #sql2 = "SELECT COUNT(Total_Personas_Casa) AS Male FROM `Data` WHERE `Id_Genero`=%s"
             sql2 = "SELECT COUNT(Total_Personas_Casa) AS Male FROM `Data`"
