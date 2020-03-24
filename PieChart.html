@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>DQS COVID-19</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+   <!--Load the AJAX API-->
+   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+   <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+   <script type="text/javascript">
+   
+   // Load the Visualization API and the piechart package.
+   google.charts.load('current', {'packages':['corechart']});
+     
+   // Set a callback to run when the Google Visualization API is loaded.
+   google.charts.setOnLoadCallback(drawChart);
+     
+   function drawChart() {
+     var jsonData = $.ajax({
+         url: "http://181.199.66.129:5050/PieChart",
+         dataType: "json",
+         async: false
+         }).responseText;
+         
+     // Create our data table out of JSON data loaded from server.
+     var data = new google.visualization.DataTable(jsonData);
+
+     // Instantiate and draw our chart, passing in some options.
+     var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+     chart.draw(data, {width: 600, height: 400});
+   }
+
+   </script>
+ </head>
+    
+  <style>
+    body, html {
+      height: 100%;
+      margin: 0;
+      color: white;
+      background-image: url("Fondo.jpg");
+    }
+    
+    .bg {
+      /* The image used */
+      background-image: url("Fondo.jpg");
+    
+      /* Full height */
+      height: 100%; 
+    
+      /* Center and scale the image nicely */
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    </style>
+    
+</head>
+<body>
+    <div class="bg">
+        
+        <h4>Charts COVID-19 x-2</h4>
+        <!--Div that will hold the pie chart-->
+    <div id="chart_div"></div>
+        
+    </div>
+</body>
+
+
+</html>
