@@ -8,12 +8,47 @@
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.17.0/TweenMax.min.js"></script>
+
+   <!--Load the AJAX API-->
+   
+
+   <script type="text/javascript">
+   
+   // Load the Visualization API and the piechart package.
+   google.charts.load('current', {'packages':['corechart']});
+     
+   // Set a callback to run when the Google Visualization API is loaded.
+   google.charts.setOnLoadCallback(drawChart);
+     
+   function drawChart() {
+     var jsonData = $.ajax({
+         url: "http://181.199.66.129:5050/PieChart",
+         dataType: "json",
+         async: false
+         }).responseText;
+         
+     // Create our data table out of JSON data loaded from server.
+     var data = new google.visualization.DataTable(jsonData);
+
+     // Instantiate and draw our chart, passing in some options.
+     var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+     chart.draw(data, {width: '100%', height: '100%'});
+   }
+
+   </script>
+
   <style>
     body, html {
       height: 100%;
       margin: 0;
-      color: white;
+      color: rgb(90, 90, 90);
       background-image: url("Fondo.jpg");
     }
     
@@ -29,17 +64,238 @@
       background-repeat: no-repeat;
       background-size: cover;
     }
-
+#boxmain{
+  width: 100%;
+  height:320px;
+  margin-bottom: 3%;
+  background-color: white;
+}
+#boxsecon{
+  width: 100%;
+  height:260px;
+  margin-bottom: 3%;
+  background-color: white;
+}
+#chart_div{
+  width: 100%;
+  height:80%;
+  margin-bottom: 3%;
+  background-color: white;
+}
+#chart_3{
+  width: 100%;
+  height:80%;
+  margin-bottom: 3%;
+}
+#expuestas{
+  width: 46%;
+  height:80%;
+  margin-bottom: 3%;
+  background-color: rgb(83, 83, 83);
+  float: left;
+  text-align: center;
+  margin: 2%;
+  color: aliceblue;
+}
+#enriesgo{
+  width: 46%;
+  height:80%;
+  margin-bottom: 3%;
+  background-color:rgb(83, 83, 83);
+  float: right;
+  text-align: center;
+  margin: 2%;
+  color: aliceblue;
+}
+.counter{
+  text-align: center;
+  font-size: 100px;
+}
     </style>
     
 </head>
 <body>
     <div class="bg">
         <div class="container">
-        <h4>Index COVID-19 </h4>
+         <!-- <h4>Index COVID-19 </h4> -->
+          <div class="row" >
+            <div class="col-md-12" style="background-color:rgb(1, 76, 82); ">
+              <div id="boxmain">
+                <h4>Data 1</h4>
+                  <div id="chart" style="width:100%; height:100%;">
+                  </div>
+              </div>
+            </div>
+          </div>
+            
+ 
+          <div class="row">
+            <div class="col-md-6" style="background-color:rgb(1, 76, 82); ">
+              <div id="boxsecon">
+                <h4>Data 2</h4>
+                <div id="expuestas">
+                  <h3>Personas Expuestas</h3>
+                  <div class="counter">0</div>
+                </div>
+                <div id="enriesgo">
+                  <h3>Personas en Riesgo</h3>
+                  <div class="counter">0</div>
+                </div>
+            </div>
+          </div>
+         
+            <div class="col-md-6" style="background-color:rgb(1, 76, 82); ">
+              <div id="boxsecon">
+                <h4>Data 3</h4>
+                  <div id="chart_div">       </div>
+            </div>
+          </div>
+            
+            </div>
+          </div>
+          </div>
         </div>
     </div>
 </body>
 
+
+<!-- Efecto contador-->
+<script>
+function count(){
+  var counter = { var: 0 };
+  TweenMax.to(counter, 3, {
+    var: 100, 
+    onUpdate: function () {
+      var number = Math.ceil(counter.var);
+      $('.counter').html(number);
+      if(number === counter.var){ count.kill(); }
+    },
+    onComplete: function(){
+      count();
+    },    
+    ease:Circ.easeOut
+  });
+}
+
+count();
+</script>
+
+<!-- Grafico columnas -->
+<script>
+  // Visualization API with the 'corechart' package.
+  google.charts.load('visualization', { packages: ['corechart'] });
+  google.charts.setOnLoadCallback(drawLineChart);
+
+  function drawLineChart() {
+      $.ajax({
+          url: "http://181.199.66.129:5050/test",
+          dataType: "json",
+          type: "GET",
+          contentType: "application/json; charset=utf-8",
+          success: function (data) {
+              var arrSales = [['Time', 'Personas en Casa', 'Personas que Salieron', 'Tiempo Fuera de Casa (Horas)']];    // Define an array and assign columns for the chart.
+
+              // Loop through each data and populate the array.
+              $.each(data, function (index, value) {
+                  arrSales.push([value.Month, value.Sales_Figure, value.Perc, value.TimeSalida ]);
+              });
+
+              // Set chart Options.
+              var options = {
+                  title: '"Personas en Casa" VS "Personas Que Salieron"',
+                  curveType: 'function',
+                  legend: { position: 'bottom', textStyle: { color: '#555', fontSize: 10} }  // You can position the legend on 'top' or at the 'bottom'.
+              };
+
+              // Create DataTable and add the array to it.
+              var figures = google.visualization.arrayToDataTable(arrSales)
+
+              // Define the chart type (LineChart) and the container (a DIV in our case).
+              var chart = new google.visualization.ColumnChart(document.getElementById('chart'));
+              chart.draw(figures, options);      // Draw the chart with Options.
+          },
+          error: function (XMLHttpRequest, textStatus, errorThrown) {
+              alert('Got an Error');
+          }
+      });
+  }
+</script>
+
+<!-- Grafico Lineal-->
+<script>
+  // Visualization API with the 'corechart' package.
+  google.charts.load('visualization', { packages: ['corechart'] });
+  google.charts.setOnLoadCallback(drawLineChart);
+
+  function drawLineChart() {
+      $.ajax({
+          url: "http://181.199.66.129:5050/test",
+          dataType: "json",
+          type: "GET",
+          contentType: "application/json; charset=utf-8",
+          success: function (data) {
+              var arrSales = [['Time', 'Personas en Casa', 'Personas que Salieron']];    // Define an array and assign columns for the chart.
+
+              // Loop through each data and populate the array.
+              $.each(data, function (index, value) {
+                  arrSales.push([value.Month, value.Sales_Figure, value.Perc]);
+              });
+
+              // Set chart Options.
+              var options = {
+                  title: '"Personas en Casa" VS "Personas Que Salieron"',
+                  curveType: 'function',
+                  legend: { position: 'bottom', textStyle: { color: '#555', fontSize: 14} }  // You can position the legend on 'top' or at the 'bottom'.
+              };
+
+              // Create DataTable and add the array to it.
+              var figures = google.visualization.arrayToDataTable(arrSales)
+
+              // Define the chart type (LineChart) and the container (a DIV in our case).
+              var chart = new google.visualization.LineChart(document.getElementById('chartline'));
+              chart.draw(figures, options);      // Draw the chart with Options.
+          },
+          error: function (XMLHttpRequest, textStatus, errorThrown) {
+              alert('Got an Error');
+          }
+      });
+  }
+</script>
+
+
+
+//<!----- Script 3------>
+//<!-- get expuestos-->
+//<script>	  
+$(document).ready(function(){
+  $("#Ciudad").on("change",function(){						
+    var CitySelectd=$(this).val()//obtenemos el valor seleccionado en una variable	
+    //console.log("Sector Seleccionado: " + CitySelectd)  
+
+fetch('http://181.199.66.129:5050/Expuestos/'+CitySelectd+'')
+//fetch('http://181.199.66.129:5050/Expuestos/'+CitySelectd+'')
+
+.then(Expuestos=>Expuestos.json())
+.then(Expuestos=>{
+console.log("Expuestos")   
+console.log( Expuestos)
+
+  var resultado = document.getElementById('Sector');
+      var n = 0;
+      Sector.innerHTML = '';
+      Sector.innerHTML = '<option selected="Sector" >Selecciona Tu Sector</option>';
+      
+      for(let dato of ListSector){
+          n++;
+          resultado.innerHTML += `
+          <option value="${dato.Id}">${dato.Sector}</option>
+          
+          `;
+    }
+    
+    })
+  })
+})
+</script>
 
 </html>
