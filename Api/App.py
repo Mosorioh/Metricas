@@ -317,16 +317,10 @@ def Expuestos():
             print("Female: ", Female)  
             #print(resultFemale)   
 
-        return jsonify({
-            "cols": [
-                {"id":"","label":"Topping","pattern":"","type":"string"},
-                {"id":"","label":"Slices","pattern":"","type":"number"}
-                ],
-                "rows": [
-                {"c":[{"v":"Male1","f":"Expuetas"},{"v":male,"f":male}]},
-                {"c":[{"v":"Female2","f":"Personas en Riesgo"},{"v":Female,"f":Female}]}
-                ]
-                })
+        return jsonify({"Expuetas": male, "message": "Lista de Productos"},
+                       {"Personas en Riesgo": Female, "message": "Lista de Productos"})
+
+             
     finally:
         connection.close()
 
