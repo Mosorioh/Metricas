@@ -134,6 +134,33 @@ def Sector(idcity):
     finally:
         connection.close()
 
+
+#//////////////////////////////////////////
+# Api Ubicaciom idcity
+#//////////////////////////////////////////
+
+@app.route('/Ubicacion/<idsector>')
+def Ubicacion(idsector):
+    # Connect to the database
+    connection = pymysql.connect(host='192.168.100.51',
+                                user='Qatest',
+                                password='Quito.2019',
+                                db='COVID19',
+                                charset='utf8mb4',
+                                cursorclass=pymysql.cursors.DictCursor)
+
+    try:
+        with connection.cursor() as cursor:
+            # Read a single record
+            sql = "SELECT * FROM `Ubicacion` WHERE `Id_Sector`=%s"
+            cursor.execute(sql, (idsector))
+            result = cursor.fetchall()
+            print(result)
+ 
+        return jsonify(result)
+    finally:
+        connection.close()
+
 #//////////////////////////////////////////
 # Metodo Post
 #//////////////////////////////////////////
@@ -210,7 +237,7 @@ def Registro():
 # Metodo Post
 #//////////////////////////////////////////
 
-@app.route('/Ubicacion', methods=['POST'])
+@app.route('/UbicacionAdd', methods=['POST'])
 def addUbicacion():
     if request.method == 'POST':
         Pais = request.form['Pais']
