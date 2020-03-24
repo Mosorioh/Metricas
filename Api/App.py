@@ -258,7 +258,7 @@ def PieChart():
             sql2 = "SELECT SUM(Total_Personas_Casa) AS Male FROM `Data`"
             cursor.execute(sql2)
             resultMale = cursor.fetchall()
-            male = resultMale[0]['Male']
+            male = int(resultMale[0]['Male'])
             print("Male: ", male)
             #print(resultMale)
             #///////////////////////////////
@@ -266,7 +266,7 @@ def PieChart():
             sql3 = "SELECT SUM(Total_personas_Salida) AS Female FROM `Data`"
             cursor.execute(sql3)
             resultFemale = cursor.fetchall()
-            Female = resultFemale[0]['Female']
+            Female = int(resultFemale[0]['Female'])
             print("Female: ", Female)  
             #print(resultFemale)   
 
