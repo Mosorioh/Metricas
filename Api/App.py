@@ -366,7 +366,7 @@ def motivo():
             print("Female: ", Female)
             total = male + Female  
             #print(resultFemale)   
-            lista = ["expuestas", male, "Riesgo", female, "total", total]
+            lista = ["expuestas", male, "Riesgo", Female, "total", total]
 
         return lista
         """
