@@ -223,8 +223,8 @@ def Registro():
         with connection.cursor() as cursor:
     # Create a new record
                             
-            sql = "INSERT INTO `Data` (`DatePeticion`, `Hora`, `Id_Pais`, `Id_Region`, `Id_City`, `Id_Sector`, `Total_Personas_Casa`, `Total_personas_Salida`, `Personas_Riesgo`, `Time_Aprox_Salida`, `Last48`, `IP`, `VisitasRecibidas`, `MotivoSalida`) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
-            cursor.execute(sql, (fechapeticion, timeget, Pais, Region, City, IdSector, TotalPersonas, TotalSalidas, PersonasRiesgo, intervaloSalida, Ultimas48, user_ip, Visitasrecibidas, MotivoSalida))
+            sql = "INSERT INTO `Data` (`DatePeticion`, `Hora`, `Id_Pais`, `Id_Region`, `Id_City`, `Id_Sector`, `Total_Personas_Casa`, `Total_personas_Salida`, `Personas_Riesgo`, `Time_Aprox_Salida`, `Last48`, `IP`, `VisitasRecibidas`, `MotivoSalida`, Id_ubicacion) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+            cursor.execute(sql, (fechapeticion, timeget, Pais, Region, City, IdSector, TotalPersonas, TotalSalidas, PersonasRiesgo, intervaloSalida, Ultimas48, user_ip, Visitasrecibidas, MotivoSalida, IdUbicacion))
             
     # connection is not autocommit by default. So you must commit to save
     # your changes.
