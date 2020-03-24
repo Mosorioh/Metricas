@@ -255,7 +255,7 @@ def PieChart():
         
             #///////////////////////////////
             #sql2 = "SELECT COUNT(Total_Personas_Casa) AS Male FROM `Data` WHERE `Id_Genero`=%s"
-            sql2 = "SELECT COUNT(Total_Personas_Casa) AS Male FROM `Data`"
+            sql2 = "SELECT SUM(Total_Personas_Casa) AS Male FROM `Data`"
             cursor.execute(sql2)
             resultMale = cursor.fetchall()
             male = resultMale[0]['Male']
@@ -263,7 +263,7 @@ def PieChart():
             #print(resultMale)
             #///////////////////////////////
             #sql3 = "SELECT COUNT(Id_Genero) AS Female FROM `json_metrics` WHERE `Id_Genero`=%s"
-            sql3 = "SELECT COUNT(Total_personas_Salida) AS Female FROM `Data`"
+            sql3 = "SELECT SUM(Total_personas_Salida) AS Female FROM `Data`"
             cursor.execute(sql3)
             resultFemale = cursor.fetchall()
             Female = resultFemale[0]['Female']
