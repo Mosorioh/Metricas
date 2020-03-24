@@ -318,9 +318,9 @@ def Expuestos():
             total = male + Female  
             #print(resultFemale)   
 
-        return jsonify({"Expuetas": male, "message": "Lista de Personas"},
-                       {"Personas en Riesgo": Female, "message": "Lista de Personas"},
-                       {"Total de Personas en Riesgo": total, "message": "Total de Personas en riesgo"})
+        return jsonify({"Expuetas": male, "message": "Lista de Personas expuestas"},
+                       {"Riesgo": Female, "message": "Lista de Personas en riesgo"},
+                       {"Total": total, "message": "Total de Personas en riesgo"})
 
              
     finally:
