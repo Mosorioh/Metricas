@@ -276,8 +276,8 @@ def PieChart():
                 {"id":"","label":"Slices","pattern":"","type":"number"}
                 ],
                 "rows": [
-                {"c":[{"v":"Male1","f":"Male1A"},{"v":male,"f":male}]},
-                {"c":[{"v":"Female2","f":"Female2A"},{"v":Female,"f":Female}]}
+                {"c":[{"v":"Male1","f":"Personas en Casa"},{"v":male,"f":male}]},
+                {"c":[{"v":"Female2","f":"Personas que Salieron"},{"v":Female,"f":Female}]}
                 ]
                 })
     finally:
