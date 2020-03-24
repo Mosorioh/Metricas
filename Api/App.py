@@ -367,7 +367,7 @@ def motivo():
             total = male + Female  
             #print(resultFemale)   
             #lista = ['expuestas', male, 'Riesgo', Female, 'total', total]
-            lista = [male, Female, total]
+            lista = (male, Female, total)
 
         
         """
@@ -376,8 +376,8 @@ def motivo():
                        {"Riesgo": Female},
                        {"Total": total})
         """
-        return jsonify({lista})
-                               
+        ##return jsonify({"Expuetas": male, "Riesgo": Female,"Total": total, "message": "Lista de Personas expuestas y en riesgo"})
+        return lista                      
 
              
     finally:
