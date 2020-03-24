@@ -323,7 +323,7 @@ def Expuestos():
                        {"Riesgo": Female, "message": "Lista de Personas en riesgo"},
                        {"Total": total, "message": "Total de Personas en riesgo"})
         """
-        return jsonify({"Expuetas": male, "Riesgo": Female,"Total": total, "message": "Lista de Personas expuestas"})
+        return jsonify({"Expuetas": male, "Riesgo": Female,"Total": total, "message": "Lista de Personas expuestas y en riesgo"})
                        
 
              

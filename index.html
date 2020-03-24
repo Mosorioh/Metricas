@@ -111,7 +111,10 @@
   text-align: center;
   font-size: 100px;
 }
-    </style>
+.container{
+  text-align: center;
+  font-size: 100px;
+}  </style>
     
 </head>
 <body>
@@ -161,6 +164,11 @@
 
 <!-- Efecto contador-->
 <script>
+  /*
+
+  function detenerContador() {
+    clearInterval(count);
+}
 function count(){
   var counter = { var: 0 };
   TweenMax.to(counter, 3, {
@@ -168,16 +176,17 @@ function count(){
     onUpdate: function () {
       var number = Math.ceil(counter.var);
       $('.counter').html(number);
-      if(number === counter.var){ count.kill(); }
+      if(number === counter.var){ detenerContador(); }
     },
-    onComplete: function(){
-      count();
-    },    
+    //onComplete: function(){
+      //count();
+   // },    
     ease:Circ.easeOut
   });
 }
 
 count();
+*/
 </script>
 
 <!-- Grafico columnas -->
@@ -264,24 +273,50 @@ count();
 
 
 
-//<!----- Script 3------>
-//<!-- get expuestos-->
-//<script>	  
-$(document).ready(function(){
-  $("#Ciudad").on("change",function(){						
-    var CitySelectd=$(this).val()//obtenemos el valor seleccionado en una variable	
-    //console.log("Sector Seleccionado: " + CitySelectd)  
+<!----- Script 3------>
+<!-- get expuestos-->
+<script>	
+console.log("Expuestos *-2 ")    
 
-fetch('http://181.199.66.129:5050/Expuestos/'+CitySelectd+'')
+fetch('http://181.199.66.129:5050/Expuestos')
 //fetch('http://181.199.66.129:5050/Expuestos/'+CitySelectd+'')
+.then(res => res.json())
+      .then(datos => {
+          console.log(datos)
 
-.then(Expuestos=>Expuestos.json())
-.then(Expuestos=>{
-console.log("Expuestos")   
-console.log( Expuestos)
-
-  var resultado = document.getElementById('Sector');
+  //var resultado = document.getElementById('Sector');
       var n = 0;
+      var expuestas = datos.Expuetas
+      var riesgo = datos.Riesgo
+      var totalPersonas = datos.Total
+      console.log(expuestas)
+      console.log(riesgo)
+      console.log(totalPersonas)
+
+
+      function detenerContador() {
+        clearInterval(count);
+      }
+      function count(){
+        var counter = { var: 0 };
+        TweenMax.to(counter, 3, {
+          var: expuestas, 
+          onUpdate: function () {
+            var number = Math.ceil(counter.var);
+            $('.counter').html(number);
+            if(number === counter.var){ detenerContador(); }
+          },
+          //onComplete: function(){
+            //count();
+        // },    
+          ease:Circ.easeOut
+        });
+      }
+
+      count();
+
+
+
       Sector.innerHTML = '';
       Sector.innerHTML = '<option selected="Sector" >Selecciona Tu Sector</option>';
       
@@ -294,8 +329,72 @@ console.log( Expuestos)
     }
     
     })
-  })
-})
+
+
 </script>
+
+
+
+<!----- Script 3------>
+<!-- get expuestos-->
+<script>	
+  console.log("Expuestos *-2 ")    
+  
+  fetch('http://181.199.66.129:5050/Expuestos')
+  //fetch('http://181.199.66.129:5050/Expuestos/'+CitySelectd+'')
+  .then(res => res.json())
+        .then(datos => {
+            console.log(datos)
+  
+    //var resultado = document.getElementById('Sector');
+        var n = 0;
+        var expuestas = datos.Expuetas
+        var riesgo = datos.Riesgo
+        var totalPersonas = datos.Total
+        console.log(expuestas)
+        console.log(riesgo)
+        console.log(totalPersonas)
+  
+  
+        function detenerContador() {
+          clearInterval(count);
+        }
+        function count2(){
+          var counter = { var: 0 };
+          TweenMax.to(counter, 3, {
+            var: riesgo, 
+            onUpdate: function () {
+              var number = Math.ceil(counter.var);
+              $('.counter').html(number);
+              if(number === counter.var){ detenerContador(); }
+            },
+            //onComplete: function(){
+              //count();
+          // },    
+            ease:Circ.easeOut
+          });
+        }
+  
+        count();
+  
+  
+  
+        Sector.innerHTML = '';
+        Sector.innerHTML = '<option selected="Sector" >Selecciona Tu Sector</option>';
+        
+        for(let dato of ListSector){
+            n++;
+            resultado.innerHTML += `
+            <option value="${dato.Id}">${dato.Sector}</option>
+            
+            `;
+      }
+      
+      })
+  
+  
+  </script>
+
+
 
 </html>
