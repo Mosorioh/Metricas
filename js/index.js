@@ -95,8 +95,8 @@
 // </script>
 
 
-//<!----- Script 3------>
-//<!-- get provincia Segun opcion seleccionada en el drowndoon-->
+//<!----- Script 4 ------>
+//<!-- get Sector Segun opcion seleccionada en el drowndoon-->
 //<script>	  
 $(document).ready(function(){
   $("#Ciudad").on("change",function(){						
@@ -114,6 +114,38 @@ console.log( ListSector)
       var n = 0;
       Sector.innerHTML = '';
       Sector.innerHTML = '<option selected="Sector" >Selecciona Tu Sector</option>';
+      
+      for(let dato of ListSector){
+          n++;
+          resultado.innerHTML += `
+          <option value="${dato.Id}">${dato.Sector}</option>
+          
+          `;
+    }
+    
+    })
+  })
+})
+
+//<!----- Script 4------>
+//<!-- get ubicaicon Segun opcion seleccionada en el drowndoon-->
+//<script>	  
+$(document).ready(function(){
+  $("#Sector").on("change",function(){						
+    var SectorSelectd=$(this).val()//obtenemos el valor seleccionado en una variable	
+    //console.log("Sector Seleccionado: " + CitySelectd)  
+
+fetch('http://181.199.66.129:5050/Ubicacion/'+SectorSelectd+'')
+
+.then(ListUbicacion=>ListUbicacion.json())
+.then(ListUbicacion=>{
+console.log("Ubicacion")   
+console.log( ListUbicacion)
+
+  var resultado = document.getElementById('Ubicacion');
+      var n = 0;
+      Ubicacion.innerHTML = '';
+      Ubicacion.innerHTML = '<option selected="Ubicacion" >Selecciona Tu Ubicacion</option>';
       
       for(let dato of ListSector){
           n++;
