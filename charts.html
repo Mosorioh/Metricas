@@ -9,12 +9,68 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.17.0/TweenMax.min.js"></script>
+
+   <!-- PIE-->
+      <script type="text/javascript">
+   
+   // Load the Visualization API and the piechart package.
+   google.charts.load('current', {'packages':['corechart']});
+     
+   // Set a callback to run when the Google Visualization API is loaded.
+   google.charts.setOnLoadCallback(drawChart);
+     
+   function drawChart() {
+     var jsonData = $.ajax({
+         url: "http://181.199.66.129:5050/PieChart",
+         dataType: "json",
+         async: false
+         }).responseText;
+         
+     // Create our data table out of JSON data loaded from server.
+     var data = new google.visualization.DataTable(jsonData);
+
+     // Instantiate and draw our chart, passing in some options.
+     var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+     chart.draw(data, {width: '100%', height: '100%', fontSize:'0.09em'});
+   }
+
+   </script>
+<!--  Motivo Pie-->
+<script type="text/javascript">
+   
+  // Load the Visualization API and the piechart package.
+  google.charts.load('current', {'packages':['corechart']});
     
+  // Set a callback to run when the Google Visualization API is loaded.
+  google.charts.setOnLoadCallback(drawChart);
+    
+  function drawChart() {
+    var jsonDatamotivo = $.ajax({
+        url: "http://181.199.66.129:5050/motivo",
+        dataType: "json",
+        async: false
+        }).responseText;
+        
+    // Create our data table out of JSON data loaded from server.
+    var datamotivo = new google.visualization.DataTable(jsonDatamotivo );
+
+    // Instantiate and draw our chart, passing in some options.
+    var chartmotivo = new google.visualization.PieChart(document.getElementById('chart_div_motivo'));
+    chartmotivo.draw(datamotivo , {width: '100%', height: '100%', fontSize:'0.1em'});
+  }
+
+  </script>
   <style>
     body, html {
       height: 100%;
       margin: 0;
-      color: white;
+      color: rgb(90, 90, 90);
       background-image: url("Fondo.jpg");
     }
     
@@ -30,17 +86,404 @@
       background-repeat: no-repeat;
       background-size: cover;
     }
-
-    </style>
+#boxmain{
+  width: 100%;
+  height:320px;
+  margin-bottom: 3%;
+  background-color: white;
+}
+#boxsecon{
+  width: 100%;
+  height:260px;
+  margin-bottom: 3%;
+  background-color: white;
+}
+#chart_div{
+  width: 100%;
+  height:80%;
+  margin-bottom: 3%;
+  background-color: white;
+}
+#chart_3{
+  width: 100%;
+  height:80%;
+  margin-bottom: 3%;
+}
+#expuestas{
+  width: 46%;
+  height:70%;
+  margin-bottom: 3%;
+  background-color: rgb(83, 83, 83);
+  float: left;
+  text-align: center;
+  margin: 2%;
+  color: aliceblue;
+}
+#enriesgo{
+  width: 46%;
+  height:70%;
+  margin-bottom: 3%;
+  background-color:rgb(83, 83, 83);
+  float: right;
+  text-align: center;
+  margin: 2%;
+  color: aliceblue;
+}
+.counter{
+  text-align: center;
+  font-size: 4em;
+  color: darkred;
+}
+.counter2{
+  text-align: center;
+  font-size: 4em;
+  color: goldenrod;
+}
+.container{
+  text-align: center;
+  
+}  
+#personasobservacion {
+  color: darkgoldenrod;
+  font-weight: bold;
+  font-style: oblique;
+}
+</style>
     
 </head>
 <body>
-    <div class="bg">
+  <div class="bg">
+    <div class="container">
+      <div class="row" >
+        <div class="col-md-12 m-2" style="background-color:rgb(1, 76, 82); ">
         
-        <h4>Charts COVID-19 x-2</h4>
-     
-        
+<nav class="navbar navbar-inverse">
+  
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">COVID-19</a>
     </div>
+    <ul class="nav navbar-nav">
+      <li><a href="">Home</a></li>
+      <li><a href="Ubicacion.html">Crear Ubicacion</a></li>
+      <li><a href="#">Regresar</a></li>
+      
+    </ul>
+  </div>
+</nav>
+  
+</div>
+
+<!-- formulario-->
+
+<div class="row" >
+<form action="Charts.html" method="GET" onsubmit="return validar();">
+  <!-- 1-->
+  <div class="col-md-2" style="background-color:rgb(1, 76, 82); ">
+    <select class="form-control" name="Pais" id="selectPais"  ></select>
+  </div>
+    <!-- 2-->
+    <div class="col-md-2" style="background-color:rgb(1, 76, 82); ">
+      <select class="form-control" name="Provincia" id="Provincia"   >
+        <option selected="true" disabled="disabled">Region</option>
+      </select>
+    </div>
+      <!-- 3-->
+  <div class="col-md-2" style="background-color:rgb(1, 76, 82); ">
+    <select class="form-control" name="Ciudad" id="Ciudad"  >
+      <option selected="true" disabled="disabled">Ciudad</option>
+    </select>
+  </div>
+    <!-- 4-->
+    <div class="col-md-2" style="background-color:rgb(1, 76, 82); ">
+      <select class="form-control" name="Sector" id="Sector" >
+        <option selected="true" disabled="disabled">Sector</option>
+      </select>
+    </div>
+      <!-- 5-->
+  <div class="col-md-2" style="background-color:rgb(1, 76, 82); ">
+    <select class="form-control" name="Ubicacion" id="Ubicacion" >
+      <option selected="true" disabled="disabled">Ubicacion</option>
+     
+          <option value="1">Si</option>
+          <option value="0">No</option>
+    </select>
+  </div>
+    <!-- 6-->
+    <div class="col-md-2 p-2" style="background-color:rgb(1, 76, 82); ">
+      <button type="submit" class="btn btn-warning ">Graficar</button>
+      
+    </div>
+</div>
+</form>
+       
+      <!-- Row-1 -->
+      <div class="row" >
+        
+        <div class="col-md-12" style="background-color:rgb(1, 76, 82); ">
+          <h4 class="nav nav-tabs"> </h4> 
+        <div id="boxmain">
+          <h4></h4>
+          <div id="chart" style="width:100%; height:100%;">
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Row-2 -->
+    <div class="row">
+      <!-- Columna-1 -->
+      <div class="col-md-6" style="background-color:rgb(1, 76, 82); ">
+        <div id="boxsecon">
+          <h4>Personas Expuestas en las ultimas 48 horas</h4>
+          <div id="expuestas">
+            <h3>Personas Expuestas</h3>
+            <h6>Personas que salieron de casa</h6>
+            <div class="counter">0</div>
+          </div>
+          <div id="enriesgo">
+            <h3>Personas en Riesgo</h3>
+            <h6 class="p5">Personas que viven con personas expuestas</h6>
+            <div class="counter2">0</div>
+          </div>
+          <div id="personasobservacion"></div>
+        </div>
+      </div>
+      <!-- Columna-2 -->
+      <div class="col-md-6" style="background-color:rgb(1, 76, 82); ">
+        <div id="boxsecon">
+          <h4>Porcentaje del total de "Personas en Casa" vs "Total de personas Expuestas"</h4>
+          <div id="chart_div">       </div>
+        </div>
+      </div>
+    </div>
+    <!-- Row-3 -->
+    <div class="row">
+      <!-- Columna-1 -->
+      <div class="col-md-6" style="background-color:rgb(1, 76, 82); ">
+        <div id="boxsecon">
+          <h4>Motivo Principales de Salida</h4>
+          <div id="chart_div_motivo">
+        
+          </div>
+        </div>
+      </div>
+
+      
+      <!-- Columna-2 -->
+      
+      <div class="col-md-6" style="background-color:rgb(1, 76, 82); ">
+        <div id="boxsecon">
+          <h4>Ultimas 48 horas</h4>
+          
+        </div>
+      </div>
+    </div>
+
+</div>
+</div>
+</div>
+</div>
 </body>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"> </script>
+<script src="js/validar.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
+
+<!-- Grafico columnas -->
+<script>
+  // Visualization API with the 'corechart' package.
+  google.charts.load('visualization', { packages: ['corechart'] });
+  google.charts.setOnLoadCallback(drawLineChart);
+
+  function drawLineChart() {
+      $.ajax({
+          url: "http://181.199.66.129:5050/test",
+          dataType: "json",
+          type: "GET",
+          contentType: "application/json; charset=utf-8",
+          success: function (data) {
+              var arrSales = [['Time', 'Personas en Casa', 'Personas que Salieron', 'Tiempo Fuera de Casa (Horas)']];    // Define an array and assign columns for the chart.
+
+              // Loop through each data and populate the array.
+              $.each(data, function (index, value) {
+                  arrSales.push([value.Month, value.Sales_Figure, value.Perc, value.TimeSalida ]);
+              });
+
+              // Set chart Options.
+              var options = {
+                  title: '"Personas en Casa" VS "Personas Que Salieron"',
+                  curveType: 'function',
+                  legend: { position: 'bottom', textStyle: { color: '#555', fontSize: 10} }  // You can position the legend on 'top' or at the 'bottom'.
+              };
+
+              // Create DataTable and add the array to it.
+              var figures = google.visualization.arrayToDataTable(arrSales)
+
+              // Define the chart type (LineChart) and the container (a DIV in our case).
+              var chart = new google.visualization.LineChart(document.getElementById('chart'));
+              chart.draw(figures, options);      // Draw the chart with Options.
+          },
+          error: function (XMLHttpRequest, textStatus, errorThrown) {
+              alert('Got an Error');
+          }
+      });
+  }
+</script>
+
+<!-- Grafico Lineal-->
+<script>
+  // Visualization API with the 'corechart' package.
+  google.charts.load('visualization', { packages: ['corechart'] });
+  google.charts.setOnLoadCallback(drawLineChart);
+
+  function drawLineChart() {
+      $.ajax({
+          url: "http://181.199.66.129:5050/test",
+          dataType: "json",
+          type: "GET",
+          contentType: "application/json; charset=utf-8",
+          success: function (data) {
+              var arrSales = [['Time', 'Personas en Casa', 'Personas que Salieron']];    // Define an array and assign columns for the chart.
+
+              // Loop through each data and populate the array.
+              $.each(data, function (index, value) {
+                  arrSales.push([value.Month, value.Sales_Figure, value.Perc]);
+              });
+
+              // Set chart Options.
+              var options = {
+                  title: '"Personas en Casa" VS "Personas Que Salieron"',
+                  curveType: 'function',
+                  legend: { position: 'bottom', textStyle: { color: '#555', fontSize: 14} }  // You can position the legend on 'top' or at the 'bottom'.
+              };
+
+              // Create DataTable and add the array to it.
+              var figures = google.visualization.arrayToDataTable(arrSales)
+
+              // Define the chart type (LineChart) and the container (a DIV in our case).
+              var chart = new google.visualization.LineChart(document.getElementById('chartline'));
+              chart.draw(figures, options);      // Draw the chart with Options.
+          },
+          error: function (XMLHttpRequest, textStatus, errorThrown) {
+              alert('Got an Error');
+          }
+      });
+  }
+</script>
+
+
+
+<!-- Efecto contador-->
+<!----- Script 3------>
+<!-- get expuestos-->
+<script>	
+
+
+fetch('http://181.199.66.129:5050/Expuestos')
+//fetch('http://181.199.66.129:5050/Expuestos/'+CitySelectd+'')
+.then(res => res.json())
+      .then(datos => {
+          console.log(datos)
+          console.log("Personas expuestas")    
+
+  //var resultado = document.getElementById('Sector');
+      var n = 0;
+      var expuestas = datos.Expuetas
+      //var riesgo = datos.Riesgo
+     // var totalPersonas = datos.Total
+      console.log(expuestas)
+      //console.log(riesgo)
+      //console.log(totalPersonas)
+
+
+      function detenerContador() {
+        clearInterval(count);
+      }
+      function count(){
+        var counter = { var: 0 };
+        TweenMax.to(counter, 3, {
+          var: expuestas, 
+          onUpdate: function () {
+            var number = Math.ceil(counter.var);
+            $('.counter').html(number);
+            if(number === counter.var){ detenerContador(); }
+          },
+          //onComplete: function(){
+            //count();
+        // },    
+          ease:Circ.easeOut
+        });
+      }
+
+      count();
+
+
+    })
+
+
+</script>
+
+
+
+<!----- Script 3------>
+<!-- get expuestos-->
+<script>	
+    
+  
+  fetch('http://181.199.66.129:5050/Expuestos')
+  //fetch('http://181.199.66.129:5050/Expuestos/'+CitySelectd+'')
+  .then(res => res.json())
+        .then(datos => {
+          console.log("Personas en riesgo")  
+            //console.log(datos)
+  
+    //var resultado = document.getElementById('Sector');
+        var n = 0;
+       // var expuestas = datos.Expuetas
+        var riesgo = datos.Riesgo
+        var totalPersonas = datos.Total
+        //console.log(expuestas)
+        console.log(riesgo)
+        console.log("Total de personas")  
+        console.log(totalPersonas)
+  
+  
+        function detenerContador() {
+          clearInterval(count);
+        }
+        function count(){
+          var counter = { var: 0 };
+          TweenMax.to(counter, 3, {
+            var: riesgo, 
+            onUpdate: function () {
+              var number = Math.ceil(counter.var);
+              $('.counter2').html(number);
+              if(number === counter.var){ detenerContador(); }
+            },
+            //onComplete: function(){
+              //count();
+          // },    
+            ease:Circ.easeOut
+          });
+        }
+  
+        count();
+  
+  
+  
+        personasobservacion.innerHTML = '';
+        
+        
+            personasobservacion.innerHTML += `<h5>Personas en observacion: ${datos.Total}</h5>
+            
+            `;
+ 
+    
+      })
+  
+  
+  </script>
+
+
 
 </html>

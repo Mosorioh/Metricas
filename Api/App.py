@@ -206,6 +206,64 @@ def Registro():
 
 
 #//////////////////////////////////////////
+# Metodo Post
+#//////////////////////////////////////////
+
+@app.route('/Ubicacion', methods=['POST'])
+def addUbicacion():
+    if request.method == 'POST':
+        Pais = request.form['Pais']
+        Region = request.form['Provincia']
+        City = request.form['Ciudad']
+        IdSector = request.form['Sector']
+        CodigoName = request.form['CodigoName']
+        Email = request.form['Email']
+        Guid = Pais+Region+City+IdSector+"-1"
+        
+
+        #//////////////////////////////////////////////////
+        #  Print Result
+        #/////////////////////////////////////////////////
+        print ("//////////////////////////////////////////////////")
+
+        print (Pais)
+        print (Region)
+        print (City)
+        print (IdSector)
+        print (CodigoName)
+        print (Email)
+        print (Guid)
+        # IP del Servidor
+        # user_ip = request.environ.get('HTTP_X_REAL_IP', request.remote_addr)
+        #Ip client
+        #user_ip = request.environ["REMOTE_ADDR"]
+        #input()
+        #x = Pais + Region + City +Sector + TotalPersonas + TotalSalidas + intervaloSalida 
+    # Connect to the database
+    connection = pymysql.connect(host='192.168.100.51',
+                                user='Qatest',
+                                password='Quito.2019',
+                                db='COVID19',
+                                charset='utf8mb4',
+                                cursorclass=pymysql.cursors.DictCursor)
+    try:
+        with connection.cursor() as cursor:
+    # Create a new record
+                            
+            sql = "INSERT INTO `Ubicacion` (`Id_Pais`, `Id_Region`, `Id_City`, `Id_Sector`, `Des_Codigo`, `Email`, `Guid`) VALUES (%s, %s, %s, %s, %s, %s, %s)"
+            cursor.execute(sql, (Pais, Region, City, IdSector, CodigoName, Email, Guid))
+            
+    # connection is not autocommit by default. So you must commit to save
+    # your changes.
+            connection.commit()
+
+    finally:
+        connection.close()
+    return render_template('Validar-Registro.html')
+
+
+
+#//////////////////////////////////////////
 # Chart -
 #//////////////////////////////////////////
 @app.route('/test')
