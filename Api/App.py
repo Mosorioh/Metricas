@@ -338,6 +338,7 @@ def Expuestos():
 @app.route('/motivo')
 def motivo():
     # Connect to the database
+# Connect to the database
     connection = pymysql.connect(host='192.168.100.51',
                                 user='Qatest',
                                 password='Quito.2019',
@@ -348,38 +349,74 @@ def motivo():
     try:
         with connection.cursor() as cursor:
             # Read a single record
+            Alimento = 1
+            Trabajo = 2
+            Medicina = 3
+            anteriores = 4
+            otros = 5
         
             #///////////////////////////////
-            #sql2 = "SELECT COUNT(Total_Personas_Casa) AS Male FROM `Data` WHERE `Id_Genero`=%s"
-            sql2 = "SELECT SUM(Total_personas_Salida) AS Male FROM `Data`"
-            cursor.execute(sql2)
-            resultMale = cursor.fetchall()
-            male = int(resultMale[0]['Male'])
-            print("Male: ", male)
-            #print(resultMale)
+            
+            sql1 = "SELECT COUNT(MotivoSalida) AS Alimento FROM `Data`  WHERE `MotivoSalida`=%s"
+            cursor.execute(sql1, (Alimento))
+            resultAlimento = cursor.fetchall()
+            Alimento = int(resultAlimento[0]['Alimento'])
+            print("Alimento: ", Alimento)
+            #input()
+            
             #///////////////////////////////
-            #sql3 = "SELECT COUNT(Id_Genero) AS Female FROM `json_metrics` WHERE `Id_Genero`=%s"
-            sql3 = "SELECT SUM(Personas_Riesgo) AS Female FROM `Data`"
-            cursor.execute(sql3)
-            resultFemale = cursor.fetchall() 
-            Female = int(resultFemale[0]['Female'])
-            print("Female: ", Female)
-            total = male + Female  
-            #print(resultFemale)   
-            #lista = ['expuestas', male, 'Riesgo', Female, 'total', total]
-            lista = (male, Female, total)
+                       
+            sql2 = "SELECT COUNT(MotivoSalida) AS Trabajo FROM `Data`  WHERE `MotivoSalida`=%s"
+            cursor.execute(sql2, (Trabajo))
+            resultTrabajo = cursor.fetchall()
+            Trabajo = int(resultTrabajo[0]['Trabajo'])
+            print("Trabajo: ", Trabajo)
+            #input()
 
-        
-        """
-        return jsonify({"Task", "Hours per Day"},
-                       {"Expuetas": male },
-                       {"Riesgo": Female},
-                       {"Total": total})
-        """
-        ##return jsonify({"Expuetas": male, "Riesgo": Female,"Total": total, "message": "Lista de Personas expuestas y en riesgo"})
-        return lista                      
+            #///////////////////////////////
+            
+            sql3 = "SELECT COUNT(MotivoSalida) AS Medicina FROM `Data`  WHERE `MotivoSalida`=%s"
+            cursor.execute(sql3, (Medicina))
+            resultMedicina = cursor.fetchall()
+            Medicina = int(resultMedicina[0]['Medicina'])
+            print("Medicina: ", Medicina)
+            #input()
+            
+            #///////////////////////////////
+                       
+            sql4 = "SELECT COUNT(MotivoSalida) AS anteriores FROM `Data`  WHERE `MotivoSalida`=%s"
+            cursor.execute(sql4, (anteriores))
+            resultanteriores = cursor.fetchall()
+            anteriores = int(resultanteriores[0]['anteriores'])
+            print("anteriores: ", anteriores)
+            #input()
 
-             
+                        #///////////////////////////////
+                       
+            sql5 = "SELECT COUNT(MotivoSalida) AS otros FROM `Data`  WHERE `MotivoSalida`=%s"
+            cursor.execute(sql5, (otros))
+            resultotros = cursor.fetchall()
+            otros = int(resultotros[0]['otros'])
+            print("otros: ", otros)
+            #input()
+
+
+        return jsonify({
+            "cols": [
+                {"id":"","label":"Topping","pattern":"","type":"string"},
+                {"id":"","label":"Slices","pattern":"","type":"number"},
+                {"id":"","label":"Topping","pattern":"","type":"string"},
+                {"id":"","label":"Topping","pattern":"","type":"string"},
+                {"id":"","label":"Slices","pattern":"","type":"number"}
+                ],
+                "rows": [
+                {"c":[{"v":"Male1","f":"Alimento"},{"v":Alimento,"f":Alimento}]},
+                {"c":[{"v":"Female2","f":"Trabajo"},{"v":Trabajo,"f":Trabajo}]},
+                {"c":[{"v":"Male1","f":"Medicina"},{"v":Medicina,"f":Medicina}]},
+                {"c":[{"v":"Female2","f":"Alimento/Trabajo/Medicina"},{"v":anteriores,"f":anteriores}]},
+                {"c":[{"v":"Female2","f":"Otros"},{"v":otros,"f":otros}]}
+                ]
+                })
     finally:
         connection.close()
 

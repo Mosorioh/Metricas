@@ -16,10 +16,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.17.0/TweenMax.min.js"></script>
 
-   <!--Load the AJAX API-->
-   
-
-   <script type="text/javascript">
+   <!-- PIE-->
+      <script type="text/javascript">
    
    // Load the Visualization API and the piechart package.
    google.charts.load('current', {'packages':['corechart']});
@@ -39,11 +37,35 @@
 
      // Instantiate and draw our chart, passing in some options.
      var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
-     chart.draw(data, {width: '100%', height: '100%'});
+     chart.draw(data, {width: '100%', height: '100%', fontSize:'0.09em'});
    }
 
    </script>
+<!--  Motivo Pie-->
+<script type="text/javascript">
+   
+  // Load the Visualization API and the piechart package.
+  google.charts.load('current', {'packages':['corechart']});
+    
+  // Set a callback to run when the Google Visualization API is loaded.
+  google.charts.setOnLoadCallback(drawChart);
+    
+  function drawChart() {
+    var jsonDatamotivo = $.ajax({
+        url: "http://192.168.100.233:5050/motivo",
+        dataType: "json",
+        async: false
+        }).responseText;
+        
+    // Create our data table out of JSON data loaded from server.
+    var datamotivo = new google.visualization.DataTable(jsonDatamotivo );
 
+    // Instantiate and draw our chart, passing in some options.
+    var chartmotivo = new google.visualization.PieChart(document.getElementById('chart_div_motivo'));
+    chartmotivo.draw(datamotivo , {width: '100%', height: '100%', fontSize:'0.1em'});
+  }
+
+  </script>
   <style>
     body, html {
       height: 100%;
@@ -165,7 +187,7 @@
       <!-- Columna-2 -->
       <div class="col-md-6" style="background-color:rgb(1, 76, 82); ">
         <div id="boxsecon">
-          <h4>Data 3</h4>
+          <h4>Porcentaje del total personas en casa vs Total de personas Expuestas</h4>
           <div id="chart_div">       </div>
         </div>
       </div>
@@ -175,25 +197,20 @@
       <!-- Columna-1 -->
       <div class="col-md-6" style="background-color:rgb(1, 76, 82); ">
         <div id="boxsecon">
-          <h4>Ultimas 48 horas</h4>
-          <div id="expuestas">
-            <h3>Personas Expuestas</h3>
-            <h6>Personas que salieron de casa</h6>
-            <div class="counter">0</div>
+          <h4>Motivo Principales de Salida</h4>
+          <div id="chart_div_motivo">
+        
           </div>
-          <div id="enriesgo">
-            <h3>Personas en Riesgo</h3>
-            <h6 class="p5">Personas que viven con personas expuestas</h6>
-            <div class="counter2">0</div>
-          </div>
-          <div id="personasobservacion"></div>
         </div>
       </div>
+
+      
       <!-- Columna-2 -->
+      
       <div class="col-md-6" style="background-color:rgb(1, 76, 82); ">
         <div id="boxsecon">
-          <h4>Data 3</h4>
-          <div id="chart_div">       </div>
+          <h4>Ultimas 48 horas</h4>
+          
         </div>
       </div>
     </div>

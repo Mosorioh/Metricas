@@ -9,46 +9,35 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    
-
-  <script type="text/javascript">
-    google.charts.load("current", {packages:["corechart"]});
-    google.charts.setOnLoadCallback(drawChart);
-    function drawChart() {
-
-      var jsonData = $.ajax({
-         url: "http://181.199.66.129:5050/motivo",
+   <!--Load the AJAX API-->
+   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+   <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+   <script type="text/javascript">
+   
+   // Load the Visualization API and the piechart package.
+   google.charts.load('current', {'packages':['corechart']});
+     
+   // Set a callback to run when the Google Visualization API is loaded.
+   google.charts.setOnLoadCallback(drawChart);
+     
+   function drawChart() {
+     var jsonDatamotivo = $.ajax({
+         url: "http://192.168.100.233:5050/motivo",
          dataType: "json",
          async: false
          }).responseText;
-        
+         
+     // Create our data table out of JSON data loaded from server.
+     var datamotivo = new google.visualization.DataTable(jsonDatamotivo );
 
-      var array  = JSON.parse(jsonData);
-      console.log(array);
+     // Instantiate and draw our chart, passing in some options.
+     var chartmotivo = new google.visualization.PieChart(document.getElementById('chart_div_motivo'));
+     chartmotivo.draw(datamotivo , {width: 800, height: 400});
+   }
 
-      var dataTableData = google.visualization.arrayToDataTable(array);
-      var data = google.visualization.arrayToDataTable([
-          ['Task', 'Hours per Day'],
-          ['Work',     11],
-          ['Eat',      2],
-          ['Commute',  2],
-          ['Watch TV', 2],
-          ['Sleep',    7]
-        ]);
-
-      var options = {
-        title: 'My Daily Activities',
-        pieHole: 0.4,
-      };
-
-      var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
-      chart.draw(data, options);
-    }
-  </script>
-
-
-
-
+   </script>
+ </head>
+    
   <style>
     body, html {
       height: 100%;
@@ -77,9 +66,14 @@
     <div class="bg">
         
         <h4>Charts COVID-19 x-2</h4>
-        <div id="donutchart" style="width: 900px; height: 500px;"></div>
+        <!--Div that will hold the pie chart-->
+        
+    <div id="chart_div_motivo">
+        
+    </div>
         
     </div>
 </body>
+
 
 </html>
