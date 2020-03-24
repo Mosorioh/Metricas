@@ -1,6 +1,7 @@
 from flask import Flask, request
 from flask import render_template
 from flask import jsonify
+import uuid 
 # BD
 import time
 import datetime 
@@ -218,7 +219,14 @@ def addUbicacion():
         IdSector = request.form['Sector']
         CodigoName = request.form['CodigoName']
         Email = request.form['Email']
-        Guid = Pais+Region+City+IdSector+"-1"
+        #///////////////////////////////////////////
+        # Generamos Un GUID para Identificar la prueba
+        #///////////////////////////////////////////
+        IdUnico = uuid.uuid4()
+        # Convertimos el GUID obtenido con "uuid.uuid4", en una cadena para poder guardar en la DB
+        # la Variable "GuidTest" define el Id de la Prueba Actual, a demas este valor es constante durante toda la prueba.
+        GuidTest = str(IdUnico)
+        Guid = Pais + Region + City + IdSector + "-" + GuidTest
         
 
         #//////////////////////////////////////////////////
@@ -232,6 +240,7 @@ def addUbicacion():
         print (IdSector)
         print (CodigoName)
         print (Email)
+        print (GuidTest)
         print (Guid)
         # IP del Servidor
         # user_ip = request.environ.get('HTTP_X_REAL_IP', request.remote_addr)
