@@ -1,11 +1,12 @@
 //console.log ("From validar")
 
 function validar(){
-    var Pais, Provincia, Ciudad, Sector, TotalPersonasCasa, TotalPersonasSalidas, IntervaloSalida, Ultimas48, visitas;
+    var Pais, Provincia, Ciudad, Sector, TotalPersonasCasa, TotalPersonasSalidas, IntervaloSalida, Ultimas48, visitas, Ubicacion;
     Pais = document.getElementById("selectPais").value;
     Provincia = document.getElementById("Provincia").value;
     Ciudad = document.getElementById("Ciudad").value;
     Sector = document.getElementById("Sector").value;
+    Ubicacion = document.getElementById("Ubicacion").value;
 
     TotalPersonasCasa = document.getElementById("TotalPersonas").value;
     TotalPersonasSalidas = document.getElementById("TotalSalidas").value;
@@ -19,6 +20,7 @@ function validar(){
     console.log ("Send Provincia: " + Provincia);
     console.log ("Send Ciudad: " + Ciudad);
     console.log ("Send Sector: " + Sector);
+    console.log ("Send Ubicacion: " + Ubicacion);
     
 
     console.log ("Send TotalPersonasCasa: " + TotalPersonasCasa);

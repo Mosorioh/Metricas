@@ -145,12 +145,12 @@ console.log( ListUbicacion)
   var resultado = document.getElementById('Ubicacion');
       var n = 0;
       Ubicacion.innerHTML = '';
-      Ubicacion.innerHTML = '<option selected="Ubicacion" >Selecciona Tu Ubicacion</option>';
+      Ubicacion.innerHTML = '<option value="0" >Selecciona Tu Ubicacion</option>';
       
       for(let dato of ListUbicacion){
           n++;
           resultado.innerHTML += `
-          <option value="${dato.Id}">(${dato.Guid}) - ${dato.Des_Codigo}</option>
+          <option value="${dato.Id}" >(${dato.Guid}) - ${dato.Des_Codigo}</option>
           
           `;
     }
@@ -158,3 +158,12 @@ console.log( ListUbicacion)
     })
   })
 })
+
+//<!----- Script 4------>
+//<!-- get ubicaicon Segun opcion seleccionada en el drowndoon-->
+//<script>	  
+$(document).ready(function(){
+  $("#Ubicacion").on("change",function(){						
+    var SectorUbicacio=$(this).val()//obtenemos el valor seleccionado en una variable	
+    console.log("Sector Seleccionado: " + SectorUbicacio) 
+  } )})
