@@ -332,6 +332,52 @@ def Expuestos():
     finally:
         connection.close()
 
+#//////////////////////////////////////////
+# Datos motivo
+#//////////////////////////////////////////
+@app.route('/motivo')
+def motivo():
+    # Connect to the database
+    connection = pymysql.connect(host='192.168.100.51',
+                                user='Qatest',
+                                password='Quito.2019',
+                                db='COVID19',
+                                charset='utf8mb4',
+                                cursorclass=pymysql.cursors.DictCursor)
+
+    try:
+        with connection.cursor() as cursor:
+            # Read a single record
+        
+            #///////////////////////////////
+            #sql2 = "SELECT COUNT(Total_Personas_Casa) AS Male FROM `Data` WHERE `Id_Genero`=%s"
+            sql2 = "SELECT SUM(Total_personas_Salida) AS Male FROM `Data`"
+            cursor.execute(sql2)
+            resultMale = cursor.fetchall()
+            male = int(resultMale[0]['Male'])
+            print("Male: ", male)
+            #print(resultMale)
+            #///////////////////////////////
+            #sql3 = "SELECT COUNT(Id_Genero) AS Female FROM `json_metrics` WHERE `Id_Genero`=%s"
+            sql3 = "SELECT SUM(Personas_Riesgo) AS Female FROM `Data`"
+            cursor.execute(sql3)
+            resultFemale = cursor.fetchall() 
+            Female = int(resultFemale[0]['Female'])
+            print("Female: ", Female)
+            total = male + Female  
+            #print(resultFemale)   
+
+        
+        return jsonify({"Expuetas": male, "message": "Lista de Personas expuestas"},
+                       {"Riesgo": Female, "message": "Lista de Personas en riesgo"},
+                       {"Total": total, "message": "Total de Personas en riesgo"})
+        
+        ##return jsonify({"Expuetas": male, "Riesgo": Female,"Total": total, "message": "Lista de Personas expuestas y en riesgo"})
+                       
+
+             
+    finally:
+        connection.close()
 
 
 if __name__ == '__main__':
