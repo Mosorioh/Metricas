@@ -52,7 +52,7 @@
     
   function drawChart() {
     var jsonDatamotivo = $.ajax({
-        url: "http://192.168.100.233:5050/motivo",
+        url: "http://181.199.66.129:5050/motivo",
         dataType: "json",
         async: false
         }).responseText;
@@ -187,7 +187,7 @@
       <!-- Columna-2 -->
       <div class="col-md-6" style="background-color:rgb(1, 76, 82); ">
         <div id="boxsecon">
-          <h4>Porcentaje del total personas en casa vs Total de personas Expuestas</h4>
+          <h4>Porcentaje del total de "Personas en Casa" vs "Total de personas Expuestas"</h4>
           <div id="chart_div">       </div>
         </div>
       </div>
@@ -242,6 +242,7 @@
               // Loop through each data and populate the array.
               $.each(data, function (index, value) {
                   arrSales.push([value.Month, value.Sales_Figure, value.Perc, value.TimeSalida ]);
+                  // arrSales.push([value.Month, value.Sales_Figure, value.Perc, value.TimeSalida ]);
               });
 
               // Set chart Options.
@@ -255,7 +256,7 @@
               var figures = google.visualization.arrayToDataTable(arrSales)
 
               // Define the chart type (LineChart) and the container (a DIV in our case).
-              var chart = new google.visualization.ColumnChart(document.getElementById('chart'));
+              var chart = new google.visualization.LineChart(document.getElementById('chart'));
               chart.draw(figures, options);      // Draw the chart with Options.
           },
           error: function (XMLHttpRequest, textStatus, errorThrown) {

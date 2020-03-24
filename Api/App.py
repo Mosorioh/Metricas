@@ -222,8 +222,9 @@ def test():
         with connection.cursor() as cursor:
 
             #///////////////////////////////
-            #sql2 = "SELECT substring(DatePeticion,1,19) AS Month, `Total_Personas_Casa` As Sales_Figure, `Total_personas_Salida` AS Perc FROM `Data`"
-            sql2 = "SELECT Id AS Month, `Total_Personas_Casa` As Sales_Figure, `Total_personas_Salida` AS Perc, Time_Aprox_Salida AS TimeSalida FROM `Data`"
+            
+            #sql2 = "SELECT Id AS Month, `Total_Personas_Casa` As Sales_Figure, `Total_personas_Salida` AS Perc, Time_Aprox_Salida AS TimeSalida FROM `Data`"
+            sql2 = "SELECT Id AS Month, `Total_Personas_Casa` As Sales_Figure FROM `Data`"
             cursor.execute(sql2)
             resultMensajes_Actual = cursor.fetchall()
             Mensajes_Actual = resultMensajes_Actual
