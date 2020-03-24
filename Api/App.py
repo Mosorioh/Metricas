@@ -172,6 +172,7 @@ def Registro():
         Region = request.form['Provincia']
         City = request.form['Ciudad']
         IdSector = request.form['Sector']
+        IdUbicacion = request.form['Ubicacion']
         TotalPersonas = request.form['TotalPersonas']
         TotalSalidas = request.form['TotalSalidas']
         intervaloSalida = request.form['IntervaloSalida']
@@ -196,6 +197,7 @@ def Registro():
         print (Region)
         print (City)
         print (IdSector)
+        print (IdUbicacion)
         print (TotalPersonas)
         print (TotalSalidas)
         print (PersonasRiesgo)

@@ -147,10 +147,10 @@ console.log( ListUbicacion)
       Ubicacion.innerHTML = '';
       Ubicacion.innerHTML = '<option selected="Ubicacion" >Selecciona Tu Ubicacion</option>';
       
-      for(let dato of ListSector){
+      for(let dato of ListUbicacion){
           n++;
           resultado.innerHTML += `
-          <option value="${dato.Id}">${dato.Sector}</option>
+          <option value="${dato.Id}">(${dato.Guid}) - ${dato.Des_Codigo}</option>
           
           `;
     }
