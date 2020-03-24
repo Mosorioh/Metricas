@@ -89,7 +89,7 @@
 }
 #expuestas{
   width: 46%;
-  height:80%;
+  height:70%;
   margin-bottom: 3%;
   background-color: rgb(83, 83, 83);
   float: left;
@@ -99,7 +99,7 @@
 }
 #enriesgo{
   width: 46%;
-  height:80%;
+  height:70%;
   margin-bottom: 3%;
   background-color:rgb(83, 83, 83);
   float: right;
@@ -109,12 +109,24 @@
 }
 .counter{
   text-align: center;
-  font-size: 100px;
+  font-size: 5em;
+  color: darkred;
+}
+.counter2{
+  text-align: center;
+  font-size: 5em;
+  color: goldenrod;
 }
 .container{
   text-align: center;
-  font-size: 100px;
-}  </style>
+  
+}  
+#personasobservacion {
+  color: darkgoldenrod;
+  font-weight: bold;
+  font-style: oblique;
+}
+</style>
     
 </head>
 <body>
@@ -124,7 +136,7 @@
           <div class="row" >
             <div class="col-md-12" style="background-color:rgb(1, 76, 82); ">
               <div id="boxmain">
-                <h4>Data 1</h4>
+                <h4></h4>
                   <div id="chart" style="width:100%; height:100%;">
                   </div>
               </div>
@@ -135,15 +147,18 @@
           <div class="row">
             <div class="col-md-6" style="background-color:rgb(1, 76, 82); ">
               <div id="boxsecon">
-                <h4>Data 2</h4>
+                <h4>Ultimas 48 horas</h4>
                 <div id="expuestas">
                   <h3>Personas Expuestas</h3>
+                  <h6>Personas que salieron de casa</h6>
                   <div class="counter">0</div>
                 </div>
                 <div id="enriesgo">
                   <h3>Personas en Riesgo</h3>
-                  <div class="counter">0</div>
+                  <h6 class="p5">Personas que viven con personas expuestas</h6>
+                  <div class="counter2">0</div>
                 </div>
+                <div id="personasobservacion"></div>
             </div>
           </div>
          
@@ -162,32 +177,7 @@
 </body>
 
 
-<!-- Efecto contador-->
-<script>
-  /*
 
-  function detenerContador() {
-    clearInterval(count);
-}
-function count(){
-  var counter = { var: 0 };
-  TweenMax.to(counter, 3, {
-    var: 100, 
-    onUpdate: function () {
-      var number = Math.ceil(counter.var);
-      $('.counter').html(number);
-      if(number === counter.var){ detenerContador(); }
-    },
-    //onComplete: function(){
-      //count();
-   // },    
-    ease:Circ.easeOut
-  });
-}
-
-count();
-*/
-</script>
 
 <!-- Grafico columnas -->
 <script>
@@ -273,25 +263,27 @@ count();
 
 
 
+<!-- Efecto contador-->
 <!----- Script 3------>
 <!-- get expuestos-->
 <script>	
-console.log("Expuestos *-2 ")    
+
 
 fetch('http://181.199.66.129:5050/Expuestos')
 //fetch('http://181.199.66.129:5050/Expuestos/'+CitySelectd+'')
 .then(res => res.json())
       .then(datos => {
           console.log(datos)
+          console.log("Personas expuestas")    
 
   //var resultado = document.getElementById('Sector');
       var n = 0;
       var expuestas = datos.Expuetas
-      var riesgo = datos.Riesgo
-      var totalPersonas = datos.Total
+      //var riesgo = datos.Riesgo
+     // var totalPersonas = datos.Total
       console.log(expuestas)
-      console.log(riesgo)
-      console.log(totalPersonas)
+      //console.log(riesgo)
+      //console.log(totalPersonas)
 
 
       function detenerContador() {
@@ -316,18 +308,6 @@ fetch('http://181.199.66.129:5050/Expuestos')
       count();
 
 
-
-      Sector.innerHTML = '';
-      Sector.innerHTML = '<option selected="Sector" >Selecciona Tu Sector</option>';
-      
-      for(let dato of ListSector){
-          n++;
-          resultado.innerHTML += `
-          <option value="${dato.Id}">${dato.Sector}</option>
-          
-          `;
-    }
-    
     })
 
 
@@ -338,34 +318,36 @@ fetch('http://181.199.66.129:5050/Expuestos')
 <!----- Script 3------>
 <!-- get expuestos-->
 <script>	
-  console.log("Expuestos *-2 ")    
+    
   
   fetch('http://181.199.66.129:5050/Expuestos')
   //fetch('http://181.199.66.129:5050/Expuestos/'+CitySelectd+'')
   .then(res => res.json())
         .then(datos => {
-            console.log(datos)
+          console.log("Personas en riesgo")  
+            //console.log(datos)
   
     //var resultado = document.getElementById('Sector');
         var n = 0;
-        var expuestas = datos.Expuetas
+       // var expuestas = datos.Expuetas
         var riesgo = datos.Riesgo
         var totalPersonas = datos.Total
-        console.log(expuestas)
+        //console.log(expuestas)
         console.log(riesgo)
+        console.log("Total de personas")  
         console.log(totalPersonas)
   
   
         function detenerContador() {
           clearInterval(count);
         }
-        function count2(){
+        function count(){
           var counter = { var: 0 };
           TweenMax.to(counter, 3, {
             var: riesgo, 
             onUpdate: function () {
               var number = Math.ceil(counter.var);
-              $('.counter').html(number);
+              $('.counter2').html(number);
               if(number === counter.var){ detenerContador(); }
             },
             //onComplete: function(){
@@ -379,17 +361,14 @@ fetch('http://181.199.66.129:5050/Expuestos')
   
   
   
-        Sector.innerHTML = '';
-        Sector.innerHTML = '<option selected="Sector" >Selecciona Tu Sector</option>';
+        personasobservacion.innerHTML = '';
         
-        for(let dato of ListSector){
-            n++;
-            resultado.innerHTML += `
-            <option value="${dato.Id}">${dato.Sector}</option>
+        
+            personasobservacion.innerHTML += `<h5>Personas en observacion: ${datos.Total}</h5>
             
             `;
-      }
-      
+ 
+    
       })
   
   
