@@ -222,10 +222,11 @@ def addUbicacion():
         #///////////////////////////////////////////
         # Generamos Un GUID para Identificar la prueba
         #///////////////////////////////////////////
+        #IdUnico = uuid.uuid4() #32 caracteres
         IdUnico = uuid.uuid4()
         # Convertimos el GUID obtenido con "uuid.uuid4", en una cadena para poder guardar en la DB
         # la Variable "GuidTest" define el Id de la Prueba Actual, a demas este valor es constante durante toda la prueba.
-        GuidTest = str(IdUnico)
+        GuidTest = str(IdUnico)[0:8] 
         Guid = Pais + Region + City + IdSector + "-" + GuidTest
         
 
