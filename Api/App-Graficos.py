@@ -490,7 +490,7 @@ def Expuestostpais(idpais):
 #//////////////////////////////////////////
 # Chart - Grafico  Expuestos Provinicia
 #//////////////////////////////////////////
-@app.route('/Expuestos/<idpais>/<idProvinicia>/<idProvinicia>')
+@app.route('/Expuestos/<idpais>/<idProvinicia>')
 def ExpuestosProvinicia(idpais, idProvinicia):
     # Connect to the database
     connection = pymysql.connect(host='192.168.100.51',
