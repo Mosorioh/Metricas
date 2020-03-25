@@ -440,8 +440,8 @@ def PieChartubicacion(idpais, idProvinicia, idCiudad, idSector, idUbicacion):
 #///////////////////////////////////////////////////////////////////////////
 #///////////////////////////////////////////////////////////////////////////
 #
-# Grafico Dos 
-# Porcentaje del total de "Personas en Casa" vs "Total de personas Expuestas"
+# Grafico Tres 
+# Expuestos
 #
 #//////////////////////////////////////////////////////////////////////////
 #///////////////////////////////////////////////////////////////////////////
@@ -690,8 +690,8 @@ def motivopais(idpais):
         
             #///////////////////////////////
             
-            sql1 = "SELECT COUNT(MotivoSalida) AS Alimento FROM `Data`  WHERE `MotivoSalida`=%s"
-            cursor.execute(sql1, (Alimento))
+            sql1 = "SELECT COUNT(MotivoSalida) AS Alimento FROM `Data`  WHERE `Id_Pais`=%s AND `MotivoSalida`=%s"
+            cursor.execute(sql1, (idpais, Alimento))
             resultAlimento = cursor.fetchall()
             Alimento = int(resultAlimento[0]['Alimento'])
             print("Alimento: ", Alimento)
@@ -699,8 +699,8 @@ def motivopais(idpais):
             
             #///////////////////////////////
                        
-            sql2 = "SELECT COUNT(MotivoSalida) AS Trabajo FROM `Data`  WHERE `MotivoSalida`=%s"
-            cursor.execute(sql2, (Trabajo))
+            sql2 = "SELECT COUNT(MotivoSalida) AS Trabajo FROM `Data`  WHERE `Id_Pais`=%s AND `MotivoSalida`=%s"
+            cursor.execute(sql2, (idpais, Trabajo))
             resultTrabajo = cursor.fetchall()
             Trabajo = int(resultTrabajo[0]['Trabajo'])
             print("Trabajo: ", Trabajo)
@@ -708,8 +708,8 @@ def motivopais(idpais):
 
             #///////////////////////////////
             
-            sql3 = "SELECT COUNT(MotivoSalida) AS Medicina FROM `Data`  WHERE `MotivoSalida`=%s"
-            cursor.execute(sql3, (Medicina))
+            sql3 = "SELECT COUNT(MotivoSalida) AS Medicina FROM `Data`  WHERE `Id_Pais`=%s AND `MotivoSalida`=%s"
+            cursor.execute(sql3, (idpais, Medicina))
             resultMedicina = cursor.fetchall()
             Medicina = int(resultMedicina[0]['Medicina'])
             print("Medicina: ", Medicina)
@@ -717,17 +717,17 @@ def motivopais(idpais):
             
             #///////////////////////////////
                        
-            sql4 = "SELECT COUNT(MotivoSalida) AS anteriores FROM `Data`  WHERE `MotivoSalida`=%s"
-            cursor.execute(sql4, (anteriores))
+            sql4 = "SELECT COUNT(MotivoSalida) AS anteriores FROM `Data`  WHERE `Id_Pais`=%s AND `MotivoSalida`=%s"
+            cursor.execute(sql4, (idpais, anteriores))
             resultanteriores = cursor.fetchall()
             anteriores = int(resultanteriores[0]['anteriores'])
             print("anteriores: ", anteriores)
             #input()
 
-                        #///////////////////////////////
+            #///////////////////////////////
                        
-            sql5 = "SELECT COUNT(MotivoSalida) AS otros FROM `Data`  WHERE `MotivoSalida`=%s"
-            cursor.execute(sql5, (otros))
+            sql5 = "SELECT COUNT(MotivoSalida) AS otros FROM `Data`  WHERE `Id_Pais`=%s AND `MotivoSalida`=%s"
+            cursor.execute(sql5, (idpais, otros))
             resultotros = cursor.fetchall()
             otros = int(resultotros[0]['otros'])
             print("otros: ", otros)
@@ -777,8 +777,8 @@ def motivoProvinicia(idpais, idProvinicia):
         
             #///////////////////////////////
             
-            sql1 = "SELECT COUNT(MotivoSalida) AS Alimento FROM `Data`  WHERE `MotivoSalida`=%s"
-            cursor.execute(sql1, (Alimento))
+            sql1 = "SELECT COUNT(MotivoSalida) AS Alimento FROM `Data`  WHERE `Id_Pais`=%s AND `Id_Region`=%s AND `MotivoSalida`=%s"
+            cursor.execute(sql1, (idpais, idProvinicia, Alimento))
             resultAlimento = cursor.fetchall()
             Alimento = int(resultAlimento[0]['Alimento'])
             print("Alimento: ", Alimento)
@@ -786,8 +786,8 @@ def motivoProvinicia(idpais, idProvinicia):
             
             #///////////////////////////////
                        
-            sql2 = "SELECT COUNT(MotivoSalida) AS Trabajo FROM `Data`  WHERE `MotivoSalida`=%s"
-            cursor.execute(sql2, (Trabajo))
+            sql2 = "SELECT COUNT(MotivoSalida) AS Trabajo FROM `Data`  WHERE `Id_Pais`=%s AND `Id_Region`=%s AND `MotivoSalida`=%s"
+            cursor.execute(sql2, (idpais, idProvinicia, Trabajo))
             resultTrabajo = cursor.fetchall()
             Trabajo = int(resultTrabajo[0]['Trabajo'])
             print("Trabajo: ", Trabajo)
@@ -795,8 +795,8 @@ def motivoProvinicia(idpais, idProvinicia):
 
             #///////////////////////////////
             
-            sql3 = "SELECT COUNT(MotivoSalida) AS Medicina FROM `Data`  WHERE `MotivoSalida`=%s"
-            cursor.execute(sql3, (Medicina))
+            sql3 = "SELECT COUNT(MotivoSalida) AS Medicina FROM `Data`  WHERE `Id_Pais`=%s AND `Id_Region`=%s AND `MotivoSalida`=%s"
+            cursor.execute(sql3, (idpais, idProvinicia, Medicina))
             resultMedicina = cursor.fetchall()
             Medicina = int(resultMedicina[0]['Medicina'])
             print("Medicina: ", Medicina)
@@ -804,17 +804,17 @@ def motivoProvinicia(idpais, idProvinicia):
             
             #///////////////////////////////
                        
-            sql4 = "SELECT COUNT(MotivoSalida) AS anteriores FROM `Data`  WHERE `MotivoSalida`=%s"
-            cursor.execute(sql4, (anteriores))
+            sql4 = "SELECT COUNT(MotivoSalida) AS anteriores FROM `Data`  WHERE `Id_Pais`=%s AND `Id_Region`=%s AND `MotivoSalida`=%s"
+            cursor.execute(sql4, (idpais, idProvinicia, anteriores))
             resultanteriores = cursor.fetchall()
             anteriores = int(resultanteriores[0]['anteriores'])
             print("anteriores: ", anteriores)
             #input()
 
-                        #///////////////////////////////
+            #///////////////////////////////
                        
-            sql5 = "SELECT COUNT(MotivoSalida) AS otros FROM `Data`  WHERE `MotivoSalida`=%s"
-            cursor.execute(sql5, (otros))
+            sql5 = "SELECT COUNT(MotivoSalida) AS otros FROM `Data`  WHERE `Id_Pais`=%s AND `Id_Region`=%s AND `MotivoSalida`=%s"
+            cursor.execute(sql5, (idpais, idProvinicia, otros))
             resultotros = cursor.fetchall()
             otros = int(resultotros[0]['otros'])
             print("otros: ", otros)
@@ -844,7 +844,7 @@ def motivoProvinicia(idpais, idProvinicia):
 #//////////////////////////////////////////
 # Chart - Grafico  motivo Ciudad
 #//////////////////////////////////////////
-@app.route('/motivo/<idpais>/<idCiudad>')
+@app.route('/motivo/<idpais>/<idProvinicia>/<idCiudad>')
 def motivoCiudad(idpais, idProvinicia, idCiudad):
     # Connect to the database
     connection = pymysql.connect(host='192.168.100.51',
@@ -865,8 +865,8 @@ def motivoCiudad(idpais, idProvinicia, idCiudad):
         
             #///////////////////////////////
             
-            sql1 = "SELECT COUNT(MotivoSalida) AS Alimento FROM `Data`  WHERE `MotivoSalida`=%s"
-            cursor.execute(sql1, (Alimento))
+            sql1 = "SELECT COUNT(MotivoSalida) AS Alimento FROM `Data`  WHERE `Id_Pais`=%s AND `Id_Region`=%s AND `Id_City`=%s AND `MotivoSalida`=%s"
+            cursor.execute(sql1, (idpais, idProvinicia, idCiudad, Alimento))
             resultAlimento = cursor.fetchall()
             Alimento = int(resultAlimento[0]['Alimento'])
             print("Alimento: ", Alimento)
@@ -874,8 +874,8 @@ def motivoCiudad(idpais, idProvinicia, idCiudad):
             
             #///////////////////////////////
                        
-            sql2 = "SELECT COUNT(MotivoSalida) AS Trabajo FROM `Data`  WHERE `MotivoSalida`=%s"
-            cursor.execute(sql2, (Trabajo))
+            sql2 = "SELECT COUNT(MotivoSalida) AS Trabajo FROM `Data`  WHERE `Id_Pais`=%s AND `Id_Region`=%s AND `Id_City`=%s AND `MotivoSalida`=%s"
+            cursor.execute(sql2, (idpais, idProvinicia, idCiudad, Alimento))
             resultTrabajo = cursor.fetchall()
             Trabajo = int(resultTrabajo[0]['Trabajo'])
             print("Trabajo: ", Trabajo)
@@ -883,8 +883,8 @@ def motivoCiudad(idpais, idProvinicia, idCiudad):
 
             #///////////////////////////////
             
-            sql3 = "SELECT COUNT(MotivoSalida) AS Medicina FROM `Data`  WHERE `MotivoSalida`=%s"
-            cursor.execute(sql3, (Medicina))
+            sql3 = "SELECT COUNT(MotivoSalida) AS Medicina FROM `Data`  WHERE `Id_Pais`=%s AND `Id_Region`=%s AND `Id_City`=%s AND `MotivoSalida`=%s"
+            cursor.execute(sql3, (idpais, idProvinicia, idCiudad, Alimento))
             resultMedicina = cursor.fetchall()
             Medicina = int(resultMedicina[0]['Medicina'])
             print("Medicina: ", Medicina)
@@ -892,17 +892,17 @@ def motivoCiudad(idpais, idProvinicia, idCiudad):
             
             #///////////////////////////////
                        
-            sql4 = "SELECT COUNT(MotivoSalida) AS anteriores FROM `Data`  WHERE `MotivoSalida`=%s"
-            cursor.execute(sql4, (anteriores))
+            sql4 = "SELECT COUNT(MotivoSalida) AS anteriores FROM `Data`  WHERE `Id_Pais`=%s AND `Id_Region`=%s AND `Id_City`=%s AND `MotivoSalida`=%s"
+            cursor.execute(sql4, (idpais, idProvinicia, idCiudad, Alimento))
             resultanteriores = cursor.fetchall()
             anteriores = int(resultanteriores[0]['anteriores'])
             print("anteriores: ", anteriores)
             #input()
 
-                        #///////////////////////////////
+            #///////////////////////////////
                        
-            sql5 = "SELECT COUNT(MotivoSalida) AS otros FROM `Data`  WHERE `MotivoSalida`=%s"
-            cursor.execute(sql5, (otros))
+            sql5 = "SELECT COUNT(MotivoSalida) AS otros FROM `Data`  WHERE `Id_Pais`=%s AND `Id_Region`=%s AND `Id_City`=%s AND `MotivoSalida`=%s"
+            cursor.execute(sql5, (idpais, idProvinicia, idCiudad, Alimento))
             resultotros = cursor.fetchall()
             otros = int(resultotros[0]['otros'])
             print("otros: ", otros)
@@ -931,7 +931,7 @@ def motivoCiudad(idpais, idProvinicia, idCiudad):
 #//////////////////////////////////////////
 # Chart - Grafico motivo Sector
 #//////////////////////////////////////////
-@app.route('/motivo/<idpais>/<idCiudad>/<idSector>')
+@app.route('/motivo/<idpais>/<idProvinicia>/<idCiudad>/<idSector>')
 def motivoSector(idpais, idProvinicia, idCiudad, idSector):
     # Connect to the database
     connection = pymysql.connect(host='192.168.100.51',
@@ -952,8 +952,8 @@ def motivoSector(idpais, idProvinicia, idCiudad, idSector):
         
             #///////////////////////////////
             
-            sql1 = "SELECT COUNT(MotivoSalida) AS Alimento FROM `Data`  WHERE `MotivoSalida`=%s"
-            cursor.execute(sql1, (Alimento))
+            sql1 = "SELECT COUNT(MotivoSalida) AS Alimento FROM `Data`  WHERE `Id_Pais`=%s AND `Id_Region`=%s AND `Id_City`=%s AND `Id_Sector`=%s AND `MotivoSalida`=%s"
+            cursor.execute(sql1, (idpais, idProvinicia, idCiudad, idSector, Alimento))
             resultAlimento = cursor.fetchall()
             Alimento = int(resultAlimento[0]['Alimento'])
             print("Alimento: ", Alimento)
@@ -961,8 +961,8 @@ def motivoSector(idpais, idProvinicia, idCiudad, idSector):
             
             #///////////////////////////////
                        
-            sql2 = "SELECT COUNT(MotivoSalida) AS Trabajo FROM `Data`  WHERE `MotivoSalida`=%s"
-            cursor.execute(sql2, (Trabajo))
+            sql2 = "SELECT COUNT(MotivoSalida) AS Trabajo FROM `Data`  WHERE `Id_Pais`=%s AND `Id_Region`=%s AND `Id_City`=%s AND `Id_Sector`=%s AND `MotivoSalida`=%s"
+            cursor.execute(sql2, (idpais, idProvinicia, idCiudad, idSector, Alimento))
             resultTrabajo = cursor.fetchall()
             Trabajo = int(resultTrabajo[0]['Trabajo'])
             print("Trabajo: ", Trabajo)
@@ -970,8 +970,8 @@ def motivoSector(idpais, idProvinicia, idCiudad, idSector):
 
             #///////////////////////////////
             
-            sql3 = "SELECT COUNT(MotivoSalida) AS Medicina FROM `Data`  WHERE `MotivoSalida`=%s"
-            cursor.execute(sql3, (Medicina))
+            sql3 = "SELECT COUNT(MotivoSalida) AS Medicina FROM `Data`  WHERE `Id_Pais`=%s AND `Id_Region`=%s AND `Id_City`=%s AND `Id_Sector`=%s AND `MotivoSalida`=%s"
+            cursor.execute(sql3, (idpais, idProvinicia, idCiudad, idSector, Alimento))
             resultMedicina = cursor.fetchall()
             Medicina = int(resultMedicina[0]['Medicina'])
             print("Medicina: ", Medicina)
@@ -979,17 +979,17 @@ def motivoSector(idpais, idProvinicia, idCiudad, idSector):
             
             #///////////////////////////////
                        
-            sql4 = "SELECT COUNT(MotivoSalida) AS anteriores FROM `Data`  WHERE `MotivoSalida`=%s"
-            cursor.execute(sql4, (anteriores))
+            sql4 = "SELECT COUNT(MotivoSalida) AS anteriores FROM `Data`  WHERE `Id_Pais`=%s AND `Id_Region`=%s AND `Id_City`=%s AND `Id_Sector`=%s AND `MotivoSalida`=%s"
+            cursor.execute(sql4, (idpais, idProvinicia, idCiudad, idSector, Alimento))
             resultanteriores = cursor.fetchall()
             anteriores = int(resultanteriores[0]['anteriores'])
             print("anteriores: ", anteriores)
             #input()
 
-                        #///////////////////////////////
+            #///////////////////////////////
                        
-            sql5 = "SELECT COUNT(MotivoSalida) AS otros FROM `Data`  WHERE `MotivoSalida`=%s"
-            cursor.execute(sql5, (otros))
+            sql5 = "SELECT COUNT(MotivoSalida) AS otros FROM `Data`  WHERE `Id_Pais`=%s AND `Id_Region`=%s AND `Id_City`=%s AND `Id_Sector`=%s AND `MotivoSalida`=%s"
+            cursor.execute(sql5, (idpais, idProvinicia, idCiudad, idSector, Alimento))
             resultotros = cursor.fetchall()
             otros = int(resultotros[0]['otros'])
             print("otros: ", otros)
@@ -1019,7 +1019,7 @@ def motivoSector(idpais, idProvinicia, idCiudad, idSector):
 #//////////////////////////////////////////
 # Chart - Grafico motivo Ubicacion
 #//////////////////////////////////////////
-@app.route('/motivo/<idpais>/<idCiudad>/<idSector>/<idUbicacion>')
+@app.route('/motivo/<idpais>/<idProvinicia>/<idCiudad>/<idSector>/<idUbicacion>')
 def motivoubicacion(idpais, idProvinicia, idCiudad, idSector, idUbicacion):
     # Connect to the database
     connection = pymysql.connect(host='192.168.100.51',
@@ -1040,8 +1040,8 @@ def motivoubicacion(idpais, idProvinicia, idCiudad, idSector, idUbicacion):
         
             #///////////////////////////////
             
-            sql1 = "SELECT COUNT(MotivoSalida) AS Alimento FROM `Data`  WHERE `MotivoSalida`=%s"
-            cursor.execute(sql1, (Alimento))
+            sql1 = "SELECT COUNT(MotivoSalida) AS Alimento FROM `Data`  WHERE `Id_Pais`=%s AND `Id_Region`=%s AND `Id_City`=%s AND `Id_Sector`=%s AND `Id_ubicacion`=%s AND `MotivoSalida`=%s"
+            cursor.execute(sql1, (idpais, idProvinicia, idCiudad, idSector, idProvinicia, Alimento))
             resultAlimento = cursor.fetchall()
             Alimento = int(resultAlimento[0]['Alimento'])
             print("Alimento: ", Alimento)
@@ -1049,8 +1049,8 @@ def motivoubicacion(idpais, idProvinicia, idCiudad, idSector, idUbicacion):
             
             #///////////////////////////////
                        
-            sql2 = "SELECT COUNT(MotivoSalida) AS Trabajo FROM `Data`  WHERE `MotivoSalida`=%s"
-            cursor.execute(sql2, (Trabajo))
+            sql2 = "SELECT COUNT(MotivoSalida) AS Trabajo FROM `Data`  WHERE `Id_Pais`=%s AND `Id_Region`=%s AND `Id_City`=%s AND `Id_Sector`=%s AND `Id_ubicacion`=%s AND `MotivoSalida`=%s"
+            cursor.execute(sql2, (idpais, idProvinicia, idCiudad, idSector, idProvinicia, Alimento))
             resultTrabajo = cursor.fetchall()
             Trabajo = int(resultTrabajo[0]['Trabajo'])
             print("Trabajo: ", Trabajo)
@@ -1058,8 +1058,8 @@ def motivoubicacion(idpais, idProvinicia, idCiudad, idSector, idUbicacion):
 
             #///////////////////////////////
             
-            sql3 = "SELECT COUNT(MotivoSalida) AS Medicina FROM `Data`  WHERE `MotivoSalida`=%s"
-            cursor.execute(sql3, (Medicina))
+            sql3 = "SELECT COUNT(MotivoSalida) AS Medicina FROM `Data`  WHERE `Id_Pais`=%s AND `Id_Region`=%s AND `Id_City`=%s AND `Id_Sector`=%s AND `Id_ubicacion`=%s AND `MotivoSalida`=%s"
+            cursor.execute(sql3, (idpais, idProvinicia, idCiudad, idSector, idProvinicia, Alimento))
             resultMedicina = cursor.fetchall()
             Medicina = int(resultMedicina[0]['Medicina'])
             print("Medicina: ", Medicina)
@@ -1067,17 +1067,17 @@ def motivoubicacion(idpais, idProvinicia, idCiudad, idSector, idUbicacion):
             
             #///////////////////////////////
                        
-            sql4 = "SELECT COUNT(MotivoSalida) AS anteriores FROM `Data`  WHERE `MotivoSalida`=%s"
-            cursor.execute(sql4, (anteriores))
+            sql4 = "SELECT COUNT(MotivoSalida) AS anteriores FROM `Data`  WHERE `Id_Pais`=%s AND `Id_Region`=%s AND `Id_City`=%s AND `Id_Sector`=%s AND `Id_ubicacion`=%s AND `MotivoSalida`=%s"
+            cursor.execute(sql4, (idpais, idProvinicia, idCiudad, idSector, idProvinicia, Alimento))
             resultanteriores = cursor.fetchall()
             anteriores = int(resultanteriores[0]['anteriores'])
             print("anteriores: ", anteriores)
             #input()
 
-                        #///////////////////////////////
+            #///////////////////////////////
                        
-            sql5 = "SELECT COUNT(MotivoSalida) AS otros FROM `Data`  WHERE `MotivoSalida`=%s"
-            cursor.execute(sql5, (otros))
+            sql5 = "SELECT COUNT(MotivoSalida) AS otros FROM `Data`  WHERE `Id_Pais`=%s AND `Id_Region`=%s AND `Id_City`=%s AND `Id_Sector`=%s AND `Id_ubicacion`=%s AND `MotivoSalida`=%s"
+            cursor.execute(sql5, (idpais, idProvinicia, idCiudad, idSector, idProvinicia, Alimento))
             resultotros = cursor.fetchall()
             otros = int(resultotros[0]['otros'])
             print("otros: ", otros)
