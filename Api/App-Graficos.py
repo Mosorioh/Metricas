@@ -468,24 +468,23 @@ def Expuestostpais(idpais):
 
             sql2 = "SELECT SUM(Total_personas_Salida) AS Male FROM `Data` WHERE `Id_Pais`=%s"
             cursor.execute(sql2, idpais)
-
             resultMale = cursor.fetchall()
             male = int(resultMale[0]['Male'])
             print("Male: ", male)
             
             #///////////////////////////////
             #sql3 = "SELECT COUNT(Id_Genero) AS Female FROM `json_metrics` WHERE `Id_Genero`=%s"
-            sql3 = "SELECT SUM(Total_personas_Salida) AS Male FROM `Data` WHERE `Id_Pais`=%s"
+            sql3 = "SELECT SUM(Total_personas_Salida) AS Female FROM `Data` WHERE `Id_Pais`=%s"
             cursor.execute(sql3, idpais)
             resultFemale = cursor.fetchall() 
-            female = int(resultFemale[0]['Female'])
-            print("Female: ", female)
+            Female = int(resultFemale[0]['Female'])
+            print("Female: ", Female)
 
             #////////////////////////////////
-            total = male + female  
+            total = male + Female  
             
 
-        return jsonify({"Expuetas": male, "Riesgo": female,"Total": total, "message": "Lista de Personas expuestas y en riesgo"})
+        return jsonify({"Expuetas": male, "Riesgo": Female,"Total": total, "message": "Lista de Personas expuestas y en riesgo"})
                                    
     finally:
         connection.close()
@@ -517,7 +516,7 @@ def ExpuestosProvinicia(idpais, idProvinicia):
             #print(resultMale)
             #///////////////////////////////
             #sql3 = "SELECT COUNT(Id_Genero) AS Female FROM `json_metrics` WHERE `Id_Genero`=%s"
-            sql3 = "SELECT SUM(Total_personas_Salida) AS Male FROM `Data` WHERE `Id_Pais`=%s AND `Id_Region`=%s"
+            sql3 = "SELECT SUM(Total_personas_Salida) AS Female FROM `Data` WHERE `Id_Pais`=%s AND `Id_Region`=%s"
             cursor.execute(sql3, idpais, idProvinicia)
             resultFemale = cursor.fetchall() 
             Female = int(resultFemale[0]['Female'])
@@ -558,7 +557,7 @@ def ExpuestosCiudad(idpais, idProvinicia, idCiudad):
             #print(resultMale)
             #///////////////////////////////
             #sql3 = "SELECT COUNT(Id_Genero) AS Female FROM `json_metrics` WHERE `Id_Genero`=%s"
-            sql3 = "SELECT SUM(Total_personas_Salida) AS Male FROM `Data` WHERE `Id_Pais`=%s AND `Id_Region`=%s AND `Id_City`=%s"
+            sql3 = "SELECT SUM(Total_personas_Salida) AS Female FROM `Data` WHERE `Id_Pais`=%s AND `Id_Region`=%s AND `Id_City`=%s"
             cursor.execute(sql3, idpais, idProvinicia, idCiudad)
             resultFemale = cursor.fetchall() 
             Female = int(resultFemale[0]['Female'])
@@ -598,7 +597,7 @@ def ExpuestosSector(idpais, idProvinicia, idCiudad, idSector):
             #print(resultMale)
             #///////////////////////////////
             #sql3 = "SELECT COUNT(Id_Genero) AS Female FROM `json_metrics` WHERE `Id_Genero`=%s"
-            sql3 = "SELECT SUM(Total_personas_Salida) AS Male FROM `Data` WHERE `Id_Pais`=%s AND `Id_Region`=%s AND `Id_City`=%s AND `Id_Sector`=%s"
+            sql3 = "SELECT SUM(Total_personas_Salida) AS Female FROM `Data` WHERE `Id_Pais`=%s AND `Id_Region`=%s AND `Id_City`=%s AND `Id_Sector`=%s"
             cursor.execute(sql3, idpais, idProvinicia, idCiudad, idSector)
             resultFemale = cursor.fetchall() 
             Female = int(resultFemale[0]['Female'])
@@ -639,7 +638,7 @@ def Expuestosubicacion(idpais, idProvinicia, idCiudad, idSector, idUbicacion):
             #print(resultMale)
             #///////////////////////////////
             #sql3 = "SELECT COUNT(Id_Genero) AS Female FROM `json_metrics` WHERE `Id_Genero`=%s"
-            sql3 = "SELECT SUM(Total_personas_Salida) AS Male FROM `Data` WHERE `Id_Pais`=%s AND `Id_Region`=%s AND `Id_City`=%s AND `Id_Sector`=%s AND `Id_ubicacion`=%s"
+            sql3 = "SELECT SUM(Total_personas_Salida) AS Female FROM `Data` WHERE `Id_Pais`=%s AND `Id_Region`=%s AND `Id_City`=%s AND `Id_Sector`=%s AND `Id_ubicacion`=%s"
             cursor.execute(sql3, idpais, idProvinicia, idCiudad,idSector, idUbicacion)
             resultFemale = cursor.fetchall() 
             Female = int(resultFemale[0]['Female'])
