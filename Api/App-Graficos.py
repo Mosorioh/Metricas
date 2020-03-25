@@ -88,7 +88,7 @@ def MainProvinicia(idpais, idProvinicia):
 #//////////////////////////////////////////
 # Chart - Grafico  Main Ciudad
 #//////////////////////////////////////////
-@app.route('/Grafico/<idpais>/<idCiudad>')
+@app.route('/Grafico/<idpais>/<idProvinicia>/<idCiudad>')
 def MainCiudad(idpais, idProvinicia, idCiudad):
     # Connect to the database
     connection = pymysql.connect(host='192.168.100.51',
@@ -110,7 +110,7 @@ def MainCiudad(idpais, idProvinicia, idCiudad):
             print("Mensaje: ", Mensajes_Actual)
             #print(resultMale)
             
-            
+
             #///////////////////////////////
          
 
