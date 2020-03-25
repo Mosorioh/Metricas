@@ -100,11 +100,11 @@ console.log("GET- Ubicacion ID:" + Ubicacion)
 if(Ubicacion > 0){
     console.log ("Working with Ubicacion");
     // Urls
-    var Urlpie1 = 'http://181.199.66.129:5050/PieChart/' +Pais+ '/' +Provincia+ '/' +Ciudad+ '/' +Sector+ '/' +Ubicacion
-    var UrlMotivo = 'http://181.199.66.129:5050/motivo/' +Pais+ '/' +Provincia+ '/' +Ciudad+ '/' +Sector+ '/' +Ubicacion
-    var UrlMain = 'http://181.199.66.129:5050/test/' +Pais+ '/' +Provincia+ '/' +Ciudad+ '/' +Sector + '/' +Ubicacion
-    var UrlExpuestos = 'http://181.199.66.129:5050/Expuestos/'+Pais+ '/' +Provincia+ '/' +Ciudad+ '/' +Sector + '/' +Ubicacion
-    var UrlRiesgo = 'http://181.199.66.129:5050/Expuestos/'+Pais+ '/' +Provincia+ '/' +Ciudad+ '/' +Sector + '/' +Ubicacion
+    var Urlpie1 = 'http://181.199.66.129:5060/PieChart/' +Pais+ '/' +Provincia+ '/' +Ciudad+ '/' +Sector+ '/' +Ubicacion
+    var UrlMotivo = 'http://181.199.66.129:5060/motivo/' +Pais+ '/' +Provincia+ '/' +Ciudad+ '/' +Sector+ '/' +Ubicacion
+    var UrlMain = 'http://181.199.66.129:5060/Grafico/' +Pais+ '/' +Provincia+ '/' +Ciudad+ '/' +Sector + '/' +Ubicacion
+    var UrlExpuestos = 'http://181.199.66.129:5060/Expuestos/'+Pais+ '/' +Provincia+ '/' +Ciudad+ '/' +Sector + '/' +Ubicacion
+    var UrlRiesgo = 'http://181.199.66.129:5060/Expuestos/'+Pais+ '/' +Provincia+ '/' +Ciudad+ '/' +Sector + '/' +Ubicacion
     // Print pantalla
     console.log ("URL Pie 1 Total: " + Urlpie1)
     console.log ("URL Pie 2 Motivo: " + UrlMotivo)
@@ -116,11 +116,11 @@ if(Ubicacion > 0){
 
     console.log ("Working with Sector");
     // Urls
-    var Urlpie1 = 'http://181.199.66.129:5050/PieChart/' +Pais+ '/' +Provincia+ '/' +Ciudad+ '/' +Sector
-    var UrlMotivo = 'http://181.199.66.129:5050/motivo/' +Pais+ '/' +Provincia+ '/' +Ciudad+ '/' +Sector
-    var UrlMain = 'http://181.199.66.129:5050/test/' +Pais+ '/' +Provincia+ '/' +Ciudad+ '/' +Sector 
-    var UrlExpuestos = 'http://181.199.66.129:5050/Expuestos/'+Pais+ '/' +Provincia+ '/' +Ciudad+ '/' +Sector 
-    var UrlRiesgo = 'http://181.199.66.129:5050/Expuestos/'+Pais+ '/' +Provincia+ '/' +Ciudad+ '/' +Sector 
+    var Urlpie1 = 'http://181.199.66.129:5060/PieChart/' +Pais+ '/' +Provincia+ '/' +Ciudad+ '/' +Sector
+    var UrlMotivo = 'http://181.199.66.129:5060/motivo/' +Pais+ '/' +Provincia+ '/' +Ciudad+ '/' +Sector
+    var UrlMain = 'http://181.199.66.129:5060/Grafico/' +Pais+ '/' +Provincia+ '/' +Ciudad+ '/' +Sector 
+    var UrlExpuestos = 'http://181.199.66.129:5060/Expuestos/'+Pais+ '/' +Provincia+ '/' +Ciudad+ '/' +Sector 
+    var UrlRiesgo = 'http://181.199.66.129:5060/Expuestos/'+Pais+ '/' +Provincia+ '/' +Ciudad+ '/' +Sector 
     // Print pantalla
     console.log ("URL Pie 1 Total: " + Urlpie1)
     console.log ("URL Pie 2 Motivo: " + UrlMotivo)
@@ -132,11 +132,11 @@ if(Ubicacion > 0){
 
     console.log ("Working with Ciudad");
     // Urls
-    var Urlpie1 = 'http://181.199.66.129:5050/PieChart/' +Pais+ '/' +Provincia+ '/' +Ciudad
-    var UrlMotivo = 'http://181.199.66.129:5050/motivo/' +Pais+ '/' +Provincia+ '/' +Ciudad
-    var UrlMain = 'http://181.199.66.129:5050/test/' +Pais+ '/' +Provincia+ '/' +Ciudad
-    var UrlExpuestos = 'http://181.199.66.129:5050/Expuestos/'+Pais+ '/' +Provincia+ '/' +Ciudad
-    var UrlRiesgo = 'http://181.199.66.129:5050/Expuestos/'+Pais+ '/' +Provincia+ '/' +Ciudad
+    var Urlpie1 = 'http://181.199.66.129:5060/PieChart/' +Pais+ '/' +Provincia+ '/' +Ciudad
+    var UrlMotivo = 'http://181.199.66.129:5060/motivo/' +Pais+ '/' +Provincia+ '/' +Ciudad
+    var UrlMain = 'http://181.199.66.129:5060/Grafico/' +Pais+ '/' +Provincia+ '/' +Ciudad
+    var UrlExpuestos = 'http://181.199.66.129:5060/Expuestos/'+Pais+ '/' +Provincia+ '/' +Ciudad
+    var UrlRiesgo = 'http://181.199.66.129:5060/Expuestos/'+Pais+ '/' +Provincia+ '/' +Ciudad
     // Print pantalla
     console.log ("URL Pie 1 Total: " + Urlpie1)
     console.log ("URL Pie 2 Motivo: " + UrlMotivo)
@@ -148,11 +148,11 @@ if(Ubicacion > 0){
     
         console.log ("Working with Provincia");
         // Urls
-        var Urlpie1 = 'http://181.199.66.129:5050/PieChart/' +Pais+ '/' +Provincia
-        var UrlMotivo = 'http://181.199.66.129:5050/motivo/' +Pais+ '/' +Provincia
-        var UrlMain = 'http://181.199.66.129:5050/test/' +Pais+ '/' +Provincia
-        var UrlExpuestos = 'http://181.199.66.129:5050/Expuestos/'+Pais+ '/' +Provincia
-        var UrlRiesgo = 'http://181.199.66.129:5050/Expuestos/'+Pais+ '/' +Provincia
+        var Urlpie1 = 'http://181.199.66.129:5060/PieChart/' +Pais+ '/' +Provincia
+        var UrlMotivo = 'http://181.199.66.129:5060/motivo/' +Pais+ '/' +Provincia
+        var UrlMain = 'http://181.199.66.129:5060/Grafico/' +Pais+ '/' +Provincia
+        var UrlExpuestos = 'http://181.199.66.129:5060/Expuestos/'+Pais+ '/' +Provincia
+        var UrlRiesgo = 'http://181.199.66.129:5060/Expuestos/'+Pais+ '/' +Provincia
         // Print pantalla
         console.log ("URL Pie 1 Total: " + Urlpie1)
         console.log ("URL Pie 2 Motivo: " + UrlMotivo)
@@ -164,11 +164,11 @@ if(Ubicacion > 0){
     
         console.log ("Working with Pais");
         // Urls
-        var Urlpie1 = 'http://181.199.66.129:5050/PieChart/' +Pais
-        var UrlMotivo = 'http://181.199.66.129:5050/motivo/' +Pais
-        var UrlMain = 'http://181.199.66.129:5050/test/' +Pais
-        var UrlExpuestos = 'http://181.199.66.129:5050/Expuestos/'+Pais
-        var UrlRiesgo = 'http://181.199.66.129:5050/Expuestos/'+Pais
+        var Urlpie1 = 'http://181.199.66.129:5060/PieChart/' +Pais
+        var UrlMotivo = 'http://181.199.66.129:5060/motivo/' +Pais
+        var UrlMain = 'http://181.199.66.129:5060/Grafico/' +Pais
+        var UrlExpuestos = 'http://181.199.66.129:5060/Expuestos/'+Pais
+        var UrlRiesgo = 'http://181.199.66.129:5060/Expuestos/'+Pais
         // Print pantalla
         console.log ("URL Pie 1 Total: " + Urlpie1)
         console.log ("URL Pie 2 Motivo: " + UrlMotivo)
