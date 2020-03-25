@@ -16,7 +16,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.17.0/TweenMax.min.js"></script>
 
-   <!-- PIE-->
+   <!-- Porcentage casa expuestos-->
       <script type="text/javascript">
    
    // Load the Visualization API and the piechart package.
@@ -27,7 +27,7 @@
      
    function drawChart() {
      var jsonData = $.ajax({
-         url: "http://181.199.66.129:5050/PieChart",
+         url: Urlpie1,
          dataType: "json",
          async: false
          }).responseText;
@@ -41,6 +41,8 @@
    }
 
    </script>
+
+
 <!--  Motivo Pie-->
 <script type="text/javascript">
    
@@ -148,6 +150,7 @@
   font-weight: bold;
   font-style: oblique;
 }
+
 </style>
     
 </head>
@@ -287,8 +290,9 @@
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"> </script>
-<script src="js/validar.js"></script>
+
 <script type="text/javascript" src="js/index.js"></script>
+<script type="text/javascript" src="js/getvariable.js"></script>
 
 <!-- Grafico columnas -->
 <script>
@@ -298,7 +302,7 @@
 
   function drawLineChart() {
       $.ajax({
-          url: "http://181.199.66.129:5050/test",
+          url: UrlMain,
           dataType: "json",
           type: "GET",
           contentType: "application/json; charset=utf-8",
@@ -331,46 +335,6 @@
   }
 </script>
 
-<!-- Grafico Lineal-->
-<script>
-  // Visualization API with the 'corechart' package.
-  google.charts.load('visualization', { packages: ['corechart'] });
-  google.charts.setOnLoadCallback(drawLineChart);
-
-  function drawLineChart() {
-      $.ajax({
-          url: "http://181.199.66.129:5050/test",
-          dataType: "json",
-          type: "GET",
-          contentType: "application/json; charset=utf-8",
-          success: function (data) {
-              var arrSales = [['Time', 'Personas en Casa', 'Personas que Salieron']];    // Define an array and assign columns for the chart.
-
-              // Loop through each data and populate the array.
-              $.each(data, function (index, value) {
-                  arrSales.push([value.Month, value.Sales_Figure, value.Perc]);
-              });
-
-              // Set chart Options.
-              var options = {
-                  title: '"Personas en Casa" VS "Personas Que Salieron"',
-                  curveType: 'function',
-                  legend: { position: 'bottom', textStyle: { color: '#555', fontSize: 14} }  // You can position the legend on 'top' or at the 'bottom'.
-              };
-
-              // Create DataTable and add the array to it.
-              var figures = google.visualization.arrayToDataTable(arrSales)
-
-              // Define the chart type (LineChart) and the container (a DIV in our case).
-              var chart = new google.visualization.LineChart(document.getElementById('chartline'));
-              chart.draw(figures, options);      // Draw the chart with Options.
-          },
-          error: function (XMLHttpRequest, textStatus, errorThrown) {
-              alert('Got an Error');
-          }
-      });
-  }
-</script>
 
 
 
@@ -380,7 +344,7 @@
 <script>	
 
 
-fetch('http://181.199.66.129:5050/Expuestos')
+fetch(UrlExpuestos)
 //fetch('http://181.199.66.129:5050/Expuestos/'+CitySelectd+'')
 .then(res => res.json())
       .then(datos => {
@@ -431,7 +395,7 @@ fetch('http://181.199.66.129:5050/Expuestos')
 <script>	
     
   
-  fetch('http://181.199.66.129:5050/Expuestos')
+  fetch(UrlRiesgo)
   //fetch('http://181.199.66.129:5050/Expuestos/'+CitySelectd+'')
   .then(res => res.json())
         .then(datos => {

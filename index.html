@@ -181,10 +181,10 @@
 <!-- formulario-->
 
 <div class="row" >
-<form action="Charts.html" method="GET" onsubmit="return validar();">
+<form action="Charts.html" method="GET" onsubmit="return validarchart();">
   <!-- 1-->
   <div class="col-md-2" style="background-color:rgb(1, 76, 82); ">
-    <select class="form-control" name="Pais" id="selectPais"  ></select>
+    <select class="form-control" name="Pais" id="selectPais"></select>
   </div>
     <!-- 2-->
     <div class="col-md-2" style="background-color:rgb(1, 76, 82); ">
@@ -292,8 +292,8 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"> </script>
 <script src="js/validar.js"></script>
-<script type="text/javascript" src="js/index.js"></script>
-
+<script type="text/javascript" src="js/FunCharts.js"></script>
+<script type="text/javascript" src="js/validarchart.js"></script>
 <!-- Grafico columnas -->
 <script>
   // Visualization API with the 'corechart' package.

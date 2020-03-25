@@ -11,7 +11,7 @@
         var resultado = document.getElementById('selectPais');
         var n = 0;
         selectPais.innerHTML = '';
-        selectPais.innerHTML = '<option selected="selectPais">Selecciona Tu Pais</option>';
+        selectPais.innerHTML = '<option value="0" selected="selectPais">Selecciona Tu Pais</option>';
         
         for(let dato of ListPaises){
             n++;
@@ -46,7 +46,7 @@
         var n = 0;
 
         
-        Provincia.innerHTML = '<option selected="Provincia" >Selecciona Tu Region</option>';
+        Provincia.innerHTML = '<option value="0" selected="Provincia" >Selecciona Tu Region</option>';
         
         for(let dato of Listprovincia){
             n++;
@@ -79,7 +79,7 @@
     var resultado = document.getElementById('Ciudad');
         var n = 0;
         Ciudad.innerHTML = '';
-        Ciudad.innerHTML = '<option selected="Ciudad" >Selecciona Tu Ciudad</option>';
+        Ciudad.innerHTML = '<option value="0" selected="Ciudad" >Selecciona Tu Ciudad</option>';
         
         for(let dato of Listcity){
             n++;
@@ -113,7 +113,7 @@ console.log( ListSector)
   var resultado = document.getElementById('Sector');
       var n = 0;
       Sector.innerHTML = '';
-      Sector.innerHTML = '<option selected="Sector" >Selecciona Tu Sector</option>';
+      Sector.innerHTML = '<option value="0" selected="Sector" >Selecciona Tu Sector</option>';
       
       for(let dato of ListSector){
           n++;

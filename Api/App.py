@@ -305,7 +305,7 @@ def addUbicacion():
 #//////////////////////////////////////////
 # Chart -
 #//////////////////////////////////////////
-@app.route('/test')
+@app.route('/test/idpais')
 def test():
     # Connect to the database
     connection = pymysql.connect(host='192.168.100.51',
