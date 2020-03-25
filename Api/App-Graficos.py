@@ -22,7 +22,7 @@ def home():
 # Chart - Grafico Pais
 #//////////////////////////////////////////
 @app.route('/Grafico/<idpais>')
-def pais(idpais, idProvinicia):
+def pais(idpais):
     # Connect to the database
     connection = pymysql.connect(host='192.168.100.51',
                                 user='Qatest',
@@ -194,4 +194,4 @@ def ubicacion(idpais, idProvinicia, idCiudad, idSector, idUbicacion):
 
 if __name__ == '__main__':
     #app.run( )
-    app.run(host='192.168.100.51', port=5050, debug=True)
+    app.run(host='192.168.100.51', port=5060, debug=True)
