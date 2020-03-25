@@ -393,7 +393,7 @@ def PieChartSector(idpais, idProvinicia, idCiudad, idSector):
 #//////////////////////////////////////////
 # Chart - Grafico PieChart Ubicacion
 #//////////////////////////////////////////
-@app.route('/PieChart/<idpais>/<idCiudad>/<idSector>/<idUbicacion>')
+@app.route('/PieChart/<idpais>/<idProvinicia>/<idCiudad>/<idSector>/<idUbicacion>')
 def PieChartubicacion(idpais, idProvinicia, idCiudad, idSector, idUbicacion):
     # Connect to the database
     connection = pymysql.connect(host='192.168.100.51',
