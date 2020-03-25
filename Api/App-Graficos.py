@@ -468,6 +468,7 @@ def Expuestostpais(idpais):
 
             sql2 = "SELECT SUM(Total_personas_Salida) AS Male FROM `Data` WHERE `Id_Pais`=%s"
             cursor.execute(sql2, idpais)
+
             resultMale = cursor.fetchall()
             male = int(resultMale[0]['Male'])
             print("Male: ", male)
@@ -477,14 +478,14 @@ def Expuestostpais(idpais):
             sql3 = "SELECT SUM(Total_personas_Salida) AS Male FROM `Data` WHERE `Id_Pais`=%s"
             cursor.execute(sql3, idpais)
             resultFemale = cursor.fetchall() 
-            Female = int(resultFemale[0]['Female'])
-            print("Female: ", Female)
+            female = int(resultFemale[0]['Female'])
+            print("Female: ", female)
 
             #////////////////////////////////
-            total = male + Female  
+            total = male + female  
             
 
-        return jsonify({"Expuetas": male, "Riesgo": Female,"Total": total, "message": "Lista de Personas expuestas y en riesgo"})
+        return jsonify({"Expuetas": male, "Riesgo": female,"Total": total, "message": "Lista de Personas expuestas y en riesgo"})
                                    
     finally:
         connection.close()
@@ -668,6 +669,7 @@ def Expuestosubicacion(idpais, idProvinicia, idCiudad, idSector, idUbicacion):
 # Chart - Grafico motivo Pais 
 #//////////////////////////////////////////
 @app.route('/motivo/<idpais>')
+
 def motivopais(idpais):
     # Connect to the database
     connection = pymysql.connect(host='192.168.100.51',
