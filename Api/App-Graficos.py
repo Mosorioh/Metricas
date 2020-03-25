@@ -17,10 +17,17 @@ cors = CORS(app)
 def home():
     return 'Api rest Graficos'
 
-
-#//////////////////////////////////////////
+#///////////////////////////////////////////////////////////////////////////
+#///////////////////////////////////////////////////////////////////////////
+#///////////////////////////////////////////////////////////////////////////
+#
+# GRAFICO MAIN
 # Chart - Grafico Main Pais 
-#//////////////////////////////////////////
+#
+#///////////////////////////////////////////////////////////////////////////
+#///////////////////////////////////////////////////////////////////////////
+#///////////////////////////////////////////////////////////////////////////
+
 @app.route('/Grafico/<idpais>')
 def Mainpais(idpais):
     # Connect to the database
@@ -83,7 +90,6 @@ def MainProvinicia(idpais, idProvinicia):
 
     finally:
         connection.close()
-
 
 #//////////////////////////////////////////
 # Chart - Grafico  Main Ciudad
@@ -152,7 +158,6 @@ def MainSector(idpais, idProvinicia, idCiudad, idSector):
     finally:
         connection.close()
 
-
 #//////////////////////////////////////////
 # Chart - Grafico Main Ubicacion
 #//////////////////////////////////////////
@@ -216,21 +221,21 @@ def PieChartpais(idpais):
             # Read a single record
         
             #///////////////////////////////
-            #sql2 = "SELECT COUNT(Total_Personas_Casa) AS Male FROM `Data` WHERE `Id_Genero`=%s"
-            sql2 = "SELECT SUM(Total_Personas_Casa) AS Male FROM `Data`"
-            cursor.execute(sql2)
+
+            sql2 = "SELECT SUM(Total_Personas_Casa) AS Male FROM `Data` WHERE `Id_Pais`=%s"
+            cursor.execute(sql2, (idpais))
             resultMale = cursor.fetchall()
             male = int(resultMale[0]['Male'])
             print("Male: ", male)
-            #print(resultMale)
+
             #///////////////////////////////
-            #sql3 = "SELECT COUNT(Id_Genero) AS Female FROM `json_metrics` WHERE `Id_Genero`=%s"
-            sql3 = "SELECT SUM(Total_personas_Salida) AS Female FROM `Data`"
-            cursor.execute(sql3)
+
+            sql3 = "SELECT SUM(Total_personas_Salida) AS Female FROM `Data` WHERE `Id_Pais`=%s"
+            cursor.execute(sql3, (idpais))
             resultFemale = cursor.fetchall()
             Female = int(resultFemale[0]['Female'])
             print("Female: ", Female)  
-            #print(resultFemale)   
+
 
         return jsonify({
             "cols": [
@@ -263,21 +268,20 @@ def PieChartProvinicia(idpais, idProvinicia):
             # Read a single record
         
             #///////////////////////////////
-            #sql2 = "SELECT COUNT(Total_Personas_Casa) AS Male FROM `Data` WHERE `Id_Genero`=%s"
-            sql2 = "SELECT SUM(Total_Personas_Casa) AS Male FROM `Data`"
-            cursor.execute(sql2)
+
+            sql2 = "SELECT SUM(Total_Personas_Casa) AS Male FROM `Data` WHERE `Id_Pais`=%s  AND `Id_Region`=%s"
+            cursor.execute(sql2, (idpais, idProvinicia))
             resultMale = cursor.fetchall()
             male = int(resultMale[0]['Male'])
             print("Male: ", male)
-            #print(resultMale)
+
             #///////////////////////////////
-            #sql3 = "SELECT COUNT(Id_Genero) AS Female FROM `json_metrics` WHERE `Id_Genero`=%s"
-            sql3 = "SELECT SUM(Total_personas_Salida) AS Female FROM `Data`"
-            cursor.execute(sql3)
+
+            sql3 = "SELECT SUM(Total_personas_Salida) AS Female FROM `Data` WHERE `Id_Pais`=%s AND `Id_Region`=%s"
+            cursor.execute(sql3, (idpais, idProvinicia))
             resultFemale = cursor.fetchall()
             Female = int(resultFemale[0]['Female'])
-            print("Female: ", Female)  
-            #print(resultFemale)   
+            print("Female: ", Female)    
 
         return jsonify({
             "cols": [
@@ -311,21 +315,20 @@ def PieChartCiudad(idpais, idProvinicia, idCiudad):
             # Read a single record
         
             #///////////////////////////////
-            #sql2 = "SELECT COUNT(Total_Personas_Casa) AS Male FROM `Data` WHERE `Id_Genero`=%s"
-            sql2 = "SELECT SUM(Total_Personas_Casa) AS Male FROM `Data`"
-            cursor.execute(sql2)
+
+            sql2 = "SELECT SUM(Total_Personas_Casa) AS Male FROM `Data` WHERE `Id_Pais`=%s  AND `Id_Region`=%s AND `Id_City`=%s"
+            cursor.execute(sql2, (idpais, idProvinicia, idCiudad))
             resultMale = cursor.fetchall()
             male = int(resultMale[0]['Male'])
             print("Male: ", male)
-            #print(resultMale)
+
             #///////////////////////////////
-            #sql3 = "SELECT COUNT(Id_Genero) AS Female FROM `json_metrics` WHERE `Id_Genero`=%s"
-            sql3 = "SELECT SUM(Total_personas_Salida) AS Female FROM `Data`"
-            cursor.execute(sql3)
+
+            sql3 = "SELECT SUM(Total_personas_Salida) AS Female FROM `Data` WHERE `Id_Pais`=%s AND `Id_Region`=%s AND `Id_City`=%s"
+            cursor.execute(sql3, (idpais, idProvinicia, idCiudad))
             resultFemale = cursor.fetchall()
             Female = int(resultFemale[0]['Female'])
-            print("Female: ", Female)  
-            #print(resultFemale)   
+            print("Female: ", Female)   
 
         return jsonify({
             "cols": [
@@ -343,7 +346,7 @@ def PieChartCiudad(idpais, idProvinicia, idCiudad):
 #//////////////////////////////////////////
 # Chart - Grafico PieChart Sector
 #//////////////////////////////////////////
-@app.route('/PieChart/<idpais>/<idCiudad>/<idSector>')
+@app.route('/PieChart/<idpais>/<idProvinicia>/<idCiudad>/<idSector>')
 def PieChartSector(idpais, idProvinicia, idCiudad, idSector):
     # Connect to the database
     connection = pymysql.connect(host='192.168.100.51',
@@ -358,21 +361,20 @@ def PieChartSector(idpais, idProvinicia, idCiudad, idSector):
             # Read a single record
         
             #///////////////////////////////
-            #sql2 = "SELECT COUNT(Total_Personas_Casa) AS Male FROM `Data` WHERE `Id_Genero`=%s"
-            sql2 = "SELECT SUM(Total_Personas_Casa) AS Male FROM `Data`"
-            cursor.execute(sql2)
+
+            sql2 = "SELECT SUM(Total_Personas_Casa) AS Male FROM `Data` WHERE `Id_Pais`=%s  AND `Id_Region`=%s AND `Id_City`=%s AND `Id_Sector`=%s"
+            cursor.execute(sql2, (idpais, idProvinicia, idCiudad, idSector))
             resultMale = cursor.fetchall()
             male = int(resultMale[0]['Male'])
             print("Male: ", male)
-            #print(resultMale)
+
             #///////////////////////////////
-            #sql3 = "SELECT COUNT(Id_Genero) AS Female FROM `json_metrics` WHERE `Id_Genero`=%s"
-            sql3 = "SELECT SUM(Total_personas_Salida) AS Female FROM `Data`"
-            cursor.execute(sql3)
+
+            sql3 = "SELECT SUM(Total_personas_Salida) AS Female FROM `Data` WHERE `Id_Pais`=%s AND `Id_Region`=%s AND `Id_City`=%s AND `Id_Sector`=%s"
+            cursor.execute(sql3, (idpais, idProvinicia, idCiudad, idSector))
             resultFemale = cursor.fetchall()
             Female = int(resultFemale[0]['Female'])
-            print("Female: ", Female)  
-            #print(resultFemale)   
+            print("Female: ", Female)     
 
         return jsonify({
             "cols": [
@@ -406,21 +408,20 @@ def PieChartubicacion(idpais, idProvinicia, idCiudad, idSector, idUbicacion):
             # Read a single record
         
             #///////////////////////////////
-            #sql2 = "SELECT COUNT(Total_Personas_Casa) AS Male FROM `Data` WHERE `Id_Genero`=%s"
-            sql2 = "SELECT SUM(Total_Personas_Casa) AS Male FROM `Data`"
-            cursor.execute(sql2)
+
+            sql2 = "SELECT SUM(Total_Personas_Casa) AS Male FROM `Data` WHERE `Id_Pais`=%s  AND `Id_Region`=%s AND `Id_City`=%s AND `Id_Sector`=%s AND `Id_ubicacion`=%s"
+            cursor.execute(sql2, (idpais, idProvinicia, idCiudad, idSector, idUbicacion))
             resultMale = cursor.fetchall()
             male = int(resultMale[0]['Male'])
             print("Male: ", male)
-            #print(resultMale)
+
             #///////////////////////////////
-            #sql3 = "SELECT COUNT(Id_Genero) AS Female FROM `json_metrics` WHERE `Id_Genero`=%s"
-            sql3 = "SELECT SUM(Total_personas_Salida) AS Female FROM `Data`"
-            cursor.execute(sql3)
+
+            sql3 = "SELECT SUM(Total_personas_Salida) AS Female FROM `Data` WHERE `Id_Pais`=%s AND `Id_Region`=%s AND `Id_City`=%s AND `Id_Sector`=%s AND `Id_ubicacion`=%s"
+            cursor.execute(sql3, (idpais, idProvinicia, idCiudad, idSector, idUbicacion))
             resultFemale = cursor.fetchall()
             Female = int(resultFemale[0]['Female'])
-            print("Female: ", Female)  
-            #print(resultFemale)   
+            print("Female: ", Female)       
 
         return jsonify({
             "cols": [
