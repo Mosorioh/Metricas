@@ -36,9 +36,8 @@ def Mainpais(idpais):
 
             #///////////////////////////////
             
-            #sql2 = "SELECT Id AS Month, `Total_Personas_Casa` As Sales_Figure, `Total_personas_Salida` AS Perc, Time_Aprox_Salida AS TimeSalida FROM `Data`"
-            sql2 = "SELECT Id AS Month, `Total_Personas_Casa` As Sales_Figure, `Total_personas_Salida` AS Perc, Time_Aprox_Salida AS TimeSalida FROM `Data`"
-            cursor.execute(sql2)
+            sql2 = "SELECT Id AS Month, `Total_Personas_Casa` As Sales_Figure, `Total_personas_Salida` AS Perc, Time_Aprox_Salida AS TimeSalida FROM `Data` WHERE `Id_Pais`=%s"
+            cursor.execute(sql2, (idpais))
             resultMensajes_Actual = cursor.fetchall()
             Mensajes_Actual = resultMensajes_Actual
             print("Mensaje: ", Mensajes_Actual)
@@ -70,9 +69,8 @@ def MainProvinicia(idpais, idProvinicia):
 
             #///////////////////////////////
             
-            #sql2 = "SELECT Id AS Month, `Total_Personas_Casa` As Sales_Figure, `Total_personas_Salida` AS Perc, Time_Aprox_Salida AS TimeSalida FROM `Data`"
-            sql2 = "SELECT Id AS Month, `Total_Personas_Casa` As Sales_Figure, `Total_personas_Salida` AS Perc, Time_Aprox_Salida AS TimeSalida FROM `Data`"
-            cursor.execute(sql2)
+            sql2 = "SELECT Id AS Month, `Total_Personas_Casa` As Sales_Figure, `Total_personas_Salida` AS Perc, Time_Aprox_Salida AS TimeSalida FROM `Data` WHERE `Id_Pais`=%s AND `Id_Region`=%s"
+            cursor.execute(sql2, (idpais, idProvinicia))
             resultMensajes_Actual = cursor.fetchall()
             Mensajes_Actual = resultMensajes_Actual
             print("Mensaje: ", Mensajes_Actual)
@@ -105,9 +103,8 @@ def MainCiudad(idpais, idProvinicia, idCiudad):
 
             #///////////////////////////////
             
-            #sql2 = "SELECT Id AS Month, `Total_Personas_Casa` As Sales_Figure, `Total_personas_Salida` AS Perc, Time_Aprox_Salida AS TimeSalida FROM `Data`"
-            sql2 = "SELECT Id AS Month, `Total_Personas_Casa` As Sales_Figure, `Total_personas_Salida` AS Perc, Time_Aprox_Salida AS TimeSalida FROM `Data`"
-            cursor.execute(sql2)
+            sql2 = "SELECT Id AS Month, `Total_Personas_Casa` As Sales_Figure, `Total_personas_Salida` AS Perc, Time_Aprox_Salida AS TimeSalida FROM `Data` WHERE `Id_Pais`=%s AND `Id_Region`=%s AND `Id_City`=%s"
+            cursor.execute(sql2, (idpais, idProvinicia, idCiudad))
             resultMensajes_Actual = cursor.fetchall()
             Mensajes_Actual = resultMensajes_Actual
             print("Mensaje: ", Mensajes_Actual)
@@ -139,9 +136,8 @@ def MainSector(idpais, idProvinicia, idCiudad, idSector):
 
             #///////////////////////////////
             
-            #sql2 = "SELECT Id AS Month, `Total_Personas_Casa` As Sales_Figure, `Total_personas_Salida` AS Perc, Time_Aprox_Salida AS TimeSalida FROM `Data`"
-            sql2 = "SELECT Id AS Month, `Total_Personas_Casa` As Sales_Figure, `Total_personas_Salida` AS Perc, Time_Aprox_Salida AS TimeSalida FROM `Data`"
-            cursor.execute(sql2)
+            sql2 = "SELECT Id AS Month, `Total_Personas_Casa` As Sales_Figure, `Total_personas_Salida` AS Perc, Time_Aprox_Salida AS TimeSalida FROM `Data` WHERE `Id_Pais`=%s AND `Id_Region`=%s AND `Id_City`=%s AND `Id_Sector`=%s"
+            cursor.execute(sql2, (idpais, idProvinicia, idCiudad, idSector))
             resultMensajes_Actual = cursor.fetchall()
             Mensajes_Actual = resultMensajes_Actual
             print("Mensaje: ", Mensajes_Actual)
@@ -174,9 +170,8 @@ def Mainubicacion(idpais, idProvinicia, idCiudad, idSector, idUbicacion):
 
             #///////////////////////////////
             
-            #sql2 = "SELECT Id AS Month, `Total_Personas_Casa` As Sales_Figure, `Total_personas_Salida` AS Perc, Time_Aprox_Salida AS TimeSalida FROM `Data`"
-            sql2 = "SELECT Id AS Month, `Total_Personas_Casa` As Sales_Figure, `Total_personas_Salida` AS Perc, Time_Aprox_Salida AS TimeSalida FROM `Data`"
-            cursor.execute(sql2)
+            sql2 = "SELECT Id AS Month, `Total_Personas_Casa` As Sales_Figure, `Total_personas_Salida` AS Perc, Time_Aprox_Salida AS TimeSalida FROM `Data` WHERE `Id_Pais`=%s AND `Id_Region`=%s AND `Id_City`=%s AND `Id_Sector`=%s AND `Id_ubicacion`=%s"
+            cursor.execute(sql2, (idpais, idProvinicia, idCiudad, idSector, idUbicacion))
             resultMensajes_Actual = cursor.fetchall()
             Mensajes_Actual = resultMensajes_Actual
             print("Mensaje: ", Mensajes_Actual)
