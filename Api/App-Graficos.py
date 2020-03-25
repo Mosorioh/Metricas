@@ -466,16 +466,16 @@ def Expuestostpais(idpais):
         
             #///////////////////////////////
             #sql2 = "SELECT COUNT(Total_Personas_Casa) AS Male FROM `Data` WHERE `Id_Genero`=%s"
-            sql2 = "SELECT SUM(Total_personas_Salida) AS Male FROM `Data`"
-            cursor.execute(sql2)
+            sql2 = "SELECT SUM(Total_personas_Salida) AS Male FROM `Data` WHERE `Id_Pais`=%s"
+            cursor.execute(sql2, idpais)
             resultMale = cursor.fetchall()
             male = int(resultMale[0]['Male'])
             print("Male: ", male)
             #print(resultMale)
             #///////////////////////////////
             #sql3 = "SELECT COUNT(Id_Genero) AS Female FROM `json_metrics` WHERE `Id_Genero`=%s"
-            sql3 = "SELECT SUM(Personas_Riesgo) AS Female FROM `Data`"
-            cursor.execute(sql3)
+            sql3 = "SELECT SUM(Total_personas_Salida) AS Male FROM `Data` WHERE `Id_Pais`=%s"
+            cursor.execute(sql3, idpais)
             resultFemale = cursor.fetchall() 
             Female = int(resultFemale[0]['Female'])
             print("Female: ", Female)
@@ -490,7 +490,7 @@ def Expuestostpais(idpais):
 #//////////////////////////////////////////
 # Chart - Grafico  Expuestos Provinicia
 #//////////////////////////////////////////
-@app.route('/Expuestos/<idpais>/<idProvinicia>')
+@app.route('/Expuestos/<idpais>/<idProvinicia>/<idProvinicia>')
 def ExpuestosProvinicia(idpais, idProvinicia):
     # Connect to the database
     connection = pymysql.connect(host='192.168.100.51',
@@ -506,16 +506,16 @@ def ExpuestosProvinicia(idpais, idProvinicia):
         
             #///////////////////////////////
             #sql2 = "SELECT COUNT(Total_Personas_Casa) AS Male FROM `Data` WHERE `Id_Genero`=%s"
-            sql2 = "SELECT SUM(Total_personas_Salida) AS Male FROM `Data`"
-            cursor.execute(sql2)
+            sql2 = "SELECT SUM(Total_personas_Salida) AS Male FROM `Data` WHERE `Id_Pais`=%s AND `Id_Region`=%s"
+            cursor.execute(sql2, idpais, idProvinicia)
             resultMale = cursor.fetchall()
             male = int(resultMale[0]['Male'])
             print("Male: ", male)
             #print(resultMale)
             #///////////////////////////////
             #sql3 = "SELECT COUNT(Id_Genero) AS Female FROM `json_metrics` WHERE `Id_Genero`=%s"
-            sql3 = "SELECT SUM(Personas_Riesgo) AS Female FROM `Data`"
-            cursor.execute(sql3)
+            sql3 = "SELECT SUM(Total_personas_Salida) AS Male FROM `Data` WHERE `Id_Pais`=%s AND `Id_Region`=%s"
+            cursor.execute(sql3, idpais, idProvinicia)
             resultFemale = cursor.fetchall() 
             Female = int(resultFemale[0]['Female'])
             print("Female: ", Female)
@@ -531,7 +531,7 @@ def ExpuestosProvinicia(idpais, idProvinicia):
 #//////////////////////////////////////////
 # Chart - Grafico  Expuestos Ciudad
 #//////////////////////////////////////////
-@app.route('/Expuestos/<idpais>/<idCiudad>')
+@app.route('/Expuestos/<idpais>/<idProvinicia>/<idCiudad>')
 def ExpuestosCiudad(idpais, idProvinicia, idCiudad):
     # Connect to the database
     connection = pymysql.connect(host='192.168.100.51',
@@ -547,16 +547,16 @@ def ExpuestosCiudad(idpais, idProvinicia, idCiudad):
         
             #///////////////////////////////
             #sql2 = "SELECT COUNT(Total_Personas_Casa) AS Male FROM `Data` WHERE `Id_Genero`=%s"
-            sql2 = "SELECT SUM(Total_personas_Salida) AS Male FROM `Data`"
-            cursor.execute(sql2)
+            sql2 = "SELECT SUM(Total_personas_Salida) AS Male FROM `Data` WHERE `Id_Pais`=%s AND `Id_Region`=%s AND `Id_City`=%s"
+            cursor.execute(sql2, idpais, idProvinicia, idCiudad)
             resultMale = cursor.fetchall()
             male = int(resultMale[0]['Male'])
             print("Male: ", male)
             #print(resultMale)
             #///////////////////////////////
             #sql3 = "SELECT COUNT(Id_Genero) AS Female FROM `json_metrics` WHERE `Id_Genero`=%s"
-            sql3 = "SELECT SUM(Personas_Riesgo) AS Female FROM `Data`"
-            cursor.execute(sql3)
+            sql3 = "SELECT SUM(Total_personas_Salida) AS Male FROM `Data` WHERE `Id_Pais`=%s AND `Id_Region`=%s AND `Id_City`=%s"
+            cursor.execute(sql3, idpais, idProvinicia, idCiudad)
             resultFemale = cursor.fetchall() 
             Female = int(resultFemale[0]['Female'])
             print("Female: ", Female)
@@ -571,7 +571,7 @@ def ExpuestosCiudad(idpais, idProvinicia, idCiudad):
 #//////////////////////////////////////////
 # Chart - Grafico Expuestos Sector
 #//////////////////////////////////////////
-@app.route('/Expuestos/<idpais>/<idCiudad>/<idSector>')
+@app.route('/Expuestos/<idpais>/<idProvinicia>/<idCiudad>/<idSector>')
 def ExpuestosSector(idpais, idProvinicia, idCiudad, idSector):
     # Connect to the database
     connection = pymysql.connect(host='192.168.100.51',
@@ -587,16 +587,16 @@ def ExpuestosSector(idpais, idProvinicia, idCiudad, idSector):
         
             #///////////////////////////////
             #sql2 = "SELECT COUNT(Total_Personas_Casa) AS Male FROM `Data` WHERE `Id_Genero`=%s"
-            sql2 = "SELECT SUM(Total_personas_Salida) AS Male FROM `Data`"
-            cursor.execute(sql2)
+            sql2 = "SELECT SUM(Total_personas_Salida) AS Male FROM `Data` WHERE `Id_Pais`=%s AND `Id_Region`=%s AND `Id_City`=%s AND `Id_Sector`=%s"
+            cursor.execute(sql2, idpais, idProvinicia, idCiudad, idSector)
             resultMale = cursor.fetchall()
             male = int(resultMale[0]['Male'])
             print("Male: ", male)
             #print(resultMale)
             #///////////////////////////////
             #sql3 = "SELECT COUNT(Id_Genero) AS Female FROM `json_metrics` WHERE `Id_Genero`=%s"
-            sql3 = "SELECT SUM(Personas_Riesgo) AS Female FROM `Data`"
-            cursor.execute(sql3)
+            sql3 = "SELECT SUM(Total_personas_Salida) AS Male FROM `Data` WHERE `Id_Pais`=%s AND `Id_Region`=%s AND `Id_City`=%s AND `Id_Sector`=%s"
+            cursor.execute(sql3, idpais, idProvinicia, idCiudad,idSector)
             resultFemale = cursor.fetchall() 
             Female = int(resultFemale[0]['Female'])
             print("Female: ", Female)
@@ -612,7 +612,7 @@ def ExpuestosSector(idpais, idProvinicia, idCiudad, idSector):
 #//////////////////////////////////////////
 # Chart - Grafico Expuestos Ubicacion
 #//////////////////////////////////////////
-@app.route('/Expuestos/<idpais>/<idCiudad>/<idSector>/<idUbicacion>')
+@app.route('/Expuestos/<idpais>/<idProvinicia>/<idCiudad>/<idSector>/<idUbicacion>')
 def Expuestosubicacion(idpais, idProvinicia, idCiudad, idSector, idUbicacion):
     # Connect to the database
     connection = pymysql.connect(host='192.168.100.51',
@@ -628,16 +628,16 @@ def Expuestosubicacion(idpais, idProvinicia, idCiudad, idSector, idUbicacion):
         
             #///////////////////////////////
             #sql2 = "SELECT COUNT(Total_Personas_Casa) AS Male FROM `Data` WHERE `Id_Genero`=%s"
-            sql2 = "SELECT SUM(Total_personas_Salida) AS Male FROM `Data`"
-            cursor.execute(sql2)
+            sql2 = "SELECT SUM(Total_personas_Salida) AS Male FROM `Data` WHERE `Id_Pais`=%s AND `Id_Region`=%s AND `Id_City`=%s AND `Id_Sector`=%s AND `Id_ubicacion`=%s"
+            cursor.execute(sql2, idpais, idProvinicia, idCiudad,idSector, idUbicacion)
             resultMale = cursor.fetchall()
             male = int(resultMale[0]['Male'])
             print("Male: ", male)
             #print(resultMale)
             #///////////////////////////////
             #sql3 = "SELECT COUNT(Id_Genero) AS Female FROM `json_metrics` WHERE `Id_Genero`=%s"
-            sql3 = "SELECT SUM(Personas_Riesgo) AS Female FROM `Data`"
-            cursor.execute(sql3)
+            sql3 = "SELECT SUM(Total_personas_Salida) AS Male FROM `Data` WHERE `Id_Pais`=%s AND `Id_Region`=%s AND `Id_City`=%s AND `Id_Sector`=%s AND `Id_ubicacion`=%s"
+            cursor.execute(sql3, idpais, idProvinicia, idCiudad,idSector, idUbicacion)
             resultFemale = cursor.fetchall() 
             Female = int(resultFemale[0]['Female'])
             print("Female: ", Female)
