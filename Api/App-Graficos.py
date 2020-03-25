@@ -110,6 +110,7 @@ def MainCiudad(idpais, idProvinicia, idCiudad):
             print("Mensaje: ", Mensajes_Actual)
             #print(resultMale)
             
+            
             #///////////////////////////////
          
 
