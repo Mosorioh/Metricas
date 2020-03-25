@@ -122,7 +122,7 @@ def MainCiudad(idpais, idProvinicia, idCiudad):
 #//////////////////////////////////////////
 # Chart - Grafico Main Sector
 #//////////////////////////////////////////
-@app.route('/Grafico/<idpais>/<idCiudad>/<idSector>')
+@app.route('/Grafico/<idpais>/<idProvinicia>/<idCiudad>/<idSector>')
 def MainSector(idpais, idProvinicia, idCiudad, idSector):
     # Connect to the database
     connection = pymysql.connect(host='192.168.100.51',
