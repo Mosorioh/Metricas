@@ -465,13 +465,13 @@ def Expuestostpais(idpais):
             # Read a single record
         
             #///////////////////////////////
-            #sql2 = "SELECT COUNT(Total_Personas_Casa) AS Male FROM `Data` WHERE `Id_Genero`=%s"
+
             sql2 = "SELECT SUM(Total_personas_Salida) AS Male FROM `Data` WHERE `Id_Pais`=%s"
             cursor.execute(sql2, idpais)
             resultMale = cursor.fetchall()
             male = int(resultMale[0]['Male'])
             print("Male: ", male)
-            #print(resultMale)
+            
             #///////////////////////////////
             #sql3 = "SELECT COUNT(Id_Genero) AS Female FROM `json_metrics` WHERE `Id_Genero`=%s"
             sql3 = "SELECT SUM(Total_personas_Salida) AS Male FROM `Data` WHERE `Id_Pais`=%s"
@@ -479,8 +479,10 @@ def Expuestostpais(idpais):
             resultFemale = cursor.fetchall() 
             Female = int(resultFemale[0]['Female'])
             print("Female: ", Female)
+
+            #////////////////////////////////
             total = male + Female  
-            #print(resultFemale)   
+            
 
         return jsonify({"Expuetas": male, "Riesgo": Female,"Total": total, "message": "Lista de Personas expuestas y en riesgo"})
                                    
@@ -596,7 +598,7 @@ def ExpuestosSector(idpais, idProvinicia, idCiudad, idSector):
             #///////////////////////////////
             #sql3 = "SELECT COUNT(Id_Genero) AS Female FROM `json_metrics` WHERE `Id_Genero`=%s"
             sql3 = "SELECT SUM(Total_personas_Salida) AS Male FROM `Data` WHERE `Id_Pais`=%s AND `Id_Region`=%s AND `Id_City`=%s AND `Id_Sector`=%s"
-            cursor.execute(sql3, idpais, idProvinicia, idCiudad,idSector)
+            cursor.execute(sql3, idpais, idProvinicia, idCiudad, idSector)
             resultFemale = cursor.fetchall() 
             Female = int(resultFemale[0]['Female'])
             print("Female: ", Female)
