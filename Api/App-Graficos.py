@@ -195,6 +195,7 @@ def Mainubicacion(idpais, idProvinicia, idCiudad, idSector, idUbicacion):
 #///////////////////////////////////////////////////////////////////////////
 #
 # Grafico Dos 
+# Porcentaje del total de "Personas en Casa" vs "Total de personas Expuestas"
 #
 #//////////////////////////////////////////////////////////////////////////
 #///////////////////////////////////////////////////////////////////////////
@@ -251,7 +252,7 @@ def PieChartpais(idpais):
 #//////////////////////////////////////////
 # Chart - Grafico  PieChart Provinicia
 #//////////////////////////////////////////
-@app.route('/Grafico/<idpais>/<idProvinicia>')
+@app.route('/PieChart/<idpais>/<idProvinicia>')
 def PieChartProvinicia(idpais, idProvinicia):
     # Connect to the database
     connection = pymysql.connect(host='192.168.100.51',
@@ -263,22 +264,35 @@ def PieChartProvinicia(idpais, idProvinicia):
 
     try:
         with connection.cursor() as cursor:
-
+            # Read a single record
+        
             #///////////////////////////////
-            
-            #sql2 = "SELECT Id AS Month, `Total_Personas_Casa` As Sales_Figure, `Total_personas_Salida` AS Perc, Time_Aprox_Salida AS TimeSalida FROM `Data`"
-            sql2 = "SELECT Id AS Month, `Total_Personas_Casa` As Sales_Figure, `Total_personas_Salida` AS Perc, Time_Aprox_Salida AS TimeSalida FROM `Data`"
+            #sql2 = "SELECT COUNT(Total_Personas_Casa) AS Male FROM `Data` WHERE `Id_Genero`=%s"
+            sql2 = "SELECT SUM(Total_Personas_Casa) AS Male FROM `Data`"
             cursor.execute(sql2)
-            resultMensajes_Actual = cursor.fetchall()
-            Mensajes_Actual = resultMensajes_Actual
-            print("Mensaje: ", Mensajes_Actual)
+            resultMale = cursor.fetchall()
+            male = int(resultMale[0]['Male'])
+            print("Male: ", male)
             #print(resultMale)
-            
             #///////////////////////////////
-         
+            #sql3 = "SELECT COUNT(Id_Genero) AS Female FROM `json_metrics` WHERE `Id_Genero`=%s"
+            sql3 = "SELECT SUM(Total_personas_Salida) AS Female FROM `Data`"
+            cursor.execute(sql3)
+            resultFemale = cursor.fetchall()
+            Female = int(resultFemale[0]['Female'])
+            print("Female: ", Female)  
+            #print(resultFemale)   
 
-        return jsonify(Mensajes_Actual)
-
+        return jsonify({
+            "cols": [
+                {"id":"","label":"Topping","pattern":"","type":"string"},
+                {"id":"","label":"Slices","pattern":"","type":"number"}
+                ],
+                "rows": [
+                {"c":[{"v":"Male1","f":"Personas en Casa"},{"v":male,"f":male}]},
+                {"c":[{"v":"Female2","f":"Personas que Salieron"},{"v":Female,"f":Female}]}
+                ]
+                })
     finally:
         connection.close()
 
@@ -286,7 +300,7 @@ def PieChartProvinicia(idpais, idProvinicia):
 #//////////////////////////////////////////
 # Chart - Grafico  PieChart Ciudad
 #//////////////////////////////////////////
-@app.route('/Grafico/<idpais>/<idCiudad>')
+@app.route('/PieChart/<idpais>/<idCiudad>')
 def PieChartCiudad(idpais, idProvinicia, idCiudad):
     # Connect to the database
     connection = pymysql.connect(host='192.168.100.51',
@@ -298,29 +312,42 @@ def PieChartCiudad(idpais, idProvinicia, idCiudad):
 
     try:
         with connection.cursor() as cursor:
-
+            # Read a single record
+        
             #///////////////////////////////
-            
-            #sql2 = "SELECT Id AS Month, `Total_Personas_Casa` As Sales_Figure, `Total_personas_Salida` AS Perc, Time_Aprox_Salida AS TimeSalida FROM `Data`"
-            sql2 = "SELECT Id AS Month, `Total_Personas_Casa` As Sales_Figure, `Total_personas_Salida` AS Perc, Time_Aprox_Salida AS TimeSalida FROM `Data`"
+            #sql2 = "SELECT COUNT(Total_Personas_Casa) AS Male FROM `Data` WHERE `Id_Genero`=%s"
+            sql2 = "SELECT SUM(Total_Personas_Casa) AS Male FROM `Data`"
             cursor.execute(sql2)
-            resultMensajes_Actual = cursor.fetchall()
-            Mensajes_Actual = resultMensajes_Actual
-            print("Mensaje: ", Mensajes_Actual)
+            resultMale = cursor.fetchall()
+            male = int(resultMale[0]['Male'])
+            print("Male: ", male)
             #print(resultMale)
-            
             #///////////////////////////////
-         
+            #sql3 = "SELECT COUNT(Id_Genero) AS Female FROM `json_metrics` WHERE `Id_Genero`=%s"
+            sql3 = "SELECT SUM(Total_personas_Salida) AS Female FROM `Data`"
+            cursor.execute(sql3)
+            resultFemale = cursor.fetchall()
+            Female = int(resultFemale[0]['Female'])
+            print("Female: ", Female)  
+            #print(resultFemale)   
 
-        return jsonify(Mensajes_Actual)
-
+        return jsonify({
+            "cols": [
+                {"id":"","label":"Topping","pattern":"","type":"string"},
+                {"id":"","label":"Slices","pattern":"","type":"number"}
+                ],
+                "rows": [
+                {"c":[{"v":"Male1","f":"Personas en Casa"},{"v":male,"f":male}]},
+                {"c":[{"v":"Female2","f":"Personas que Salieron"},{"v":Female,"f":Female}]}
+                ]
+                })
     finally:
         connection.close()
 
 #//////////////////////////////////////////
 # Chart - Grafico PieChart Sector
 #//////////////////////////////////////////
-@app.route('/Grafico/<idpais>/<idCiudad>/<idSector>')
+@app.route('/PieChart/<idpais>/<idCiudad>/<idSector>')
 def PieChartSector(idpais, idProvinicia, idCiudad, idSector):
     # Connect to the database
     connection = pymysql.connect(host='192.168.100.51',
@@ -332,22 +359,35 @@ def PieChartSector(idpais, idProvinicia, idCiudad, idSector):
 
     try:
         with connection.cursor() as cursor:
-
+            # Read a single record
+        
             #///////////////////////////////
-            
-            #sql2 = "SELECT Id AS Month, `Total_Personas_Casa` As Sales_Figure, `Total_personas_Salida` AS Perc, Time_Aprox_Salida AS TimeSalida FROM `Data`"
-            sql2 = "SELECT Id AS Month, `Total_Personas_Casa` As Sales_Figure, `Total_personas_Salida` AS Perc, Time_Aprox_Salida AS TimeSalida FROM `Data`"
+            #sql2 = "SELECT COUNT(Total_Personas_Casa) AS Male FROM `Data` WHERE `Id_Genero`=%s"
+            sql2 = "SELECT SUM(Total_Personas_Casa) AS Male FROM `Data`"
             cursor.execute(sql2)
-            resultMensajes_Actual = cursor.fetchall()
-            Mensajes_Actual = resultMensajes_Actual
-            print("Mensaje: ", Mensajes_Actual)
+            resultMale = cursor.fetchall()
+            male = int(resultMale[0]['Male'])
+            print("Male: ", male)
             #print(resultMale)
-            
             #///////////////////////////////
-         
+            #sql3 = "SELECT COUNT(Id_Genero) AS Female FROM `json_metrics` WHERE `Id_Genero`=%s"
+            sql3 = "SELECT SUM(Total_personas_Salida) AS Female FROM `Data`"
+            cursor.execute(sql3)
+            resultFemale = cursor.fetchall()
+            Female = int(resultFemale[0]['Female'])
+            print("Female: ", Female)  
+            #print(resultFemale)   
 
-        return jsonify(Mensajes_Actual)
-
+        return jsonify({
+            "cols": [
+                {"id":"","label":"Topping","pattern":"","type":"string"},
+                {"id":"","label":"Slices","pattern":"","type":"number"}
+                ],
+                "rows": [
+                {"c":[{"v":"Male1","f":"Personas en Casa"},{"v":male,"f":male}]},
+                {"c":[{"v":"Female2","f":"Personas que Salieron"},{"v":Female,"f":Female}]}
+                ]
+                })
     finally:
         connection.close()
 
@@ -355,7 +395,7 @@ def PieChartSector(idpais, idProvinicia, idCiudad, idSector):
 #//////////////////////////////////////////
 # Chart - Grafico PieChart Ubicacion
 #//////////////////////////////////////////
-@app.route('/Grafico/<idpais>/<idCiudad>/<idSector>/<idUbicacion>')
+@app.route('/PieChart/<idpais>/<idCiudad>/<idSector>/<idUbicacion>')
 def PieChartubicacion(idpais, idProvinicia, idCiudad, idSector, idUbicacion):
     # Connect to the database
     connection = pymysql.connect(host='192.168.100.51',
@@ -367,22 +407,35 @@ def PieChartubicacion(idpais, idProvinicia, idCiudad, idSector, idUbicacion):
 
     try:
         with connection.cursor() as cursor:
-
+            # Read a single record
+        
             #///////////////////////////////
-            
-            #sql2 = "SELECT Id AS Month, `Total_Personas_Casa` As Sales_Figure, `Total_personas_Salida` AS Perc, Time_Aprox_Salida AS TimeSalida FROM `Data`"
-            sql2 = "SELECT Id AS Month, `Total_Personas_Casa` As Sales_Figure, `Total_personas_Salida` AS Perc, Time_Aprox_Salida AS TimeSalida FROM `Data`"
+            #sql2 = "SELECT COUNT(Total_Personas_Casa) AS Male FROM `Data` WHERE `Id_Genero`=%s"
+            sql2 = "SELECT SUM(Total_Personas_Casa) AS Male FROM `Data`"
             cursor.execute(sql2)
-            resultMensajes_Actual = cursor.fetchall()
-            Mensajes_Actual = resultMensajes_Actual
-            print("Mensaje: ", Mensajes_Actual)
+            resultMale = cursor.fetchall()
+            male = int(resultMale[0]['Male'])
+            print("Male: ", male)
             #print(resultMale)
-            
             #///////////////////////////////
-         
+            #sql3 = "SELECT COUNT(Id_Genero) AS Female FROM `json_metrics` WHERE `Id_Genero`=%s"
+            sql3 = "SELECT SUM(Total_personas_Salida) AS Female FROM `Data`"
+            cursor.execute(sql3)
+            resultFemale = cursor.fetchall()
+            Female = int(resultFemale[0]['Female'])
+            print("Female: ", Female)  
+            #print(resultFemale)   
 
-        return jsonify(Mensajes_Actual)
-
+        return jsonify({
+            "cols": [
+                {"id":"","label":"Topping","pattern":"","type":"string"},
+                {"id":"","label":"Slices","pattern":"","type":"number"}
+                ],
+                "rows": [
+                {"c":[{"v":"Male1","f":"Personas en Casa"},{"v":male,"f":male}]},
+                {"c":[{"v":"Female2","f":"Personas que Salieron"},{"v":Female,"f":Female}]}
+                ]
+                })
     finally:
         connection.close()
 
